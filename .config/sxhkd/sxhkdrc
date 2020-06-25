@@ -40,7 +40,7 @@ super + shift + f
 
 # alt tab between windows
 super + {_, shift + } Tab
-  bspc node -f {next,prev}
+  bspc node -f {next,prev}.local
 
 # bring up the screenshot tool
 super + alt + 1
