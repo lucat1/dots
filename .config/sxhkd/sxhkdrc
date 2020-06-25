@@ -46,8 +46,12 @@ super + {_, shift + } Tab
 super + alt + 1
   kap 
   
+# bring up record tool 
+super + alt + 2 
+  kap -w
+
 # bring up the color picker
-super + alt + 2
+super + alt + 3 
   farge
 
 # alternate between the tiled and monocle layout

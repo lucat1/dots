@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-declare file='%FT%R:%S%:z_$wx$h'
+declare file=$HOME/Pictures/Screenshot-'%F-%R:%S%:z'
 declare mode='png'
 declare select=1
 declare duration
@@ -8,8 +8,6 @@ declare delay=0
 declare verbose
 declare callback
 declare -a slop_args
-declare -r config_dir="${XDG_CONFIG_DIR:-$HOME/.config}/yaxg"
-declare -r config_file="${config_dir}/conf"
 declare -A dimensions
 declare -A colors
 colors[red]=$(tput setaf 1)
@@ -18,7 +16,7 @@ colors[reset]=$(tput sgr0)
 
 usage() {
   LESS=-FEXR less <<HELP
-Usage: yaxg [OPTIONS] [FILE]
+Usage: kap [OPTIONS] [FILE]
 records and saves regions of X11 displays
 
 OPTIONS:
@@ -28,13 +26,12 @@ OPTIONS:
   -F  overwrite file if it exists
   -s  select a region or window
   -S  pass a arguments directly to slop
-  -e  execute a script in the config dir or a callback string with the current $SHELL
   -g  save as gif (will be overridden by file extension)
   -p  save as png (will be overridden by file extension)
   -w  save as webm (will be overridden by file extension)
       this is the default behavior when -g or -p is not present and the
       filename doesn't end in png or gif
-      press Ctrl+C to stop recording or run \`yaxg stop\`
+      press Ctrl+C to stop recording or run \`kap stop\`
   -v  increase ffmpeg verbosity (can be stacked)
   -h  print this help
 
@@ -44,37 +41,11 @@ SPECIAL STRINGS
 Similar to \`scrot\`, the callback and filename parameters can take format
 specifiers that are expanded when encountered. Characters preceded by
 '%' are interpreted directly by the \`date\` commmand. See \`man date\` for examples.
-Characters preceded by '$' are parsed by yaxg and expanded as such:
+Characters preceded by '$' are parsed by kap and expanded as such:
 
   \$f  quoted image path/filename (only available in callback)
   \$w  image width
   \$h  image height
-
-
-CONFIGURATION:
-
-A configuration file can saved at ${config_file/$HOME/\~}
-If a line begins with '#' it is treated as a comment and ignored
-The config file accepts the following values:
-
-  callback
-    a callback string to execute
-  filename
-    a default filename to use when none is provided (must not include extension)
-    defaults to %FT%R:%S:%:z_\$wx\$h
-  format
-    default format to use, must be either 'png', 'webm', or 'gif'
-  slop
-    arguments to be passed to slop
-
-
-EXAMPLES:
-
-  yaxg '%s-\$w-\$h'
-  yaxg '%s-\$w-\$h' -e 'mv \$f ~/images/\$f'
-  yaxg -s -S '-l -c 0.3,0.4,0.6,0.4' -e 'mv \$f ~/images/\$f && firefox ~/images/\$f'
-  printf '#!/usr/bin/env bash\n[[ "\$1" =~ png$ ]] && optipng "\$1"\n' \\
-    > ~/.config/yaxg/myScript && chmod +x !#:3 && yaxg -e 'myScript'
 HELP
 }
 
@@ -87,7 +58,7 @@ info() {
   if in_term; then
     printf "${colors[blue]}%s${colors[reset]}\n" "$*" > /dev/tty
   else
-    notify-send 'yaxg' "$*"
+    notify-send "$*"
   fi
 }
 
@@ -97,7 +68,7 @@ err() {
     printf "${colors[red]}%s${colors[reset]}\n" "$@" >&2
   else
     str=$(printf '%s' "$@")
-    notify-send -t 3000 -u critical 'yaxg' "$str"
+    notify-send -t 3000 -u critical 'kap' "$str"
   fi
 }
 
@@ -162,7 +133,7 @@ record_gif() {
     --y="${dimensions['y']}" \
     --width="${dimensions['w']}" \
     --height="${dimensions['h']}" \
-    "$file"
+    "$file" &
 }
 
 record_webm() {
@@ -182,7 +153,7 @@ record_webm() {
     -r 60 \
     -threads 4 \
     -pix_fmt yuv444p \
-    -f webm "$file"
+    -f webm "$file" &
 }
 
 record_png() {
@@ -206,45 +177,10 @@ parse_callback_str() {
   printf '%s' "$str"
 }
 
-parse_config_file() {
-  local line k v nr=0
-  config_err=()
-  while IFS= read -r line; do
-    (( ++nr ))
-    [[ -z $line || $line = '#'* ]] && continue
-    read -r key val <<< "$line"
-    if [[ -z $val ]]; then
-      config_err+=( "missing value for \"$key\" in config file on line $nr" )
-      continue
-    fi
-    case $key in
-      callback) callback=$val ;;
-      filename) file=$val ;;
-      format)
-        if [[ $val =~ png|webm|gif ]]; then
-          mode=$val
-        else
-          config_err+=( "unknown format \"$val\" in config file on line $nr" )
-        fi
-        ;;
-      slop) slop_args=( $val ) ;;
-      *) config_err+=( "unknown key \"$key\" in config file on line $nr" )
-    esac
-  done < "$config_file"
-  if (( ${#config_err[@]} > 0 )); then
-    err 'there were errors parsing config file:'
-    for e in "${config_err[@]}"; do
-      err "  $e"
-    done
-  fi
-}
-
 if [[ "$1" = 'stop' ]] || pgrep -f 'x11grab'; then
   pkill -f x11grab || die 'x11grab not running'
   exit
 fi
-
-[[ -s $config_file ]] && parse_config_file
 
 OPTERR=0
 while getopts "d:D:e:FghpsS:vw" opt; do
@@ -302,16 +238,12 @@ case $file in
 esac
 file=$(parse_file_str "$file")
 
-delay
-[[ $mode != 'png' ]] && info 'recording'
-"record_$mode"
-[[ -e $file ]] || die 'error recording file'
-info "saved as $file"
 
-if [[ -n $callback ]]; then
-  if [[ -x "${config_dir}/${callback%% *}" ]]; then
-    $SHELL -c "$(parse_callback_str "$config_dir/$callback \$f")"
-  else
-    $SHELL -c "$(parse_callback_str "$callback")"
-  fi
+  "record_$mode" 
+if [[ $mode != 'png' ]]; then
+  dunstify -u critical -t 0 --action='a,b' '🎥 click to stop'
+  kill $! # should kill whatever prcess was recording the video/gif
 fi
+
+[[ -e $file ]] || die 'error recording file'
+info "📸 saved, $(du -sh $file | awk '{print $1;}'" ")"
