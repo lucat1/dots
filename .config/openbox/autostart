@@ -1,0 +1,8 @@
+leftbar &
+rightbar &
+
+dunst &
+
+xset r rate 400 60
+xsetroot -cusor_name left_ptr
+bud ~/.config/wallpaper.jpg
