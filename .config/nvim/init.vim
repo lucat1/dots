@@ -46,6 +46,19 @@ set termguicolors
 set scrolloff=10
 set cursorline
 
+" set tabs(as spaces) sizes
+set noerrorbells
+set tabstop=2 softtabstop=2
+set shiftwidth=2
+set smartindent
+set expandtab
+
+" display line numbers
+set number
+set relativenumber
+" set line gutter size
+set numberwidth=4
+
 " more space to displaying messages.
 set cmdheight=2
 
@@ -134,19 +147,6 @@ endfunction
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-
-" set tabs(as spaces) sizes
-set noerrorbells
-set tabstop=2 softtabstop=2
-set shiftwidth=2
-set smartindent
-set expandtab
-
-" display line numbers
-set number
-set relativenumber
-" set line gutter size
-set numberwidth=6
 
 " jump back to where you left off
 " from: https://askubuntu.com/a/202077
