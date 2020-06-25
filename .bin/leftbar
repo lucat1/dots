@@ -1,0 +1,41 @@
+#!/bin/bash
+
+SCREEN_WIDTH=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
+
+SCREEN_HEIGHT=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
+
+HEIGHT=64
+WIDTH=180
+MARGIN=20
+
+OFFSET_Y=$((SCREEN_HEIGHT - $HEIGHT - $MARGIN))
+
+DESKTOP_COUNT=4
+
+workspaces() {
+  curr=$(xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}')
+
+  res=""
+  for((i = 1; i < curr+1; i++)); do
+    res+="%{F#000000}${i} "
+  done
+
+  res+="%{F#808080}$((curr+1)) "
+
+  for((i = curr+2; i < DESKTOP_COUNT+1; i++)); do
+    res+="%{F#000000}${i} "
+  done
+
+  echo "%{c}$res"
+}
+
+spit() {
+  while true; do
+    workspaces
+    sleep 1
+  done
+}
+
+
+spit | lemonbar -p -B#FFFFFF -g ${WIDTH}x${HEIGHT}+${MARGIN}+${OFFSET_Y} -f "Operator Mono:size=12"
+

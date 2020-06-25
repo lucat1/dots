@@ -1,0 +1,13 @@
+#!/bin/bash
+
+read -r X Y W H < <(slop -f "%x %y %w %h" -b 4 -t 0 -q)
+
+(( W -= 80 ))
+(( H -= 80 - 30 ))
+
+(( W /= 10 ))
+(( H /= 25 ))
+
+echo "spawning at: $X, $Y; size: $W, $H"
+
+alacritty -d $W $H --position $X $Y
