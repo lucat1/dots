@@ -10,7 +10,7 @@ fi
 
 xset r rate 400 60
 xsetroot -cursor_name left_ptr
-hsetroot -full .config/wallpaper.jpg
+hsetroot -cover .config/wallpaper.jpg
 
 bspc monitor -d 1 2 3 4 5 6 
 
