@@ -1,0 +1,25 @@
+{
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git"],
+      "filetypes": ["go"]
+    }
+  },
+
+  "typescript.suggestionActions.enabled": false,
+
+  // formatting stuff
+  "prettier.disableSuccessMessage": true,
+  "tsserver.formatOnType": true,
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "json",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ]
+}
