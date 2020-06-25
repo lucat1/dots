@@ -2,4 +2,4 @@
 
 [ -f ~/.xprofile ] && . ~/.xprofile
 
-exec openbox-session
+exec bspwm
