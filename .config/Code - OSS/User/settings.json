@@ -1,0 +1,42 @@
+{
+  "window.zoomLevel": 2,
+  "window.menuBarVisibility": "toggle",
+  "workbench.colorTheme": "Gruvbox Dark Hard",
+  "editor.fontFamily": "CaskaydiaCove Nerd Font",
+  //"editor.fontFamily": "Cascadia Code, Menlo, monospace",
+  "editor.fontSize": 17,
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.tree.indent": 20,
+  "editor.lineHeight": 34,
+  "editor.suggestLineHeight": 18,
+  "go.useLanguageServer": true,
+  "editor.tabSize": 2,
+  "prettier.packageManager": "yarn",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[go]": {
+    "editor.defaultFormatter": "golang.Go"
+  },
+  "[c]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "editor.rulers": [80],
+  "explorer.confirmDragAndDrop": false,
+  "gitlens.codeLens.enabled": false,
+  "gitlens.statusBar.enabled": false,
+  "gitlens.views.repositories.location": "gitlens",
+  "gitlens.views.fileHistory.location": "gitlens",
+  "gitlens.views.lineHistory.location": "gitlens",
+  "gitlens.views.compare.location": "gitlens",
+  "gitlens.views.search.location": "gitlens",
+  "editor.fontLigatures": true,
+  "spellright.language": ["en_US"],
+  "spellright.documentTypes": [
+    "markdown",
+    "latex",
+    "plaintext"
+  ],
+  "debug.console.fontFamily": "CaskaydiaCove Nerd Font",
+  "markdown.preview.fontFamily": "CaskaydiaCove Nerd Font",
+  "terminal.integrated.fontFamily": "CaskaydiaCove Nerd Font"
+}
