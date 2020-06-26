@@ -12,6 +12,10 @@ if ! pgrep -x "picom" > /dev/null; then
   picom --config $HOME/.config/picom.conf &
 fi
 
+killall lemonbar > /dev/null
+leftbar &
+rightbar &
+
 xset r rate 400 60
 xsetroot -cursor_name left_ptr
 hsetroot -solid "#3C3836" #bg1
