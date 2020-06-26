@@ -35,7 +35,7 @@ clean:
 dist: clean
 	@echo creating dist tarball
 	@mkdir -p dmenu-${VERSION}
-	@cp LICENSE Makefile README config.mk dmenu.1 draw.h dmenu_path stest.1 ${SRC} dmenu-${VERSION}
+	@cp LICENSE Makefile README config.mk draw.h dmenu_path ${SRC} dmenu-${VERSION}
 	@tar -cf dmenu-${VERSION}.tar dmenu-${VERSION}
 	@gzip dmenu-${VERSION}.tar
 	@rm -rf dmenu-${VERSION}
@@ -47,20 +47,11 @@ install: all
 	@chmod 755 ${DESTDIR}${PREFIX}/bin/dmenu
 	@chmod 755 ${DESTDIR}${PREFIX}/bin/dmenu_path	
 	@chmod 755 ${DESTDIR}${PREFIX}/bin/stest
-	@echo installing manual pages to ${DESTDIR}${MANPREFIX}/man1
-	@mkdir -p ${DESTDIR}${MANPREFIX}/man1
-	@sed "s/VERSION/${VERSION}/g" < dmenu.1 > ${DESTDIR}${MANPREFIX}/man1/dmenu.1
-	@sed "s/VERSION/${VERSION}/g" < stest.1 > ${DESTDIR}${MANPREFIX}/man1/stest.1
-	@chmod 644 ${DESTDIR}${MANPREFIX}/man1/dmenu.1
-	@chmod 644 ${DESTDIR}${MANPREFIX}/man1/stest.1
 
 uninstall:
 	@echo removing executables from ${DESTDIR}${PREFIX}/bin
 	@rm -f ${DESTDIR}${PREFIX}/bin/dmenu
 	@rm -f ${DESTDIR}${PREFIX}/bin/dmenu_path
 	@rm -f ${DESTDIR}${PREFIX}/bin/stest
-	@echo removing manual page from ${DESTDIR}${MANPREFIX}/man1
-	@rm -f ${DESTDIR}${MANPREFIX}/man1/dmenu.1
-	@rm -f ${DESTDIR}${MANPREFIX}/man1/stest.1
 
 .PHONY: all options clean dist install uninstall
