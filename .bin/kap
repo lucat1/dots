@@ -68,7 +68,7 @@ err() {
     printf "${colors[red]}%s${colors[reset]}\n" "$@" >&2
   else
     str=$(printf '%s' "$@")
-    notify-send -t 3000 -u critical 'kap' "$str"
+    notify-send -t 3000 -u critical "$str"
   fi
 }
 
