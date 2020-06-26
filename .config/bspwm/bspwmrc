@@ -8,25 +8,44 @@ if ! pgrep -x "dunst" > /dev/null; then
   dunst &
 fi
 
+if ! pgrep -x "picom" > /dev/null; then
+  picom --config $HOME/.config/picom.conf &
+fi
+
 xset r rate 400 60
 xsetroot -cursor_name left_ptr
-hsetroot -cover .config/wallpaper.jpg
+hsetroot -solid "#3C3836" #bg1
+#hsetroot -cover .config/wallpaper.jpg
 
 bspc monitor -d 1 2 3 4 5 6 
 
 bspc config border_width         2
-bspc config window_gap          12
+bspc config window_gap           30 
 bspc config split_ratio          0.50
 
 # colors from the gruvbox theme
 # using color0 - unfocused ; color8 - focused
-bspc config normal_border_color "#282828"
+bspc config normal_border_color "#A89984"
 # active and focus are the same but on different monitors
-bspc config active_border_color "#928374"
-bspc config focused_border_color "#928374"
+bspc config active_border_color "#EBDBB2"
+bspc config focused_border_color "#EBDBB2"
 
 bspc config borderless_monocle   true
+#bspc config single_monocle       true
 bspc config gapless_monocle      true
+
+# add padding on the sides
+bspc config top_padding 20
+bspc config bottom_padding 20
+bspc config left_padding 100
+bspc config right_padding 100
+
+# custom configuration for desktop 1 (chromium)
+bspc config -d 1 left_padding 100
+bspc config -d 1 right_padding 100
 
 # make all the windows floating by default
 bspc rule -a "*" state=floating
+
+# force windows on given screens
+bspc rule -a "Chromium" desktop=^1 state=tiled
