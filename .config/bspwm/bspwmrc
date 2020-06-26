@@ -53,4 +53,3 @@ bspc rule -a "*" state=floating
 
 # force windows on given screens
 bspc rule -a "Chromium" desktop=^1 state=tiled
-bspc rule -a "Alacritty" desktop=^2 state=fullscreen
