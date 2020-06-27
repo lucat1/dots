@@ -9,6 +9,7 @@ call plug#begin()
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'mbbill/undotree'
   Plug 'jremmen/vim-ripgrep'
+  Plug 'tpope/vim-commentary'
 
   " icons
   Plug 'ryanoasis/vim-devicons'
