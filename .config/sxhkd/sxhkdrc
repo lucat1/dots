@@ -6,6 +6,10 @@
 super + Return
   alacritty
 
+# terminal emulator drawer
+super + shift + Return
+  adraw 
+  
 # program launcher
 super + @space
 	dmenu_run
