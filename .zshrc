@@ -25,6 +25,7 @@ export GPG_TTY=$(tty)
 
 export VOLTA_HOME=$HOME/.volta
 export PATH=$PATH:$VOLTA_HOME/bin
+export EDITOR="nvim"
 
 # git alias to manage config filed
 # see: https://www.atlassian.com/git/tutorials/dotfiles

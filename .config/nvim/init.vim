@@ -1,26 +1,26 @@
 call plug#begin()
-  " my colorscheme
-  Plug 'gruvbox-community/gruvbox'
+" my colorscheme
+Plug 'gruvbox-community/gruvbox'
 
-  " essentials
-  Plug 'itchyny/lightline.vim'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'airblade/vim-gitgutter'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'mbbill/undotree'
-  Plug 'jremmen/vim-ripgrep'
-  Plug 'tpope/vim-commentary'
+" essentials
+Plug 'itchyny/lightline.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mbbill/undotree'
+Plug 'jremmen/vim-ripgrep'
+Plug 'tpope/vim-commentary'
 
-  " icons
-  Plug 'ryanoasis/vim-devicons'
+" icons
+Plug 'ryanoasis/vim-devicons'
 
-  " go tools
-  Plug 'fatih/vim-go'
+" go tools
+Plug 'fatih/vim-go'
 
-  " syntax highligters
-  Plug 'pangloss/vim-javascript'
-  Plug 'leafgarland/typescript-vim'
-  Plug 'peitalin/vim-jsx-typescript'
+" syntax highligters
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 call plug#end()
 
 " remove arrow keys
@@ -80,20 +80,20 @@ set background=dark
 set noshowmode
 " set lightline sections
 let g:lightline = {
-  \ 'active': {
-  \   'left': [ [ 'mode' ],
-  \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
-  \   'right': [
-  \     [ 'lineinfo' ],
-  \     [ 'percent' ],
-  \     [ 'filetype' ],
-  \   ] 
-  \ },
-  \ 'component_function': {
-  \   'filetype': 'MyFiletype',
-  \   'cocstatus': 'coc#status'
-  \ }
-  \ }
+      \ 'active': {
+      \   'left': [ [ 'mode' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [
+      \     [ 'lineinfo' ],
+      \     [ 'percent' ],
+      \     [ 'filetype' ],
+      \   ] 
+      \ },
+      \ 'component_function': {
+      \   'filetype': 'MyFiletype',
+      \   'cocstatus': 'coc#status'
+      \ }
+      \ }
 
 function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : '') : ''
@@ -154,6 +154,16 @@ nmap <leader>rn <Plug>(coc-rename)
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 endif
+
+" format c files on save
+function FormatBuffer()
+  if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
+    let cursor_pos = getpos('.')
+    :%!clang-format
+    call setpos('.', cursor_pos)
+  endif
+endfunction
+autocmd BufWritePre *.h,*.hpp,*.c,*.cpp :call FormatBuffer()
 
 " ctrlp configuration
 set wildignore+=node_modules
