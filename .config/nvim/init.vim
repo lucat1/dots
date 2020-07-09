@@ -21,6 +21,7 @@ Plug 'fatih/vim-go'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'jparise/vim-graphql'
 call plug#end()
 
 " remove arrow keys
