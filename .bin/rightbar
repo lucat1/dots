@@ -10,7 +10,7 @@ OFFSET_X=$((SCREEN_WIDTH - $WIDTH - $MARGIN))
 OFFSET_Y=$((SCREEN_HEIGHT - $HEIGHT - $MARGIN))
 
 NAME="Rightbar"
-rightbar_panel | lemonbar -n "$NAME" -d -F#000000 -B#FFFFFF -g ${WIDTH}x${HEIGHT}+${OFFSET_X}+${OFFSET_Y} -f "Operator Mono:size=12" &
+rightbar_panel | lemonbar -n "$NAME" -d -F#EBDBB2 -B#282828 -g ${WIDTH}x${HEIGHT}+${OFFSET_X}+${OFFSET_Y} -f "Operator Mono:size=12" &
 
 wid=$(xdo id -m -a "$NAME")
 xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
