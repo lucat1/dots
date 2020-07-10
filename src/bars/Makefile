@@ -1,6 +1,6 @@
 CC = gcc
 
-all: leftbar
+all: leftbar rightbar
 
 leftbar:
 	$(CC) -o leftbar_panel leftbar_panel.c
@@ -8,7 +8,7 @@ leftbar:
 rightbar:
 	$(CC) -o rightbar_panel rightbar_panel.c
 
-install:
+install: all
 	cp leftbar_panel ~/.bin
 	cp rightbar_panel ~/.bin
 
