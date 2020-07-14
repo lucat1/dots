@@ -1,0 +1,1 @@
+Guifont CaskaydiaCove Nerd Font

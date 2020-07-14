@@ -61,9 +61,6 @@ set relativenumber
 " set line gutter size
 set numberwidth=4
 
-" more space to displaying messages.
-set cmdheight=2
-
 " lower update times for a better experience
 " don't pass messages to autocomplete dialogs 
 set updatetime=50
@@ -76,25 +73,33 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 " set the colorscheme *dark*
 colorscheme gruvbox
 set background=dark
+" make comments and certain pieces of code italic (Operator Mono)
+hi htmlArg gui=italic
+hi Comment gui=italic
+hi Type    gui=italic
+hi htmlArg cterm=italic
+hi Comment cterm=italic
+hi Type    cterm=italic
 
 " configure lightline
 set noshowmode
 " set lightline sections
 let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
-      \   'right': [
-      \     [ 'lineinfo' ],
-      \     [ 'percent' ],
-      \     [ 'filetype' ],
-      \   ] 
-      \ },
-      \ 'component_function': {
-      \   'filetype': 'MyFiletype',
-      \   'cocstatus': 'coc#status'
-      \ }
-      \ }
+  \ 'active': {
+  \   'left': [ [ 'mode' ],
+  \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
+  \   'right': [
+  \     [ 'lineinfo' ],
+  \     [ 'percent' ],
+  \     [ 'filetype' ],
+  \   ] 
+  \ },
+  \ 'component_function': {
+  \   'filetype': 'MyFiletype',
+  \   'cocstatus': 'coc#status'
+  \ },
+  \ 'separator': {'left': '', 'right': ''}
+  \ }
 
 function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : '') : ''

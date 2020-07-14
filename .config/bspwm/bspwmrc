@@ -47,8 +47,8 @@ bspc config right_padding 100
 # custom configuration for desktop 1 (chromium) and 2 (vim)
 bspc config -d 1 left_padding 100
 bspc config -d 1 right_padding 100
-bspc config -d 2 left_padding 100
-bspc config -d 2 right_padding 100
+bspc config -d 2 left_padding 50 
+bspc config -d 2 right_padding 50 
 
 # make all the windows floating by default
 bspc rule -a "*" state=floating

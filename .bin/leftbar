@@ -9,7 +9,7 @@ OFFSET_Y=$((SCREEN_HEIGHT - $HEIGHT - $MARGIN))
 
 
 NAME="Leftbar"
-bspc subscribe report | leftbar_panel | lemonbar -n "$NAME" -d -F#EBDBB2 -B#282828 -g ${WIDTH}x${HEIGHT}+${MARGIN}+${OFFSET_Y} -f "Operator Mono:size=12" &
+bspc subscribe report | leftbar_panel | lemonbar -n "$NAME" -d -F#EBDBB2 -B#282828 -g ${WIDTH}x${HEIGHT}+${MARGIN}+${OFFSET_Y} -f "CaskaydiaCove Nerd Font:size=12" &
 
 wid=$(xdo id -m -a "$NAME")
 xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
