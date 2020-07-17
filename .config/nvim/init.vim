@@ -5,6 +5,7 @@ Plug 'gruvbox-community/gruvbox'
 " essentials
 Plug 'itchyny/lightline.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'liuchengxu/vista.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mbbill/undotree'
@@ -85,8 +86,9 @@ hi Type    cterm=italic
 set noshowmode
 " set lightline sections
 let g:lightline = {
+  \ 'colorscheme': 'gruvbox',
   \ 'active': {
-  \   'left': [ [ 'mode' ],
+  \   'left': [ [ 'mode' ], [ 'vista' ],
   \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
   \   'right': [
   \     [ 'lineinfo' ],
@@ -96,7 +98,8 @@ let g:lightline = {
   \ },
   \ 'component_function': {
   \   'filetype': 'MyFiletype',
-  \   'cocstatus': 'coc#status'
+  \   'cocstatus': 'coc#status',
+  \   'vista': 'NearestMethodOrFunction'
   \ },
   \ 'separator': {'left': '', 'right': ''}
   \ }
@@ -104,6 +107,16 @@ let g:lightline = {
 function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : '') : ''
 endfunction
+
+" vista.vim integration with lightline and separate configuration
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+let g:vista_default_executive = 'coc'
+
+" By default vista.vim never run if you don't call it explicitly.
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 " coc definition/warning on hover
 " from: https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
@@ -198,3 +211,6 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeShow <bar> :UndotreeFocus <CR>
 nnoremap <leader>t :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <leader>f :Rg <space>
+
+" toggle vista symbol viewer with leader
+noremap <leader>s :Vista!!<CR>
