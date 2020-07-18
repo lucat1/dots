@@ -2,27 +2,33 @@ call plug#begin()
 " my colorscheme
 Plug 'gruvbox-community/gruvbox'
 
-" essentials
+" essentials (status line, commenter, zen mode)
 Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-commentary'
+Plug 'junegunn/goyo.vim'
+
+" lsp
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'liuchengxu/vista.vim'
+
+" version tracking features
 Plug 'airblade/vim-gitgutter'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mbbill/undotree'
+
+" navigation
+Plug 'lambdalisue/fern.vim'
 Plug 'jremmen/vim-ripgrep'
-Plug 'tpope/vim-commentary'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " icons
 Plug 'ryanoasis/vim-devicons'
 
-" go tools
-Plug 'fatih/vim-go'
-
-" syntax highligters
+" language-specific 
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'jparise/vim-graphql'
+Plug 'fatih/vim-go'
 call plug#end()
 
 " remove arrow keys
@@ -207,10 +213,11 @@ nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
-" toggle tree viewer/undo with leader
-nnoremap <leader>u :UndotreeShow <bar> :UndotreeFocus <CR>
-nnoremap <leader>t :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
-nnoremap <leader>f :Rg <space>
+" zen mode
+nnoremap <leader>g :Goyo<CR>
 
-" toggle vista symbol viewer with leader
+" toggle tree viewer/vista symbols/undo with leader
+nnoremap <leader>t :Fern . -drawer -toggle<CR>
+nnoremap <leader>u :UndotreeShow <bar> :UndotreeFocus <CR>
 noremap <leader>s :Vista!!<CR>
+nnoremap <leader>f :Rg <space>
