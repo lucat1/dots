@@ -1,0 +1,17 @@
+[user]
+	email = fromzeroluke1@gmail.com 
+	name = Luca
+
+[credential]
+	helper = store
+
+[includeIf "gitdir:~/github/"]
+    path = ~/github/.gitconfig
+
+[includeIf "gitdir:~/.cfg/"]
+    path = ~/github/.gitconfig
+
+[alias]
+  cm = commit -m
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  l  = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat

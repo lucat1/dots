@@ -1,9 +1,0 @@
-#!/bin/sh
-exe=`dmenu_path | grep -v  -f ~/.config/dmenu_ignores | dmenu "$@" -c -lr 2 -d 0.3 -fn 'Operator Mono-13'`
-
-if [ $exe = "chromium" ]; then
-    chromium --enable-features=WebUIDarkMode --force-dark-mode --force-device-scale-factor=1.2 %U &
-    return
-fi
-
-exec $exe
