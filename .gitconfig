@@ -2,6 +2,12 @@
 	email = fromzeroluke1@gmail.com 
 	name = Luca
 
+[core]
+	editor = vim
+
+[gpg]
+	program = gpg2
+
 [credential]
 	helper = store
 
