@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+sed -i 's|Liberation Mono|Monospace|g' config.def.h
+
+# Install terminfo to right location.
+export TERMINFO=$1/usr/share/terminfo
+mkdir -p "$TERMINFO"
+
+patch -p1 < gruvbox.diff
+
+make
+make PREFIX=/usr DESTDIR="$1" install
