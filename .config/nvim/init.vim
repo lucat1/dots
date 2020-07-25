@@ -29,6 +29,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'jparise/vim-graphql'
 Plug 'fatih/vim-go'
+Plug 'lervag/vimtex'
 call plug#end()
 
 " remove arrow keys
@@ -215,6 +216,10 @@ nnoremap <leader>l :wincmd l<CR>
 
 " zen mode
 nnoremap <leader>g :Goyo<CR>
+
+" configure vim for LaTeX
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_quickfix_open_on_warning = 0
 
 " toggle tree viewer/vista symbols/undo with leader
 nnoremap <leader>t :Fern . -drawer -toggle<CR>
