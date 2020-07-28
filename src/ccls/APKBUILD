@@ -1,0 +1,27 @@
+# Maintainer: Luca Tagliavini <fromzeroluke1@gmail.com>
+pkgname=ccls
+pkgver=20190823
+pkgrel=0
+pkgdesc="C/C++/ObjC language server supporting cross references, hierarchies, completion and semantic highlighting"
+url="$pkgname-$pkgver.tar.gz::https://github.com/MaskRay/ccls"
+arch="all"
+license="Apache-2.0 License"
+depends="clang alpine-sdk llvm rapidjson"
+makedepends="cmake clang-dev llvm-dev clang-static llvm-static rapidjson-dev"
+install=""
+subpackages=""
+source="$pkgver.tar.gz::https://github.com/MaskRay/$pkgname/archive/0.$pkgver.6.tar.gz"
+builddir="$srcdir"/$pkgname-0.$pkgver.6
+
+build() {
+  cd "$builddir"
+	# Replace with proper build command(s)
+  cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="/usr"
+}
+
+package() {
+	# Replace with proper package command(s)
+	cmake --build Release --target install DESTDIR="$pkgdir"
+}
+
+sha512sums="c6df96e304f5b7381c67eda4c1bd05873a85fb0d0983b3abcc507987a402860aa6660079a0e7b125f5cda22047da936239480aa0b604cd2598f84a4b9e9c3bdd  20190823.tar.gz"

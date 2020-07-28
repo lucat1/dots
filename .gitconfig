@@ -1,6 +1,7 @@
 [user]
 	email = fromzeroluke1@gmail.com 
 	name = Luca
+	signingkey = 0FDAEF91EB9B7A0C
 
 [core]
 	editor = vim
