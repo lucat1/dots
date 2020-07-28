@@ -15,13 +15,11 @@ builddir="$srcdir"/$pkgname-0.$pkgver.6
 
 build() {
   cd "$builddir"
-	# Replace with proper build command(s)
   cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="/usr"
 }
 
 package() {
-	# Replace with proper package command(s)
-	cmake --build Release --target install DESTDIR="$pkgdir"
+  cmake --build Release --target install DESTDIR="$pkgdir"
 }
 
 sha512sums="c6df96e304f5b7381c67eda4c1bd05873a85fb0d0983b3abcc507987a402860aa6660079a0e7b125f5cda22047da936239480aa0b604cd2598f84a4b9e9c3bdd  20190823.tar.gz"
