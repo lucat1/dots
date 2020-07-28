@@ -49,7 +49,7 @@ set smartcase
 set noswapfile
 set nobackup
 set nowritebackup
-set undodir=~/.local/share/nvim/undodir
+set undodir=~/.config/nvim/undodir
 set undofile
 set incsearch
 set termguicolors
