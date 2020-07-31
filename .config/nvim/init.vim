@@ -9,7 +9,6 @@ Plug 'junegunn/goyo.vim'
 
 " lsp
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'liuchengxu/vista.vim'
 
 " version tracking features
 Plug 'airblade/vim-gitgutter'
@@ -95,7 +94,7 @@ set noshowmode
 let g:lightline = {
   \ 'colorscheme': 'gruvbox',
   \ 'active': {
-  \   'left': [ [ 'mode' ], [ 'vista' ],
+  \   'left': [ [ 'mode' ], 
   \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
   \   'right': [
   \     [ 'lineinfo' ],
@@ -106,7 +105,6 @@ let g:lightline = {
   \ 'component_function': {
   \   'filetype': 'MyFiletype',
   \   'cocstatus': 'coc#status',
-  \   'vista': 'NearestMethodOrFunction'
   \ },
   \ 'separator': {'left': '', 'right': ''}
   \ }
@@ -114,16 +112,6 @@ let g:lightline = {
 function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : '') : ''
 endfunction
-
-" vista.vim integration with lightline and separate configuration
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
-let g:vista_default_executive = 'coc'
-
-" By default vista.vim never run if you don't call it explicitly.
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 " coc definition/warning on hover
 " from: https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
@@ -221,8 +209,7 @@ nnoremap <leader>g :Goyo<CR>
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_quickfix_open_on_warning = 0
 
-" toggle tree viewer/vista symbols/undo with leader
+" toggle tree viewer/undo with leader
 nnoremap <leader>t :Fern . -drawer -toggle<CR>
 nnoremap <leader>u :UndotreeShow <bar> :UndotreeFocus <CR>
-noremap <leader>s :Vista!!<CR>
 nnoremap <leader>f :Rg <space>
