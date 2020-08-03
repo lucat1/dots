@@ -1,6 +1,7 @@
 call plug#begin()
-" my colorscheme
-Plug 'gruvbox-community/gruvbox'
+" my colorscheme (github on the macbook)
+" Plug 'gruvbox-community/gruvbox'
+Plug 'cormacrelf/vim-colors-github'
 
 " essentials (status line, commenter, zen mode)
 Plug 'itchyny/lightline.vim'
@@ -78,8 +79,10 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " set the colorscheme *dark*
-colorscheme gruvbox
-set background=dark
+" colorscheme gruvbox
+colorscheme github
+set background=light
+
 " make comments and certain pieces of code italic (Operator Mono)
 hi htmlArg gui=italic
 hi Comment gui=italic
@@ -92,7 +95,7 @@ hi Type    cterm=italic
 set noshowmode
 " set lightline sections
 let g:lightline = {
-  \ 'colorscheme': 'gruvbox',
+  \ 'colorscheme': 'github',
   \ 'active': {
   \   'left': [ [ 'mode' ], 
   \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
