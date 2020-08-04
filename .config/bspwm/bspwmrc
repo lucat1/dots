@@ -8,6 +8,7 @@ if ! pgrep -x "picom" > /dev/null; then
   picom --config $HOME/.config/picom.conf &
 fi
 
+xbacklight -set 50
 xset r rate 400 60
 xsetroot -cursor_name left_ptr
  hsetroot -solid "#C3C3C3" #bg1

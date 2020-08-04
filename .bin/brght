@@ -1,0 +1,9 @@
+#!/bin/bash
+
+round() {
+  printf "%.${2:-0}f" "$1"
+} 
+
+xbacklight $@
+val=$(xbacklight -get)
+notify-send $(round $val)
