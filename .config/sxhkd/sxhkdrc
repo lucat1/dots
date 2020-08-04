@@ -39,6 +39,10 @@ super + f
     bspc node -t tiled; \
   fi
 
+# center windows
+super + c
+  cntr
+
 # make window fullscreen
 super + shift + f
   bspc node -t fullscreen
