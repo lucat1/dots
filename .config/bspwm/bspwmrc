@@ -8,15 +8,21 @@ if ! pgrep -x "picom" > /dev/null; then
   picom --config $HOME/.config/picom.conf &
 fi
 
-# volume / brightness "progress-like" bar pipe
-# obtained with xob
-mkfifo /tmp/xob
-
 if ! pgrep -x "xob" > /dev/null; then
+  # volume / brightness "progress-like" bar pipe
+  # obtained with xob
+  if [[ -e /tmp/xob ]]; then
+    rm /tmp/xob
+  fi
+  mkfifo /tmp/xob
+
   tail -f /tmp/xob | xob &
 fi
 
-xbacklight -set 50
+# brightness and volume defaults
+xbacklight -set 25
+pamixer --set-volume 25
+
 xset r rate 400 60
 xsetroot -cursor_name left_ptr
  hsetroot -solid "#C3C3C3" #bg1
