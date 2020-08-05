@@ -25,10 +25,17 @@ super + Escape
 
 " dec/incbridgness
 XF86MonBrightnessUp
-  xbacklight -inc 5
+  brght -inc 5
 
 XF86MonBrightnessDown
-  xbacklight -dec 5
+  brght -dec 5
+
+XF86Audio{Raise,Lower}Volume
+  snd -{i,d} 5
+
+XF86AudioMute
+  snd -m
+  
 
 #
 # bspwm hotkeys

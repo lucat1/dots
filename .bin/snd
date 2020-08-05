@@ -1,0 +1,5 @@
+#!/bin/sh
+
+pamixer $@
+val=$(pamixer --get-volume)
+notify-send $val
