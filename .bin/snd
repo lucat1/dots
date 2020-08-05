@@ -1,5 +1,10 @@
 #!/bin/sh
 
 pamixer $@
-val=$(pamixer --get-volume)
-notify-send $val
+val=$(pamixer --get-volume-human)
+if [ "$val" == "muted" ]; then
+  notify-send "audio muted"
+else
+  # notify-send "volume at $val"
+  echo $val | sed 's/\%//g' > /tmp/xob
+fi

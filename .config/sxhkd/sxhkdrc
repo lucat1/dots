@@ -34,7 +34,7 @@ XF86Audio{Raise,Lower}Volume
   snd -{i,d} 5
 
 XF86AudioMute
-  snd -m
+  snd -t
   
 
 #

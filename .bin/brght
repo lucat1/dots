@@ -6,4 +6,4 @@ round() {
 
 xbacklight $@
 val=$(xbacklight -get)
-notify-send $(round $val)
+echo $(round $val) > /tmp/xob
