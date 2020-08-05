@@ -19,6 +19,14 @@ if ! pgrep -x "xob" > /dev/null; then
   tail -f /tmp/xob | xob &
 fi
 
+# setup the bars
+if ! pgrep -x "lemonbar" > /dev/null; then
+  killall lemonbar > /dev/null
+fi
+
+leftbar &
+rightbar &
+
 # brightness and volume defaults
 xbacklight -set 25
 pamixer --set-volume 25
@@ -33,6 +41,7 @@ bspc monitor -d 1 2 3 4
 bspc config border_width         0
 bspc config window_gap           30 
 bspc config split_ratio          0.50
+bspc config top_padding          50
 
 bspc config borderless_monocle   true
 #bspc config single_monocle       true
