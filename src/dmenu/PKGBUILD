@@ -31,5 +31,5 @@ package() {
   install -Dm 644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
 }
 md5sums=('9a537ec9a3a2ce9f08963d66b56cc030'
-         'e73aa70242233afa87a0ed0092dca3da'
-         '68f244b6e1b796276b6fa268a279c7db')
+         '26038c052d3d321f750b3eed96299742'
+         '933ac2426be1f984559acb9e111a67ce')
