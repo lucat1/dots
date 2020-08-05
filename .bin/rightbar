@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# comes from $(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
+SCREEN_WIDTH=2560
+
+HEIGHT=50
+WIDTH=180
+MARGIN=15
+OFFSET_X=$((SCREEN_WIDTH - $WIDTH - ($MARGIN * 2)))
+
+NAME="Rightbar"
+rightbar_panel | lemonbar -n "$NAME" -d -F#3e3e3e -B#f4f4f4 -g ${WIDTH}x${HEIGHT}+${OFFSET_X}+${MARGIN} -f "OperatorMonoLig Nerd Font:size=12" &
+
+wid=$(xdo id -m -a "$NAME")
+xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
+
+wait

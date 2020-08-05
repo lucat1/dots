@@ -1,0 +1,13 @@
+#!/bin/sh
+
+HEIGHT=50
+WIDTH=50
+MARGIN=15
+
+NAME="Leftbar"
+bspc subscribe report | leftbar_panel | lemonbar -n "$NAME" -d -F#3e3e3e -B#f4f4f4 -g ${WIDTH}x${HEIGHT}+$((MARGIN * 2))+${MARGIN} -f "OperatorMonoLig Nerd Font:size=12" &
+
+wid=$(xdo id -m -a "$NAME")
+xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
+
+wait
