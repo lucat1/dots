@@ -1,6 +1,10 @@
 set fish_greeting
 fish_vi_key_bindings
 
+if test -z "$DISPLAY" -a $XDG_VTNR = 1
+  sx 
+end
+
 # basic prompt
 set PROMPT '%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%1~%f%b %# '
 
@@ -20,4 +24,5 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # always run alpine' package manager as root
 alias apk="doas apk"
 
+set -x PF_COL2 0 # make pfetch text use background color
 set -x PATH $PATH:$HOME/.bin
