@@ -1,6 +1,6 @@
 pkgname=dmenu
 pkgver=4.9
-pkgrel=2
+pkgrel=1
 pkgdesc='Generic menu for X'
 url='https://tools.suckless.org/dmenu/'
 arch=('x86_64')
@@ -10,6 +10,8 @@ source=("https://dl.suckless.org/tools/dmenu-${pkgver}.tar.gz" "dmenu.c" "config
 
 prepare() {
   cd ${pkgname}-${pkgver}
+  cp ../config.h .
+  cp ../dmenu.c .
   echo "CPPFLAGS+=${CPPFLAGS}" >> config.mk
   echo "CFLAGS+=${CFLAGS}" >> config.mk
   echo "LDFLAGS+=${LDFLAGS}" >> config.mk
@@ -29,5 +31,5 @@ package() {
   install -Dm 644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
 }
 md5sums=('9a537ec9a3a2ce9f08963d66b56cc030'
-         '5950183213fce0275fe34bf8dfc66459'
-         'c27ddb9f321ed9002c2130a4dbdea7c0')
+         'e73aa70242233afa87a0ed0092dca3da'
+         '68f244b6e1b796276b6fa268a279c7db')
