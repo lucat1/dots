@@ -25,15 +25,15 @@ super + Escape
 
 # dec/inc bridgness
 XF86MonBrightness{Up,Down}
-  brght -{inc,dec} 5
+  $HOME/.bin/brght -{inc,dec} 5
 
 # dec/inc volume 
 XF86Audio{Raise,Lower}Volume
-  snd -{i,d} 5
+  $HOME/.bin/snd -{i,d} 5
 
 # mute audio
 XF86AudioMute
-  snd -t
+  $HOME/.bin/snd -t
   
 
 #

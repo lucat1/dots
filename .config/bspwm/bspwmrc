@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 if ! pgrep -x "sxhkd" > /dev/null; then
   SXHKD_SHELL=bash sxhkd &
@@ -11,7 +11,7 @@ fi
 if ! pgrep -x "xob" > /dev/null; then
   # volume / brightness "progress-like" bar pipe
   # obtained with xob
-  if [[ -e /tmp/xob ]]; then
+  if [ -p /tmp/xob ]; then
     rm /tmp/xob
   fi
   mkfifo /tmp/xob
