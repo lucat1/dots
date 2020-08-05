@@ -24,11 +24,11 @@ super + Escape
 #
 
 " dec/incbridgness
-XF86MonBrightnessDown
-  brght -dec 5
-
 XF86MonBrightnessUp
-  brght -inc 5
+  xbacklight -inc 5
+
+XF86MonBrightnessDown
+  xbacklight -dec 5
 
 #
 # bspwm hotkeys

@@ -1,7 +1,7 @@
 #! /bin/sh
 
 if ! pgrep -x "sxhkd" > /dev/null; then
-  sxhkd &
+  SHXKD_SHELL=bash sxhkd &
 fi
 
 if ! pgrep -x "picom" > /dev/null; then
@@ -34,8 +34,8 @@ bspc config gapless_monocle      true
 # add padding on the sides
 bspc config top_padding 20
 bspc config bottom_padding 20
-bspc config left_padding 100
-bspc config right_padding 100
+bspc config left_padding 20
+bspc config right_padding 20
 
 # make all the windows floating by default
 bspc rule -a "*" state=floating
