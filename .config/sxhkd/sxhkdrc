@@ -58,7 +58,7 @@ super + f
 
 # center windows
 super + c
-  cntr
+  $HOME/.bin/cntr
 
 # make window fullscreen
 super + shift + f
@@ -164,7 +164,7 @@ super + ctrl + shift + space
 
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+	bspc node -z {left -80 0,bottom 0 80,top 0 -80,right 80 0}
 
 # contract a window by moving one of its side inward
 super + alt + shift + {h,j,k,l}
