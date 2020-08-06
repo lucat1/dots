@@ -8,6 +8,10 @@ if ! pgrep -x "picom" > /dev/null; then
   picom --config $HOME/.config/picom.conf &
 fi
 
+if ! pgrep -x "dunst" > /dev/null; then
+  dunst &
+fi
+
 if ! pgrep -x "xob" > /dev/null; then
   # volume / brightness "progress-like" bar pipe
   # obtained with xob
@@ -19,11 +23,7 @@ if ! pgrep -x "xob" > /dev/null; then
   tail -f /tmp/xob | xob &
 fi
 
-# setup the bars
-if ! pgrep -x "lemonbar" > /dev/null; then
-  killall lemonbar > /dev/null
-fi
-
+killall lemonbar 2>&1 > /dev/null
 $HOME/.bin/leftbar &
 $HOME/.bin/batterybar &
 $HOME/.bin/rightbar &
