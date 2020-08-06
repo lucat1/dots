@@ -1,0 +1,16 @@
+pkgname=farge
+pkgver=master
+pkgrel=1
+pkgdesc='Click on a pixel on your screen and show its color value'
+url='https://github.com/sdushantha/farge'
+arch=('x86_64')
+license=('MIT')
+depends=(colorpicker xclip)
+source=("${pkgname}-${pkgver}.zip::https://codeload.github.com/sdushantha/farge//zip/master")
+
+package() {
+  cd ${pkgname}-${pkgver}
+  mkdir -p ${pkgdir}/usr/bin
+  make DEST="${pkgdir}/usr/bin" install
+}
+md5sums=('80f8c8484133837acc3bb7d1b2afd088')

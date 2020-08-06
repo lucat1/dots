@@ -78,7 +78,7 @@ super + alt + 2
 
 # bring up the color picker
 super + alt + 3 
-  farge
+  farge --notify
 
 # alternate between the tiled and monocle layout
 super + m
