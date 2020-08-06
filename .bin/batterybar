@@ -1,0 +1,57 @@
+#!/bin/sh
+# comes from $(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
+SCREEN_WIDTH=2560
+
+HEIGHT=50
+WIDTH=140
+MARGIN=15
+NAME="Batterybar"
+
+bat_dir=/sys/class/power_supply/BAT0
+
+out() {
+  read -r capacity < "$bat_dir/capacity"
+  read -r stat   < "$bat_dir/status"
+
+  status=""
+  case $stat in
+    Full )
+      status="f"
+      ;;
+    Discharging )
+      status="d"
+      ;;
+    Charging )
+      status="c"
+      ;;
+  esac
+
+  echo $status >> /tmp/test
+
+  echo "%{c}$capacity% $status "
+}
+
+loop() {
+  while true; do
+    out
+    sleep 60
+  done
+}
+
+spit() {
+  loop &
+
+  acpi_listen |
+  while read -r line
+  do
+    sleep 1
+    out
+  done 
+}
+
+spit | lemonbar -n "$NAME" -d -F#3e3e3e -B#f4f4f4 -g ${WIDTH}x${HEIGHT}+$(((MARGIN * 3) + 50))+${MARGIN} -f "OperatorMonoLig Nerd Font:size=12" &
+
+wid=$(xdo id -m -a "$NAME")
+xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
+
+wait

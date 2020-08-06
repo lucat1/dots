@@ -24,8 +24,9 @@ if ! pgrep -x "lemonbar" > /dev/null; then
   killall lemonbar > /dev/null
 fi
 
-leftbar &
-rightbar &
+$HOME/.bin/leftbar &
+$HOME/.bin/batterybar &
+$HOME/.bin/rightbar &
 
 # brightness and volume defaults
 xbacklight -set 25
