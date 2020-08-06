@@ -1,0 +1,20 @@
+pkgname=bars
+pkgver=1.0
+pkgrel=1
+pkgdesc='My custom lemonbar scripts in C'
+url='https://github.com/lucat1'
+arch=('x86_64')
+license=('MIT')
+depends=()
+source=("leftbar_panel.c" "rightbar_panel.c" "Makefile")
+
+build() {
+  make
+}
+
+package() {
+  make PREFIX=/usr DESTDIR="${pkgdir}" install 
+}
+md5sums=('e563047b96468d4539a077aa653262ed'
+         'e289e2f28fab613971022bc0a56d949b'
+         '64d6ef9c0aaf2f58b8ef05cecd3c5f8d')
