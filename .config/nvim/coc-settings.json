@@ -2,11 +2,11 @@
   // disable the cSpell word checker.
   "cSpell.enabled": false,
   "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git"],
-      "filetypes": ["go"]
-    },
+//    "golang": {
+//      "command": "gopls",
+//      "rootPatterns": ["go.mod", ".vim/", ".git"],
+//      "filetypes": ["go"]
+//    },
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "objc", "objcpp"],

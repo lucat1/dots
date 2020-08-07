@@ -1,6 +1,7 @@
 call plug#begin()
 " my colorscheme (github on the macbook)
 " Plug 'gruvbox-community/gruvbox'
+Plug 'rakr/vim-one'
 
 " essentials (status line, commenter, zen mode)
 Plug 'itchyny/lightline.vim'
@@ -78,8 +79,8 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " set the colorscheme *dark*
-" colorscheme gruvbox
-" set background=dark
+colorscheme one 
+set background=light
 
 " make comments and certain pieces of code italic (Operator Mono)
 hi htmlArg gui=italic
@@ -94,8 +95,9 @@ set noshowmode
 " set lightline sections
 " \ 'colorscheme': 'github',
 let g:lightline = {
+  \ 'colorscheme': 'one',
   \ 'active': {
-  \   'left': [ [ 'darkmode' ], 
+  \   'left': [ [ 'mode' ], 
   \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
   \   'right': [
   \     [ 'lineinfo' ],
@@ -169,6 +171,10 @@ nmap <leader>rn <Plug>(coc-rename)
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 endif
+
+" disable vim-go gopls process
+let g:go_def_mapping_enabled = 0
+let g:go_code_completion_enabled = 0
 
 " format c files on save
 function FormatBuffer()
