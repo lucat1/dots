@@ -1,15 +1,15 @@
 pkgname=dmenu
-pkgver=4.9
+pkgver=master
 pkgrel=1
 pkgdesc='Generic menu for X'
 url='https://tools.suckless.org/dmenu/'
 arch=('x86_64')
 license=('MIT')
 depends=('sh' 'libxinerama' 'libxft' 'freetype2')
-source=("https://dl.suckless.org/tools/dmenu-${pkgver}.tar.gz" "dmenu.c" "config.h")
+source=("https://dl.suckless.org/tools/dmenu-4.9.tar.gz" "dmenu.c" "config.h")
 
 prepare() {
-  cd ${pkgname}-${pkgver}
+  cd ${pkgname}-4.9
   cp ../config.h .
   cp ../dmenu.c .
   echo "CPPFLAGS+=${CPPFLAGS}" >> config.mk
@@ -18,7 +18,7 @@ prepare() {
 }
 
 build() {
-  cd ${pkgname}-${pkgver}
+  cd ${pkgname}-4.9
   make \
 	  X11INC=/usr/include/X11 \
 	  X11LIB=/usr/lib/X11 \
@@ -26,7 +26,7 @@ build() {
 }
 
 package() {
-  cd ${pkgname}-${pkgver}
+  cd ${pkgname}-4.9
   make PREFIX=/usr DESTDIR="${pkgdir}" install
   install -Dm 644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
 }
