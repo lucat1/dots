@@ -1,0 +1,213 @@
+#!/usr/bin/env bash
+
+declare file=$HOME/Pictures/Screenshot-'%F-%R:%S%:z'
+declare mode='png'
+declare select=1
+declare duration
+declare delay=0
+declare verbose
+declare callback
+declare -a slop_args
+declare -A dimensions
+declare -A colors
+colors[red]=$(tput setaf 1)
+colors[blue]=$(tput setaf 4)
+colors[reset]=$(tput sgr0)
+
+in_term() {
+  [[ -t 0 || -p /dev/stdin ]]
+}
+
+info() {
+  local str
+  if in_term; then
+    printf "${colors[blue]}%s${colors[reset]}\n" "$*" > /dev/tty
+  else
+    notify-send "$*"
+  fi
+}
+
+err() {
+  local str
+  if in_term; then
+    printf "${colors[red]}%s${colors[reset]}\n" "$@" >&2
+  else
+    str=$(printf '%s' "$@")
+    notify-send -t 3000 -u critical "$str"
+  fi
+}
+
+die() {
+  [[ -n $1 ]] && err "$1"
+  exit 1
+}
+
+has() {
+  local v=0
+  if [[ $1 = '-v' ]]; then
+    v=1
+    shift
+  fi
+  for c in "${@%% *}"; do
+    if ! command -v "$c" &> /dev/null; then
+      (( v > 0 )) && err "$c not found"
+      return 1
+    fi
+  done
+}
+
+ask() {
+  if in_term; then
+    read -r -n1 -p "$* " ans <> /dev/tty
+    printf '\n'
+    [[ ${ans^} = Y* ]]
+  else
+    zenity --question --text="$*"
+  fi
+}
+
+delay() {
+  (( delay > 0 )) && for (( i=delay; i > 0; --i )); do
+    if in_term; then
+      printf '%s..                     \r' "$i" > /dev/tty
+    else
+      notify-send -t 1000 "$i.."
+    fi
+    sleep 1
+  done
+}
+
+get_dimensions() {
+  local scrsize
+  if (( select == 1 )); then
+    has -v slop || die
+    (( verbose > 0 )) && info 'select a region'
+    scrsize=$(slop "${slop_args[@]}" -f "['x']='%x' ['y']='%y' ['w']='%w' ['h']='%h'") || die 'cancelled'
+    eval "dimensions=( $scrsize )"
+  else
+    has -v xdpyinfo || die
+    scrsize=$(xdpyinfo | awk '/dimensions/{print $2}')
+    dimensions=( ['x']='0' ['y']='0' ['w']="${scrsize%%x*}" ['h']="${scrsize#*x}" )
+  fi
+}
+
+record_gif() {
+  byzanz-record \
+    --duration="${duration:-10}" \
+    --x="${dimensions['x']}" \
+    --y="${dimensions['y']}" \
+    --width="${dimensions['w']}" \
+    --height="${dimensions['h']}" \
+    "$file" &
+}
+
+record_webm() {
+  local loglevel size offset
+  loglevel='fatal'
+  (( verbose > 0 )) && loglevel=$(( verbose * 8 ))
+  size="${dimensions['w']}x${dimensions['h']}"
+  offset="${DISPLAY}.0+${dimensions['x']},${dimensions['y']}"
+    # -preset veryslow \
+  ffmpeg -y -loglevel "$loglevel" \
+    -f x11grab \
+    -s "$size" \
+    -i "$offset" \
+    ${duration:+-t "$duration"} \
+    -c:v libvpx \
+    -b:v 2400k \
+    -r 60 \
+    -threads 4 \
+    -pix_fmt yuv444p \
+    -f webm "$file" &
+}
+
+record_png() {
+  local geometry
+  printf -v geometry "%dx%d+%d+%d" "${dimensions[w]}" "${dimensions[h]}" "${dimensions[x]}" "${dimensions[y]}"
+  maim -g "$geometry" "$file"
+}
+
+parse_file_str() {
+  local str h w
+  str=$(date +"$1")
+  str=${str//\$h/${dimensions[h]}}
+  str=${str//\$w/${dimensions[w]}}
+  printf '%s' "$str"
+}
+
+parse_callback_str() {
+  local str
+  str=$(parse_file_str "$1")
+  str=${str//\$f/\"$file\"}
+  printf '%s' "$str"
+}
+
+if [[ "$1" = 'stop' ]] || pgrep -f 'x11grab'; then
+  pkill -f x11grab || die 'x11grab not running'
+  exit
+fi
+
+OPTERR=0
+while getopts "d:D:e:FghpsS:vw" opt; do
+  case $opt in
+    d) duration=$OPTARG ;;
+    D) delay=$OPTARG ;;
+    e) callback=$OPTARG ;;
+    F) overwrite=1 ;;
+    g) mode='gif' ;;
+    p) mode='png' ;;
+    s) select=1 ;;
+    S) slop_args=( $OPTARG ) ;;
+    v) (( ++verbose )) ;;
+    w) mode='webm' ;;
+  esac
+done
+shift "$((OPTIND-1))"
+unset opt OPTARG OPTIND OPTERR
+
+if (( $# == 1 )); then
+  file=$1
+  shift
+elif (( $# > 1 )); then
+  die 'too many filename arguments'
+fi
+
+[[ -n $DISPLAY ]] || die 'Could not grab DISPLAY'
+has -v date realpath || die
+
+file=$(realpath -mL "$file")
+
+if [[ -f $file ]] && (( overwrite == 0 )); then
+  ask "\"$file\" already exists. Overwrite? " || die
+fi
+
+get_dimensions
+
+case $file in
+  *.gif)
+    has byzanz-record || die 'need byzanz-record for recording gifs'
+    mode='gif' ;;
+  *.png)
+    has maim || die 'need maim for capturing screenshots'
+    mode='png' ;;
+  *.webm)
+    has ffmpeg || die 'need ffmpeg for recording webms'
+    mode='webm' ;;
+  *)
+    case $mode in
+      gif) file+='.gif' ;;
+      webm) file+='.webm' ;;
+      png) file+='.png' ;;
+    esac
+esac
+file=$(parse_file_str "$file")
+
+
+  "record_$mode" 
+if [[ $mode != 'png' ]]; then
+  dunstify -u critical -t 0 --action='a,b' '🎥 click to stop'
+  kill $! # should kill whatever prcess was recording the video/gif
+fi
+
+[[ -e $file ]] || die 'error recording file'
+info "📸 saved, $(du -sh $file | awk '{print $1;}'" ")"
