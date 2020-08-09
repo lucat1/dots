@@ -19,7 +19,7 @@ out() {
       status="f"
       ;;
     Discharging )
-      status="🔋"
+      status="d"
       ;;
     Charging )
       status="c"
@@ -49,7 +49,7 @@ spit() {
   done 
 }
 
-spit | lemonbar -n "$NAME" -d -F#3e3e3e -B#f4f4f4 -g ${WIDTH}x${HEIGHT}+$(((MARGIN * 3) + 50))+${MARGIN} -f "OperatorMonoLig Nerd Font:size=12" -f "Apple Color Emoji:size=12" &
+spit | lemonbar -n "$NAME" -d -F#3e3e3e -B#f4f4f4 -g ${WIDTH}x${HEIGHT}+$(((MARGIN * 3) + 50))+${MARGIN} -f "OperatorMonoLig Nerd Font:size=12" &
 
 wid=$(xdo id -m -a "$NAME")
 xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
