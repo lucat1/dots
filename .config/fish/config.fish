@@ -1,19 +1,28 @@
 set fish_greeting
 fish_vi_key_bindings
 
-if test -z "$DISPLAY" -a $XDG_VTNR = 1
+if test -z "$DISPLAY"
   sx 
 end
 
-# basic prompt
-set PROMPT '%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%1~%f%b %# '
-
-# make gpg work
-alias gpg=gpg2
+### globals 
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx GOPATH $HOME/go
+set -gx PF_COL2 0 # make pfetch text use background color
+set -gx EDITOR nvim
 set -gx GPG_TTY '$(tty)'
 
+### modify global $PATH
+set -gx PATH "/sbin" $PATH
+set -gx PATH "$HOME/.bin" $PATH
+set -gx PATH "$GOPATH/bin" $PATH
+set -gx PATH "$VOLTA_HOME/bin" $PATH
+
+
+### aliases
+alias gpg=gpg2 # make gpg work
+
 # configure favourite editor
-set -gx EDITOR nvim
 alias vim=$EDITOR
 alias vi=$EDITOR
 
@@ -21,16 +30,6 @@ alias vi=$EDITOR
 # see: https://www.atlassian.com/git/tutorials/dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-# always run alpine' package manager as root
+# always run package managers(apk,pacman) as root
 alias apk="doas apk"
-
-set -gx PF_COL2 0 # make pfetch text use background color
-set -gx PATH $PATH:$HOME/.bin
-
-# volta paths
-set -gx VOLTA_HOME "$HOME/.volta"
-set -gx PATH "$VOLTA_HOME/bin" $PATH
-
-# golang paths
-set -gx GOPATH $HOME/go
-set -gx PATH $PATH:$GOPATH/bin
+alias pacman="sudo apk"
