@@ -124,7 +124,7 @@ record_webm() {
 record_png() {
   local geometry
   printf -v geometry "%dx%d+%d+%d" "${dimensions[w]}" "${dimensions[h]}" "${dimensions[x]}" "${dimensions[y]}"
-  maim -g "$geometry" "$file"
+  import -w root -crop "$geometry" "$file.jpg"
 }
 
 parse_file_str() {
