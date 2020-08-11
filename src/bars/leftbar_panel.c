@@ -15,7 +15,7 @@ int main() {
 
       // this is the focused workspace
       if (isupper((unsigned char)part[0])) {
-        printf("%{c}%c\n", part[1]);
+        printf("%%{c}%c\n", part[1]);
         fflush(stdout);
         break;
       }

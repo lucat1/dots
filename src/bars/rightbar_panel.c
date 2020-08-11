@@ -16,7 +16,7 @@ int main() {
 
     if(strcmp(fmt, prev) != 0) {
       strcpy(prev, fmt);
-      printf("%{c}%s\n", fmt);
+      printf("%%{c}%s\n", fmt);
       fflush(stdout);
     }
 
