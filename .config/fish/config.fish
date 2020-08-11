@@ -14,6 +14,7 @@ set -gx GPG_TTY '$(tty)'
 
 ### modify global $PATH
 set -gx PATH "/sbin" $PATH
+set -gx PATH "/usr/sbin" $PATH
 set -gx PATH "$HOME/.bin" $PATH
 set -gx PATH "$GOPATH/bin" $PATH
 set -gx PATH "$VOLTA_HOME/bin" $PATH

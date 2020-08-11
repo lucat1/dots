@@ -1,0 +1,41 @@
+pkgname=dmenu-fork
+pkgver=4.8
+pkgrel=0
+pkgdesc="Dynamic menu for X"
+url="https://tools.suckless.org/dmenu/"
+arch="all"
+license="MIT"
+depends=""
+depends_dev=""
+makedepends="libx11-dev libxinerama-dev libxft-dev"
+install=""
+options="!check"
+subpackages="$pkgname-doc"
+source="https://dl.suckless.org/tools/dmenu-$pkgver.tar.gz dmenu.c config.h"
+builddir="$srcdir"/dmenu-$pkgver
+
+prepare() {
+	default_prepare
+	sed -i -e '/CFLAGS/{s/-Os//;s/=/+=/}' \
+		-e '/LDFLAGS/{s/-s//;s/=/+=/}' \
+		"$builddir"/config.mk
+  
+  cp ../dmenu.c .
+  cp ../config.h .
+}
+
+build() {
+	make X11INC=/usr/include/X11 \
+		X11LIB=/usr/lib/X11 \
+		FREETYPEINC=/usr/include/freetype2 \
+		-C "$builddir"
+}
+
+package() {
+	make DESTDIR=$pkgdir PREFIX=/usr \
+		-C "$builddir" install
+}
+
+sha512sums="fa2700018cfb912a21f867ef3ca771a58a25c2cb8e1fb37acef046bb15d8d8b92dcc5bfce486befae0f143495d0283910988e181a9eb143be3bb1b5be9738d77  dmenu-4.8.tar.gz
+424f77ce5ebd464fd311da9e85336cf11497cfbadae07b0bacd2fa32313d02ba6700279b61ed061c00dea17ee6f05be325a7b0e3f77c31f438af0af20c9437c1  dmenu.c
+9cbe9b4f2c82b65e6c2bb365e5656b115cf1067cb5e5c3f8623d7c73a11893e6ef8942caf0c7eb073dade291a2c1a3bacb9e32e295f0374efdf15d4ed6897a9d  config.h"
