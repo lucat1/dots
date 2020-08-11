@@ -1,0 +1,26 @@
+pkgname=bars
+pkgver=0
+pkgrel=0
+pkgdesc="*_panel binaries for my lemonbars"
+url="none"
+arch="all"
+license="MIT"
+depends=""
+depends_dev=""
+makedepends=""
+install=""
+options="!check"
+source="Makefile leftbar_panel.c rightbar_panel.c"
+builddir="$srcdir"
+
+build() {
+  make
+}
+
+package() {
+	make DESTDIR=$pkgdir PREFIX=/usr \
+		-C "$builddir" install
+}
+sha512sums="93aaeed3dfd315d33979ff85d376610b7237188be618d7fd5052fc80a7dae1e3fb2ecfc54afe15a6803b474bbed4a55cef292690fa46bf087ca96f24806d5272  Makefile
+ce6b1b69082f0ab7082f3dbe0d9f3985ab9330a448f8bc13ac63036d53a6d6bba7289ead91f95bfd2cbc0f1488f8d24e7d786423f638b33efc1568c6905589e7  leftbar_panel.c
+9f17accb46a684bb469d193c183ff76c3f3e43c492cf570bc34bd604c1a0def0bbef5864f6efbfb450158a0aa1127a806eab1e1f9907a707dfbfc74c08000153  rightbar_panel.c"

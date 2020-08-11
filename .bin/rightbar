@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# comes from $(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
-SCREEN_WIDTH=2560
+# comes from 
+SCREEN_WIDTH=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
 
 HEIGHT=50
 WIDTH=180

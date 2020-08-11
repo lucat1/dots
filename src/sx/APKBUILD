@@ -10,7 +10,6 @@ depends_dev="xorg-server xauth"
 makedepends=""
 install=""
 options="!check"
-subpackages="$pkgname-doc"
 source="$pkgname-$pkgver.tar.gz::https://github.com/Earnestly/$pkgname/archive/$pkgver.tar.gz"
 builddir="$srcdir"/$pkgname-$pkgver
 
