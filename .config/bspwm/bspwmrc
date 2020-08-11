@@ -15,7 +15,7 @@ fi
 if ! pgrep -x "xob" > /dev/null; then
   # volume / brightness "progress-like" bar pipe
   # obtained with xob
-  if [ -p /tmp/xob ]; then
+  if [ -p "/tmp/xob" ]; then
     rm /tmp/xob
   fi
   mkfifo /tmp/xob
@@ -25,16 +25,24 @@ fi
 
 killall lemonbar 2>&1 > /dev/null
 $HOME/.bin/leftbar &
-$HOME/.bin/batterybar &
 $HOME/.bin/rightbar &
 
-# brightness and volume defaults
-xbacklight -set 25
-pamixer --set-volume 25
+if [ -d "/sys/class/power_supply/BAT0" ]; then
+  $HOME/.bin/batterybar &
+fi
+
+# brightness and volume default values
+if command -v xbacklight; then
+  xbacklight -set 25
+fi
+
+if command -v pamixer; then
+  pamixer --set-volume 25
+fi
 
 xset r rate 400 60
 xsetroot -cursor_name left_ptr
- hsetroot -solid "#C3C3C3" #bg1
+hsetroot -solid "#C3C3C3" #bg1
 # hsetroot -cover .config/wallpaper.jpg
 
 bspc monitor -d 1 2 3 4
