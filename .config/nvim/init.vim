@@ -39,7 +39,6 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 " sane dafaults
-set guicursor=
 set noshowmatch
 set relativenumber
 set nohlsearch
