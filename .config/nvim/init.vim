@@ -16,7 +16,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'mbbill/undotree'
 
 " navigation
-Plug 'lambdalisue/fern.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'ctrlpvim/ctrlp.vim'
 

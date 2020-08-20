@@ -23,7 +23,10 @@ if ! pgrep -x "xob" > /dev/null; then
   tail -f /tmp/xob | xob &
 fi
 
-killall lemonbar 2>&1 > /dev/null
+
+if pgrep -x "lemonbar" > /dev/null; then
+  killall lemonbar 
+fi
 $HOME/.bin/leftbar &
 $HOME/.bin/rightbar &
 

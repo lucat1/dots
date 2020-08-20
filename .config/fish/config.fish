@@ -13,7 +13,7 @@ set -gx EDITOR nvim
 set -gx GPG_TTY '$(tty)'
 
 ### modify global $PATH
-set -gx PATH "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/sbin" $PATH
+set -gx PATH "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" $PATH
 set -gx PATH "$HOME/.bin" $PATH
 set -gx PATH "$GOPATH/bin" $PATH
 set -gx PATH "$VOLTA_HOME/bin" $PATH
