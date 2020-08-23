@@ -1,39 +1,7 @@
-call plug#begin()
-" my colorscheme (the one and only colorscheme)
-Plug 'gruvbox-community/gruvbox'
-
-" essentials (status line, commenter, zen mode)
-Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-commentary'
-Plug 'junegunn/goyo.vim'
-
-" lsp
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" version tracking features
-Plug 'airblade/vim-gitgutter'
-Plug 'mbbill/undotree'
-
-" navigation
-Plug 'jremmen/vim-ripgrep'
-Plug 'ctrlpvim/ctrlp.vim'
-
-" icons
-Plug 'ryanoasis/vim-devicons'
-
-" languages
-Plug 'sheerun/vim-polyglot'
-call plug#end()
-
-" remove arrow keys
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-
 " sane dafaults
+set noerrorbells
 set noshowmatch
-set relativenumber
+set noshowmode
 set nohlsearch
 set hidden
 set nowrap
@@ -47,9 +15,9 @@ set incsearch
 set termguicolors
 set scrolloff=10
 set cursorline
+set shortmess+=c
 
 " set tabs(as spaces) sizes
-set noerrorbells
 set tabstop=2 softtabstop=2
 set shiftwidth=2
 set smartindent
@@ -62,18 +30,56 @@ set relativenumber
 set numberwidth=4
 
 " lower update times for a better experience
-" don't pass messages to autocomplete dialogs 
 set updatetime=50
-set shortmess+=c
 
 " line length gutter. 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
+" mappings with leader key
+let mapleader = " "
+
+" jump back to where you left off
+" from: https://askubuntu.com/a/202077
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif
+
+
+call plug#begin()
+" my colorscheme (the one and only colorscheme)
+" + other purely visual extensions
+Plug 'gruvbox-community/gruvbox'
+Plug 'ryanoasis/vim-devicons'
+
+" essentials (status line, commenter, zen mode)
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'mbbill/undotree'
+Plug 'tpope/vim-commentary'
+
+" lsp
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" version tracking features
+Plug 'airblade/vim-gitgutter'
+
+" navigation
+" Plug 'jremmen/vim-ripgrep'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
+
+" languages
+Plug 'sheerun/vim-polyglot'
+call plug#end()
+
+" -----------------------------------------------------------------------------
+" appearance
+" -----------------------------------------------------------------------------
+
 colorscheme gruvbox
 set background=dark
-" colorscheme one 
-" set background=light
 
 " make comments and certain pieces of code italic (Operator Mono)
 hi htmlArg gui=italic
@@ -83,9 +89,11 @@ hi htmlArg cterm=italic
 hi Comment cterm=italic
 hi Type    cterm=italic
 
+" -----------------------------------------------------------------------------
+" lightline
+" -----------------------------------------------------------------------------
+
 " configure lightline
-set noshowmode
-" set lightline sections
 let g:lightline = {
   \ 'colorscheme': 'gruvbox',
   \ 'active': {
@@ -98,17 +106,21 @@ let g:lightline = {
   \   ] 
   \ },
   \ 'component_function': {
-  \   'filetype': 'MyFiletype',
+  \   'filetype': 'FileType',
   \   'cocstatus': 'coc#status',
   \ },
   \ 'separator': {'left': '', 'right': ''}
   \ }
 
-function! MyFiletype()
+function! FileType()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : '') : ''
 endfunction
 
-" coc definition/warning on hover
+" -----------------------------------------------------------------------------
+" coc & fzf
+" -----------------------------------------------------------------------------
+
+" definition/warning on hover
 " from: https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
 function! ShowDocIfNoDiagnostic(timer_id)
   if (coc#util#has_float() == 0)
@@ -117,56 +129,23 @@ function! ShowDocIfNoDiagnostic(timer_id)
 endfunction
 
 function! s:show_hover_doc()
-  call timer_start(500, 'ShowDocIfNoDiagnostic')
+  call timer_start(750, 'ShowDocIfNoDiagnostic')
 endfunction
 
 autocmd CursorHoldI * :call <SID>show_hover_doc()
 autocmd CursorHold * :call <SID>show_hover_doc()
 
-" additional coc configurations
-" Use tab for trigger completion with characters ahead and navigate.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" prettier format command
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" quick fzf config
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+let $FZF_DEFAULT_OPTS='--reverse'
+let g:fzf_checkout_track_key = 'ctrl-t'
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" jump back to where you left off
-" from: https://askubuntu.com/a/202077
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-endif
-
-" disable vim-go gopls process
-let g:go_def_mapping_enabled = 0
-let g:go_code_completion_enabled = 0
+" -----------------------------------------------------------------------------
+" language specific
+" -----------------------------------------------------------------------------
 
 " alias .svelte to html
 au! BufNewFile,BufRead *.svelte set ft=html
@@ -181,38 +160,46 @@ function FormatBuffer()
 endfunction
 autocmd BufWritePre *.h,*.hpp,*.c,*.cpp :call FormatBuffer()
 
-" ctrlp configuration
-set wildignore+=node_modules
-" from: https://github.com/ctrlpvim/ctrlp.vim/issues/417#issuecomment-388484625
-if executable('rg')
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-endif
+" go (vim polyglot) config
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_auto_sameids = 1
 
-" mappings with leader key
-let mapleader = " "
+" -----------------------------------------------------------------------------
+" binds
+" -----------------------------------------------------------------------------
 
-" netrw config. Keep the tree viewer simple
-let g:netrw_browse_split = 2
-let g:vrfr_rg = 'true'
-let g:netrw_banner = 0
-let g:netrw_winsize = 25
-let g:netrw_liststyle=3
-
-" switch splits with leader
+" manage splits with leader
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>+ :vertical resize +5<CR>
+nnoremap <leader>- :vertical resize -5<CR>
 
-" zen mode
+" other bindings
+nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>g :Goyo<CR>
-
-" configure vim for LaTeX
-let g:tex_flavor = 'latex'
-let g:vimtex_view_method = 'zathura'
-let g:vimtex_quickfix_open_on_warning = 0
-
-" toggle tree viewer/undo with leader
-nnoremap <leader>t :Fern . -drawer -toggle<CR>
 nnoremap <leader>u :UndotreeShow <bar> :UndotreeFocus <CR>
 nnoremap <leader>f :Rg <space>
+
+" <c-space> to trigger completion.
+inoremap <silent><expr> <C-space> coc#refresh()
+" coc bindings
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" renaming.
+nmap <leader> rn <Plug>(coc-rename)
