@@ -16,6 +16,7 @@ set termguicolors
 set scrolloff=10
 set cursorline
 set shortmess+=c
+set mouse=a
 
 " set tabs(as spaces) sizes
 set tabstop=2 softtabstop=2
@@ -58,17 +59,16 @@ Plug 'junegunn/goyo.vim'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-commentary'
 
-" lsp
+" lsp & navigation
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" version tracking features
-Plug 'airblade/vim-gitgutter'
-
-" navigation
-" Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
+" getting errors unfortunately
+" Plug 'antoinemadec/coc-fzf'
+
+" version tracking features
+Plug 'airblade/vim-gitgutter'
 
 " languages
 Plug 'sheerun/vim-polyglot'
@@ -78,6 +78,12 @@ call plug#end()
 " appearance
 " -----------------------------------------------------------------------------
 
+let g:gruvbox_contrast_dark = 'hard'
+if exists('+termguicolors')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+let g:gruvbox_invert_selection='0'
 colorscheme gruvbox
 set background=dark
 
@@ -189,10 +195,10 @@ nnoremap <leader>+ :vertical resize +5<CR>
 nnoremap <leader>- :vertical resize -5<CR>
 
 " other bindings
-nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>g :Goyo<CR>
 nnoremap <leader>u :UndotreeShow <bar> :UndotreeFocus <CR>
 nnoremap <leader>f :Rg <space>
+nnoremap <C-p> :GFiles<CR>
 
 " <c-space> to trigger completion.
 inoremap <silent><expr> <C-space> coc#refresh()
