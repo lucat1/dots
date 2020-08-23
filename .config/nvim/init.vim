@@ -1,7 +1,6 @@
 call plug#begin()
-" my colorscheme (github on the macbook)
-" Plug 'gruvbox-community/gruvbox'
-Plug 'rakr/vim-one'
+" my colorscheme (the one and only colorscheme)
+Plug 'gruvbox-community/gruvbox'
 
 " essentials (status line, commenter, zen mode)
 Plug 'itchyny/lightline.vim'
@@ -22,13 +21,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 " icons
 Plug 'ryanoasis/vim-devicons'
 
-" language-specific 
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'jparise/vim-graphql'
-Plug 'fatih/vim-go'
-Plug 'lervag/vimtex'
+" languages
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " remove arrow keys
@@ -76,9 +70,10 @@ set shortmess+=c
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
-" set the colorscheme *dark*
-colorscheme one 
-set background=light
+colorscheme gruvbox
+set background=dark
+" colorscheme one 
+" set background=light
 
 " make comments and certain pieces of code italic (Operator Mono)
 hi htmlArg gui=italic
@@ -91,9 +86,8 @@ hi Type    cterm=italic
 " configure lightline
 set noshowmode
 " set lightline sections
-" \ 'colorscheme': 'github',
 let g:lightline = {
-  \ 'colorscheme': 'one',
+  \ 'colorscheme': 'gruvbox',
   \ 'active': {
   \   'left': [ [ 'mode' ], 
   \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
