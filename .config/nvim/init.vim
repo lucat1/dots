@@ -16,8 +16,8 @@ set termguicolors
 set scrolloff=10
 set cursorline
 set shortmess+=c
-set mouse=a
 set shell=/usr/sbin/bash
+set mouse-=a
 
 " set tabs(as spaces) sizes
 set tabstop=2 softtabstop=2
