@@ -56,16 +56,6 @@ has() {
   done
 }
 
-ask() {
-  if in_term; then
-    read -r -n1 -p "$* " ans <> /dev/tty
-    printf '\n'
-    [[ ${ans^} = Y* ]]
-  else
-    zenity --question --text="$*"
-  fi
-}
-
 delay() {
   (( delay > 0 )) && for (( i=delay; i > 0; --i )); do
     if in_term; then
@@ -122,9 +112,10 @@ record_webm() {
 }
 
 record_png() {
+  echo $file
   local geometry
   printf -v geometry "%dx%d+%d+%d" "${dimensions[w]}" "${dimensions[h]}" "${dimensions[x]}" "${dimensions[y]}"
-  import -w root -crop "$geometry" "$file.jpg"
+  import -w root -crop "$geometry" $file
 }
 
 parse_file_str() {
@@ -177,10 +168,6 @@ has -v date realpath || die
 
 file=$(realpath -mL "$file")
 
-if [[ -f $file ]] && (( overwrite == 0 )); then
-  ask "\"$file\" already exists. Overwrite? " || die
-fi
-
 get_dimensions
 
 case $file in
@@ -197,11 +184,10 @@ case $file in
     case $mode in
       gif) file+='.gif' ;;
       webm) file+='.webm' ;;
-      png) file+='.png' ;;
+      png) file+='.jpg' ;;
     esac
 esac
 file=$(parse_file_str "$file")
-
 
   "record_$mode" 
 if [[ $mode != 'png' ]]; then
