@@ -1,4 +1,5 @@
 set fish_greeting
+theme_gruvbox dark hard
 fish_vi_key_bindings
 
 if test -z "$DISPLAY"
@@ -32,4 +33,4 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # always run package managers(apk,pacman) as root
 alias apk="doas apk"
-alias pacman="sudo apk"
+alias pacman="sudo pacman"
