@@ -6,7 +6,7 @@ url='https://tools.suckless.org/dmenu/'
 arch=('x86_64')
 license=('MIT')
 depends=('sh' 'libxinerama' 'libxft' 'freetype2')
-source=("https://dl.suckless.org/tools/dmenu-4.9.tar.gz" "dmenu.c" "config.h")
+source=("https://dl.suckless.org/tools/dmenu-4.9.tar.gz" "dmenu.c" "config.h" "dmenu_run")
 
 prepare() {
   cd dmenu-4.9
@@ -27,6 +27,7 @@ build() {
 
 package() {
   cd dmenu-4.9
+  cp ../dmenu_run .
   make PREFIX=/usr DESTDIR="${pkgdir}" install
   install -Dm 644 LICENSE -t "${pkgdir}/usr/share/licenses/dmenu"
 }

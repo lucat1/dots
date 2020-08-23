@@ -11,7 +11,7 @@ makedepends="libx11-dev libxinerama-dev libxft-dev"
 install=""
 options="!check"
 subpackages="$pkgname-doc"
-source="https://dl.suckless.org/tools/dmenu-$pkgver.tar.gz dmenu.c config.h"
+source="https://dl.suckless.org/tools/dmenu-$pkgver.tar.gz dmenu.c config.h dmenu_run"
 builddir="$srcdir"/dmenu-$pkgver
 
 prepare() {
@@ -32,10 +32,12 @@ build() {
 }
 
 package() {
+  cp ../dmenu_run .
 	make DESTDIR=$pkgdir PREFIX=/usr \
 		-C "$builddir" install
 }
 
 sha512sums="fa2700018cfb912a21f867ef3ca771a58a25c2cb8e1fb37acef046bb15d8d8b92dcc5bfce486befae0f143495d0283910988e181a9eb143be3bb1b5be9738d77  dmenu-4.8.tar.gz
-424f77ce5ebd464fd311da9e85336cf11497cfbadae07b0bacd2fa32313d02ba6700279b61ed061c00dea17ee6f05be325a7b0e3f77c31f438af0af20c9437c1  dmenu.c
-9cbe9b4f2c82b65e6c2bb365e5656b115cf1067cb5e5c3f8623d7c73a11893e6ef8942caf0c7eb073dade291a2c1a3bacb9e32e295f0374efdf15d4ed6897a9d  config.h"
+8ea88cc94bab0e7b70cc5e3af995d3ee49539a2e764cd7dce495424d81108ea8e260d84269d7c8054dd83796fdcaf2d08c235899b5e0ecdca181c7d2f4eafe02  dmenu.c
+ca7a86f9e660dd237a17251993d5e4c5247eefc9cef4a3c2493d5b5710bb6efb6daf645600617542abddc9bde2c523a05444c275526e9c2352b6c3fbaf4d76d1  config.h
+1a4e857f1330eeb99b5284d2dae27b233c8331eb3adf5663e19c6619d01cff59f3962553681022672eb452141ddf4a40a181bc8b524bc14a94f46b745e5add73  dmenu_run"
