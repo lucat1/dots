@@ -5,7 +5,7 @@ if ! pgrep -x "sxhkd" > /dev/null; then
 fi
 
 if ! pgrep -x "picom" > /dev/null; then
-  picom --config $HOME/.config/picom.conf &
+  picom --experimental-backends --config $HOME/.config/picom.conf &
 fi
 
 if ! pgrep -x "dunst" > /dev/null; then
@@ -50,7 +50,9 @@ hsetroot -solid "#C3C3C3" #bg1
 
 bspc monitor -d 1 2 3 4
 
-bspc config border_width         0
+bspc config border_width         1
+bspc config normal_boder_color   "#928374"
+bspc config active_boder_color   "#A89984"
 bspc config window_gap           30 
 bspc config split_ratio          0.50
 bspc config top_padding          50
