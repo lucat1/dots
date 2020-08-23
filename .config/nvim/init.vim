@@ -17,6 +17,7 @@ set scrolloff=10
 set cursorline
 set shortmess+=c
 set mouse=a
+set shell=/usr/sbin/bash
 
 " set tabs(as spaces) sizes
 set tabstop=2 softtabstop=2
@@ -45,7 +46,6 @@ let mapleader = " "
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 endif
-
 
 call plug#begin()
 " my colorscheme (the one and only colorscheme)
