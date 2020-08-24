@@ -70,11 +70,11 @@ super + {_, shift + } Tab
 
 # bring up the screenshot tool
 super + alt + 1
-  $HOME/.bin/kap 
+  $HOME/.bin/kap -p
   
 # bring up record tool 
 super + alt + 2 
-  $HOME/.bin/kap -w
+  $HOME/.bin/kap -v
 
 # bring up the color picker
 super + alt + 3 
