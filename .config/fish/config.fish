@@ -10,6 +10,7 @@ end
 set -gx VOLTA_HOME "$HOME/.volta"
 set -gx GOPATH $HOME/go
 set -gx EDITOR nvim
+set -gx BROWSER chromium
 set -gx GPG_TTY '$(tty)'
 
 ### lemonbar configs
