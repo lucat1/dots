@@ -1,58 +1,62 @@
-#!/bin/sh
+#!/bin/fish
 
-if ! pgrep -x "sxhkd" > /dev/null; then
+if ! pgrep -x "sxhkd" > /dev/null
   SXHKD_SHELL=bash sxhkd &
-fi
+end
 
-if ! pgrep -x "picom" > /dev/null; then
+if ! pgrep -x "picom" > /dev/null
   picom --experimental-backends --config $HOME/.config/picom.conf &
-fi
+end
 
-if ! pgrep -x "dunst" > /dev/null; then
+if ! pgrep -x "dunst" > /dev/null
   dunst &
-fi
+end
 
-if ! pgrep -x "xob" > /dev/null; then
+if ! pgrep -x "xob" > /dev/null
   # volume / brightness "progress-like" bar pipe
   # obtained with xob
   if [ -p "/tmp/xob" ]; then
     rm /tmp/xob
-  fi
+  end 
   mkfifo /tmp/xob
 
   tail -f /tmp/xob | xob &
-fi
+end
 
 
-if pgrep -x "lemonbar" > /dev/null; then
+if pgrep -x "lemonbar" > /dev/null
   killall lemonbar 
-fi
+end
 $HOME/.bin/leftbar &
 $HOME/.bin/rightbar &
 
-if [ -d "/sys/class/power_supply/BAT0" ]; then
+if test -d "/sys/class/power_supply/BAT0" 
   $HOME/.bin/batterybar &
-fi
+end
 
 # brightness and volume default values
-if command -v xbacklight; then
+if command -v xbacklight
   xbacklight -set 25
-fi
+end
 
-if command -v pamixer; then
+if command -v pamixer
   pamixer --set-volume 25
-fi
+end
 
 xset r rate 400 60
 xsetroot -cursor_name left_ptr
-hsetroot -solid "#C3C3C3" #bg1
-# hsetroot -cover .config/wallpaper.jpg
+
+if test -f "$HOME/.config/wallpaper.jpg"
+  hsetroot -cover "$HOME/.config/wallpaper.jpg"
+else
+    hsetroot -solid "#C3C3C3"
+end
 
 bspc monitor -d 1 2 3 4
 
 bspc config border_width         1
-bspc config normal_boder_color   "#928374"
-bspc config active_boder_color   "#A89984"
+bspc config normal_border_color   "#928374"
+bspc config active_border_color   "#A89984"
 bspc config window_gap           30 
 bspc config split_ratio          0.50
 bspc config top_padding          50
