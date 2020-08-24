@@ -1,5 +1,5 @@
 [global]
-    font = OperatorMonoLig Nerd Font 12
+    font = OperatorMonoLig Nerd Font, Apple Color Emoji 12
  
     # allow a small subset of html markup:
     # <b>bold</b>
@@ -46,7 +46,6 @@
  
     # ignore newlines '\n' in notifications
     ignore_newline = no
- 
  
     # the geometry of the window
     # geometry [{width}]x{height}][+/-{x}+/-{y}]
