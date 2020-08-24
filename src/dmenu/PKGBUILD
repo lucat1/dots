@@ -32,5 +32,6 @@ package() {
   install -Dm 644 LICENSE -t "${pkgdir}/usr/share/licenses/dmenu"
 }
 md5sums=('9a537ec9a3a2ce9f08963d66b56cc030'
-         '26038c052d3d321f750b3eed96299742'
-         '175250fe9d88e49ac4c559e55631afd9')
+         'dd6baffe413fd39fafd91d49060ba869'
+         '9213f506d19adbd4ca718390fc8b74ec'
+         'ce0176adc46eb093735cadb717ad3753')

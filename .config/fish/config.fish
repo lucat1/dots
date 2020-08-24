@@ -9,7 +9,6 @@ end
 ### globals 
 set -gx VOLTA_HOME "$HOME/.volta"
 set -gx GOPATH $HOME/go
-set -gx PF_COL2 0 # make pfetch text use background color
 set -gx EDITOR nvim
 set -gx GPG_TTY '$(tty)'
 
