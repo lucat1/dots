@@ -1,17 +1,18 @@
-#!/bin/sh
+#!/usr/bin/fish
+# vim: set syntax=fish:
 
-# comes from 
-SCREEN_WIDTH=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
+# local bar config
+set WIDTH 180
+set NAME "Rightbar"
 
-HEIGHT=50
-WIDTH=180
-MARGIN=15
-OFFSET_X=$((SCREEN_WIDTH - $WIDTH - ($MARGIN * 2)))
+set SCREEN_WIDTH (xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
+set OFFSET_X (math "$SCREEN_WIDTH - $WIDTH - ($BARS_MARGIN * 2)")
+set GEOMETRY {$WIDTH}x{$BARS_HEIGHT}+{$OFFSET_X}+{$BARS_MARGIN}
 
-NAME="Rightbar"
-rightbar_panel | lemonbar -n "$NAME" -d -F#3e3e3e -B#f4f4f4 -g ${WIDTH}x${HEIGHT}+${OFFSET_X}+${MARGIN} -f "OperatorMonoLig Nerd Font:size=12" &
+rightbar_panel | lemonbar -d -n "$NAME" -F "$BARS_FG" -B "$BARS_BG" \
+  -g "$GEOMETRY" -f "$BARS_FONT" &
 
-wid=$(xdo id -m -a "$NAME")
-xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
+set wid (xdo id -m -a "$NAME")
+xdo above -t "(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
 
 wait

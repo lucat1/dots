@@ -1,13 +1,17 @@
-#!/bin/sh
+#!/usr/bin/fish
+# vim: set syntax=fish:
 
-HEIGHT=50
-WIDTH=50
-MARGIN=15
+# local bar config
+set WIDTH 50
+set NAME "Leftbar"
 
-NAME="Leftbar"
-bspc subscribe report | leftbar_panel | lemonbar -n "$NAME" -d -F#3e3e3e -B#f4f4f4 -g ${WIDTH}x${HEIGHT}+$((MARGIN * 2))+${MARGIN} -f "OperatorMonoLig Nerd Font:size=12" &
+set LEFT_MARGIN (math "$BARS_MARGIN * 2")
+set GEOMETRY {$WIDTH}x{$BARS_HEIGHT}+{$LEFT_MARGIN}+{$BARS_MARGIN}
 
-wid=$(xdo id -m -a "$NAME")
-xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
+bspc subscribe report | leftbar_panel | lemonbar -d -n "$NAME" -F "$BARS_FG" \
+  -B "$BARS_BG" -g "$GEOMETRY" -f "$BARS_FONT" &
+
+set wid (xdo id -m -a "$NAME")
+xdo above -t "(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
 
 wait

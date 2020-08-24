@@ -1,4 +1,5 @@
-#!/bin/fish
+#!/usr/bin/fish
+# vim: set syntax=fish:
 
 if ! pgrep -x "sxhkd" > /dev/null
   SXHKD_SHELL=bash sxhkd &
@@ -49,7 +50,7 @@ xsetroot -cursor_name left_ptr
 if test -f "$HOME/.config/wallpaper.jpg"
   hsetroot -cover "$HOME/.config/wallpaper.jpg"
 else
-    hsetroot -solid "#C3C3C3"
+  hsetroot -solid "#C3C3C3"
 end
 
 bspc monitor -d 1 2 3 4

@@ -1,57 +1,54 @@
-#!/bin/sh
-# comes from $(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
-SCREEN_WIDTH=2560
+#!/usr/bin/fish
+# vim: set syntax=fish:
 
-HEIGHT=50
-WIDTH=140
-MARGIN=15
-NAME="Batterybar"
+# local bar config
+set WIDTH 140
+set NAME "Batterybar"
 
-bat_dir=/sys/class/power_supply/BAT0
+set SCREEN_WIDTH (xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
+set OFFSET_X (math "($BARS_MARGIN * 3) + 50")
+set GEOMETRY {$WIDTH}x{$BARS_HEIGHT}+{$OFFSET_X}+{$BARS_MARGIN}
+set bat_dir "/sys/class/power_supply/BAT0"
 
-out() {
-  read -r capacity < "$bat_dir/capacity"
-  read -r stat   < "$bat_dir/status"
+function out
+  read -l capacity < "$bat_dir/capacity"
+  read -l stat     < "$bat_dir/status"
 
-  status=""
-  case $stat in
-    Full )
-      status="f"
-      ;;
-    Discharging )
-      status="d"
-      ;;
-    Charging )
-      status="c"
-      ;;
-  esac
+  set s ""
+  switch $stat
+    case Full
+      set s "f"
 
-  echo $status >> /tmp/test
+    case Discharging
+      set s "d"
 
-  echo "%{c}$capacity% $status "
-}
+    case Charging
+      set s "c"
+  end 
 
-loop() {
-  while true; do
+  echo "%{c}$capacity% $s"
+end
+
+function loop
+  while true
     out
     sleep 60
-  done
-}
+  end 
+end
 
-spit() {
+function spit
   loop &
 
-  acpi_listen |
-  while read -r line
-  do
+  acpi_listen | while read -l line
     sleep 1
     out
-  done 
-}
+  end 
+end
 
-spit | lemonbar -n "$NAME" -d -F#3e3e3e -B#f4f4f4 -g ${WIDTH}x${HEIGHT}+$(((MARGIN * 3) + 50))+${MARGIN} -f "OperatorMonoLig Nerd Font:size=12" &
+spit | lemonbar -d -n "$NAME" -F "$BARS_FG" -B "$BARS_BG" \
+  -g "$GEOMETRY" -f "$BARS_FONT" &
 
-wid=$(xdo id -m -a "$NAME")
-xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
+set wid (xdo id -m -a "$NAME")
+xdo above -t "(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
 
 wait

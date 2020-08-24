@@ -12,6 +12,13 @@ set -gx GOPATH $HOME/go
 set -gx EDITOR nvim
 set -gx GPG_TTY '$(tty)'
 
+### lemonbar configs
+set -gx BARS_FONT "OperatorMonoLig Nerd Font:size=12"
+set -gx BARS_MARGIN 15
+set -gx BARS_HEIGHT 50
+set -gx BARS_BG "#1D2021"
+set -gx BARS_FG "#EBDBB2"
+
 ### modify global $PATH
 set -gx PATH "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" $PATH
 set -gx PATH "$HOME/.bin" $PATH
