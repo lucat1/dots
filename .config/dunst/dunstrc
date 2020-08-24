@@ -146,18 +146,18 @@
     # context = ctrl+shift+period
  
 [urgency_low]
-    background = "#e0e0e0"
-    foreground = "#2a2a2a"
+    background = "#504945" # bg2
+    foreground = "#EBDBB2"
     timeout = 5
  
 [urgency_normal]
-    background = "#f4f4f4"
-    foreground = "#3e3e3e"
+    background = "#1D2021"
+    foreground = "#EBDBB2"
     timeout = 5
  
 [urgency_critical]
-    background = "#970b16"
-    foreground = "#ffffff"
+    background = "#FB4934"
+    foreground = "#EBDBB2"
     timeout = 5
  
  
