@@ -44,7 +44,7 @@ if command -v pamixer
   pamixer --set-volume 25
 end
 
-xset r rate 400 60
+xset r rate 300 60
 xsetroot -cursor_name left_ptr
 
 if test -f "$HOME/.config/wallpaper.jpg"
