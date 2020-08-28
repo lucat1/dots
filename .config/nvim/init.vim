@@ -16,7 +16,7 @@ set termguicolors
 set scrolloff=10
 set cursorline
 set shortmess+=c
-set shell=/usr/sbin/bash
+set shell=/bin/bash
 set mouse-=a
 
 " set tabs(as spaces) sizes
@@ -43,9 +43,7 @@ let mapleader = " "
 
 " jump back to where you left off
 " from: https://askubuntu.com/a/202077
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-endif
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 call plug#begin()
 " my colorscheme (the one and only colorscheme)
@@ -72,6 +70,9 @@ Plug 'airblade/vim-gitgutter'
 
 " languages
 Plug 'sheerun/vim-polyglot'
+
+" minimalist go format on save feature
+Plug 'mattn/vim-goimports'
 call plug#end()
 
 " -----------------------------------------------------------------------------
