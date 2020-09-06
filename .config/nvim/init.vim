@@ -148,7 +148,6 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " quick fzf config
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
-let g:fzf_checkout_track_key = 'ctrl-t'
 
 " -----------------------------------------------------------------------------
 " language specific
