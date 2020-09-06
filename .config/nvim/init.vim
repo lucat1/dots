@@ -70,9 +70,6 @@ Plug 'airblade/vim-gitgutter'
 
 " languages
 Plug 'sheerun/vim-polyglot'
-
-" minimalist go format on save feature
-Plug 'mattn/vim-goimports'
 call plug#end()
 
 " -----------------------------------------------------------------------------
@@ -115,9 +112,10 @@ let g:lightline = {
   \ 'component_function': {
   \   'filetype': 'FileType',
   \   'cocstatus': 'coc#status',
-  \ },
-  \ 'separator': {'left': '', 'right': ''}
   \ }
+\ }
+" \ },
+" \ 'separator': {'left': '', 'right': ''}
 
 function! FileType()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : '') : ''
@@ -181,6 +179,8 @@ let g:go_highlight_generate_tags = 1
 let g:go_highlight_format_strings = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_auto_sameids = 1
+" format go code on save
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " -----------------------------------------------------------------------------
 " binds
