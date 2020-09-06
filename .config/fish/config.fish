@@ -2,7 +2,7 @@ set fish_greeting
 theme_gruvbox dark hard
 fish_vi_key_bindings
 
-if test -z "$DISPLAY"
+if test "(uname)" = "Linux"; and test -z "$DISPLAY"
   sx 
 end
 
@@ -10,8 +10,10 @@ end
 set -gx VOLTA_HOME "$HOME/.volta"
 set -gx GOPATH $HOME/go
 set -gx EDITOR nvim
-set -gx BROWSER chromium
-set -gx GPG_TTY '$(tty)'
+if test "(uname)" = "Linux"
+  set -gx BROWSER chromium
+  set -gx GPG_TTY '$(tty)'
+end
 
 ### lemonbar configs
 set -gx BARS_FONT "OperatorMonoLig Nerd Font:size=12"
