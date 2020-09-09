@@ -1,5 +1,4 @@
 set fish_greeting
-theme_gruvbox dark hard
 fish_vi_key_bindings
 
 if test "(uname)" = "Linux"; and test -z "$DISPLAY"
