@@ -36,6 +36,7 @@
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
+    "go",
     "markdown",
     "json",
     "javascript",

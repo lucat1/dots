@@ -62,8 +62,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
-" getting errors unfortunately
-" Plug 'antoinemadec/coc-fzf'
 
 " version tracking features
 Plug 'airblade/vim-gitgutter'
@@ -179,6 +177,7 @@ let g:go_highlight_generate_tags = 1
 let g:go_highlight_format_strings = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_auto_sameids = 1
+"
 " format go code on save
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
@@ -198,7 +197,7 @@ nnoremap <leader>- :vertical resize -5<CR>
 nnoremap <leader>g :Goyo<CR>
 nnoremap <leader>u :UndotreeShow <bar> :UndotreeFocus <CR>
 nnoremap <leader>f :Rg <space>
-nnoremap <C-p> :GFiles<CR>
+nnoremap <C-p> :GFiles --cached --others --exclude-standard<CR>
 
 " <c-space> to trigger completion.
 inoremap <silent><expr> <C-space> coc#refresh()
