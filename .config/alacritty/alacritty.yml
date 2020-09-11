@@ -41,9 +41,9 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  #padding:
-   # x: 0
-   # y: 0
+  padding:
+    x: 8 
+    y: 8
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
@@ -146,7 +146,7 @@ font:
     # style: Medium Italic
 
   # Point size
-  size: 17.0
+  size: 18.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -417,7 +417,7 @@ colors:
 #winpty_backend: false
 
 # Send ESC (\x1b) before characters when alt is pressed.
-#alt_send_esc: true
+alt_send_esc: false
 
 #mouse:
   # Click settings
