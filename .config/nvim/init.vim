@@ -62,6 +62,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 " version tracking features
 Plug 'airblade/vim-gitgutter'
@@ -185,18 +186,17 @@ autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeIm
 " binds
 " -----------------------------------------------------------------------------
 
-" manage splits with leader
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>+ :vertical resize +5<CR>
-nnoremap <leader>- :vertical resize -5<CR>
+" splits movement inherited from tmux plugin
+" resize splits with Alt
+noremap <silent> <M-h> :vertical resize +5<CR>
+noremap <silent> <M-j> :resize -5<CR>
+noremap <silent> <M-k> :resize +5<CR>
+noremap <silent> <M-l> :vertical resize -5<CR>
 
 " other bindings
 nnoremap <leader>g :Goyo<CR>
-nnoremap <leader>u :UndotreeShow <bar> :UndotreeFocus <CR>
-nnoremap <leader>f :Rg <space>
+nnoremap <leader>u :UndotreeShow <bar> :UndotreeFocus<CR>
+nnoremap <leader>f :Rg<space>
 nnoremap <C-p> :GFiles --cached --others --exclude-standard<CR>
 
 " <c-space> to trigger completion.
