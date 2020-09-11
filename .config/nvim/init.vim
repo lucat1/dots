@@ -12,12 +12,13 @@ set nowritebackup
 set undodir=~/.config/nvim/undodir
 set undofile
 set incsearch
-set termguicolors
 set scrolloff=10
 set cursorline
 set shortmess+=c
 set shell=/bin/bash
 set mouse-=a
+set lazyredraw
+set ttyfast
 
 " set tabs(as spaces) sizes
 set tabstop=2 softtabstop=2
@@ -77,8 +78,9 @@ call plug#end()
 
 let g:gruvbox_contrast_dark = 'hard'
 if exists('+termguicolors')
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
 endif
 let g:gruvbox_invert_selection='0'
 colorscheme gruvbox
@@ -113,8 +115,6 @@ let g:lightline = {
   \   'cocstatus': 'coc#status',
   \ }
 \ }
-" \ },
-" \ 'separator': {'left': '', 'right': ''}
 
 function! FileType()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : '') : ''
