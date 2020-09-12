@@ -65,8 +65,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'christoomey/vim-tmux-navigator'
 
-" version tracking features
-Plug 'airblade/vim-gitgutter'
+" the only vim extension
+Plug 'tpope/vim-fugitive'
 
 " languages
 Plug 'sheerun/vim-polyglot'
