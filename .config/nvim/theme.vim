@@ -74,3 +74,10 @@ exe 'hi Underlined gui=underline'
 " also make html args/params italic
 hi clear SignColumn
 hi htmlArg gui=italic
+
+" lightline colorscheme
+let s:p = {'normal': {}}
+let s:p.normal.left = [ [ s:fg, s:rose, 'NONE', 'NONE' ] ]
+let s:p.normal.middle = [ [ s:fg, s:bg, 'NONE', 'NONE' ] ]
+let s:p.normal.right = [ [ s:fg, s:pine, 'NONE', 'NONE' ] ]
+let g:lightline#colorscheme#rosepine#palette = lightline#colorscheme#fill(s:p)

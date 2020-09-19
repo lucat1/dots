@@ -81,8 +81,10 @@ source ~/.config/nvim/theme.vim
 " lightline
 " -----------------------------------------------------------------------------
 
+" echo g:lightline#colorscheme#rosepine#palette
 " configure lightline
 let g:lightline = {
+  \ 'colorscheme': 'rosepine',
   \ 'active': {
   \   'left': [ [ 'mode' ], 
   \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
@@ -206,3 +208,29 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " map <ESC> in terminal
 tnoremap <ESC> <C-\><C-n>
+
+" goyo hooks
+function! s:goyo_enter()
+  set wrap linebreak
+
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+endfunction
+
+function! s:goyo_leave()
+  set nowrap nolinebreak
+
+  " Quit Vim if this is the only remaining buffer
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+endfunction
+
+autocmd! User GoyoEnter call <SID>goyo_enter()
+autocmd! User GoyoLeave call <SID>goyo_leave()
