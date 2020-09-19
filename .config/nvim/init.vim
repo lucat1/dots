@@ -47,9 +47,6 @@ let mapleader = " "
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 call plug#begin()
-" my colorscheme (the one and only colorscheme)
-" + other purely visual extensions
-" Plug 'gruvbox-community/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 
 " essentials (status line, commenter, zen mode)
