@@ -2,7 +2,6 @@
 set noerrorbells
 set noshowmatch
 set noshowmode
-set nohlsearch
 set hidden
 set nowrap
 set smartcase
@@ -11,14 +10,16 @@ set nobackup
 set nowritebackup
 set undodir=~/.config/nvim/undodir
 set undofile
+set nohlsearch
 set incsearch
 set scrolloff=10
-set cursorline
+" set cursorline
 set shortmess+=c
 set shell=/bin/bash
 set mouse-=a
 set lazyredraw
 set ttyfast
+set showtabline=2
 
 " set tabs(as spaces) sizes
 set tabstop=2 softtabstop=2
@@ -30,14 +31,13 @@ set expandtab
 set number
 set relativenumber
 " set line gutter size
-set numberwidth=4
+set numberwidth=5
 
 " lower update times for a better experience
 set updatetime=50
 
 " line length gutter. 
 set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " mappings with leader key
 let mapleader = " "
@@ -49,11 +49,12 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g
 call plug#begin()
 " my colorscheme (the one and only colorscheme)
 " + other purely visual extensions
-Plug 'gruvbox-community/gruvbox'
+" Plug 'gruvbox-community/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 
 " essentials (status line, commenter, zen mode)
 Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
 Plug 'junegunn/goyo.vim'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-commentary'
@@ -63,7 +64,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
-Plug 'christoomey/vim-tmux-navigator'
 
 " the only vim extension
 Plug 'tpope/vim-fugitive'
@@ -75,24 +75,7 @@ call plug#end()
 " -----------------------------------------------------------------------------
 " appearance
 " -----------------------------------------------------------------------------
-
-let g:gruvbox_contrast_dark = 'hard'
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
-let g:gruvbox_invert_selection='0'
-colorscheme gruvbox
-set background=dark
-
-" make comments and certain pieces of code italic (Operator Mono)
-hi htmlArg gui=italic
-hi Comment gui=italic
-hi Type    gui=italic
-hi htmlArg cterm=italic
-hi Comment cterm=italic
-hi Type    cterm=italic
+source ~/.config/nvim/theme.vim
 
 " -----------------------------------------------------------------------------
 " lightline
@@ -100,7 +83,6 @@ hi Type    cterm=italic
 
 " configure lightline
 let g:lightline = {
-  \ 'colorscheme': 'gruvbox',
   \ 'active': {
   \   'left': [ [ 'mode' ], 
   \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
@@ -109,6 +91,16 @@ let g:lightline = {
   \     [ 'percent' ],
   \     [ 'filetype' ],
   \   ] 
+  \ },
+  \ 'tabline': {
+  \   'left': [ ['buffers'] ],
+  \   'right': []
+  \ },
+  \ 'component_expand': {
+  \   'buffers': 'lightline#bufferline#buffers'
+  \ },
+  \ 'component_type': {
+  \   'buffers': 'tabsel'
   \ },
   \ 'component_function': {
   \   'filetype': 'FileType',
@@ -186,18 +178,22 @@ autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeIm
 " binds
 " -----------------------------------------------------------------------------
 
-" splits movement inherited from tmux plugin
-" resize splits with Alt
-noremap <silent> <M-h> :vertical resize +5<CR>
-noremap <silent> <M-j> :resize -5<CR>
-noremap <silent> <M-k> :resize +5<CR>
-noremap <silent> <M-l> :vertical resize -5<CR>
+" movement and reiszing across splits
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+
+noremap <leader>H :vertical resize +5<CR>
+noremap <leader>J :resize -5<CR>
+noremap <leader>K :resize +5<CR>
+noremap <leader>L :vertical resize -5<CR>
 
 " other bindings
+nnoremap <leader>p :GFiles --cached --others --exclude-standard<CR>
+nnoremap <leader>f :Rg<space>
 nnoremap <leader>g :Goyo<CR>
 nnoremap <leader>u :UndotreeShow <bar> :UndotreeFocus<CR>
-nnoremap <leader>f :Rg<space>
-nnoremap <C-p> :GFiles --cached --others --exclude-standard<CR>
 
 " <c-space> to trigger completion.
 inoremap <silent><expr> <C-space> coc#refresh()
@@ -206,5 +202,7 @@ nmap <silent>gd <Plug>(coc-definition)
 nmap <silent>gy <Plug>(coc-type-definition)
 nmap <silent>gi <Plug>(coc-implementation)
 nmap <silent>gr <Plug>(coc-references)
-" renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
+" map <ESC> in terminal
+tnoremap <ESC> <C-\><C-n>
