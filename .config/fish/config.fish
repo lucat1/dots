@@ -1,7 +1,7 @@
 set fish_greeting
 fish_vi_key_bindings
 
-if test "(uname)" = "Linux"; and test -z "$DISPLAY"
+if test (uname) = "Linux"; and test -z "$DISPLAY"
   sx 
 end
 
