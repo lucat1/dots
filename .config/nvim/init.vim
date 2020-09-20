@@ -83,8 +83,8 @@ source ~/.config/nvim/theme.vim
 let g:lightline = {
   \ 'colorscheme': 'rosepine',
   \ 'active': {
-  \   'left': [ [ 'mode' ], 
-  \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
+  \   'left': [ [ 'mode', 'cocstatus' ], 
+  \             [ 'readonly', 'filename', 'modified' ] ],
   \   'right': [
   \     [ 'lineinfo' ],
   \     [ 'percent' ],
@@ -106,6 +106,8 @@ let g:lightline = {
   \   'cocstatus': 'coc#status',
   \ }
 \ }
+let g:lightline#bufferline#show_number  = 1
+let g:lightline#bufferline#unnamed      = '[No Name]'
 
 function! FileType()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : '') : ''
