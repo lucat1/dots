@@ -76,8 +76,14 @@ hi clear SignColumn
 hi htmlArg gui=italic
 
 " lightline colorscheme
-let s:p = {'normal': {}}
-let s:p.normal.left = [ [ s:fg, s:rose, 'NONE', 'NONE' ] ]
-let s:p.normal.middle = [ [ s:fg, s:bg, 'NONE', 'NONE' ] ]
-let s:p.normal.right = [ [ s:fg, s:pine, 'NONE', 'NONE' ] ]
+let s:p = {'inactive': {}, 'normal': {}, 'insert': {}, 'replace': {}}
+let s:p.normal.left = [ [ s:bg, s:rose], [ s:pine, s:bg ] ]
+let s:p.normal.middle = [ [ s:fg, s:bg ] ]
+let s:p.normal.right = [ [ s:fg, s:love ], [ s:foam, s:bg ] ]
+let s:p.insert.left = [ [ s:fg, s:love ], [ s:pine, s:bg ] ]
+let s:p.replace.left = [ [ s:bg, s:leaf], [ s:pine, s:bg ] ]
+
+let s:p.inactive.left = [ [ s:fg, s:bg ], [ s:fg, s:bg ] ]
+let s:p.inactive.middle = [ [ s:fg, s:bg ] ]
+let s:p.inactive.right = [ [ s:fg, s:bg ], [ s:fg, s:bg ] ]
 let g:lightline#colorscheme#rosepine#palette = lightline#colorscheme#fill(s:p)
