@@ -15,7 +15,7 @@ if test "(uname)" = "Linux"
 end
 
 ### lemonbar configs
-set -gx BARS_FONT "OperatorMonoLig Nerd Font:size=12"
+set -gx BARS_FONT "LigaOperatorMono Nerd Font:size=12"
 set -gx BARS_MARGIN 15
 set -gx BARS_HEIGHT 50
 set -gx BARS_BG "#1D2021"
