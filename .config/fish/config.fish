@@ -30,7 +30,7 @@ set -gx PATH "$VOLTA_HOME/bin" $PATH
 
 ### aliases
 alias gpg=gpg2 # make gpg work
-alias scrcln='rm -rfi $HOME/Pictures/screens'
+alias scrcln='rm -rf $HOME/Pictures/screens'
 
 # configure favourite editor
 alias vim=$EDITOR
