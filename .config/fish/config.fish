@@ -22,6 +22,9 @@ set -gx BARS_BG "#1D2021"
 set -gx BARS_FG "#EBDBB2"
 
 ### modify global $PATH
+if test "(uname)" != "Linux"
+  set -U fish_user_paths /usr/local/opt/openjdk/bin $fish_user_paths
+end
 set -gx PATH "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" $PATH
 set -gx PATH "$HOME/.bin" $PATH
 set -gx PATH "$GOPATH/bin" $PATH
