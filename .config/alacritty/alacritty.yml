@@ -304,30 +304,58 @@ font:
 #     cyan:    '#8ec07c'
 #     white:   '#ebdbb2'
 
+# colors: (Rosè Pine)
+#   primary:
+#     background: '#191724'
+#     foreground: '#e0def4'
+
+#   normal:
+#     black:   '#706e86'
+#     red:     '#eb6f92'
+#     green:   '#9ccfd8'
+#     yellow:  '#f6c177'
+#     blue:    '#31748f'
+#     magenta: '#c4a7e7'
+#     cyan:    '#ebbcba'
+#     white:   '#e0def4'
+
+#   bright:
+#     black:   '#706e86'
+#     red:     '#eb6f92'
+#     green:   '#9ccfd8'
+#     yellow:  '#f6c177'
+#     blue:    '#31748f'
+#     magenta: '#c4a7e7'
+#     cyan:    '#ebbcba'
+#     white:   '#e0def4'
 colors:
+  # Default colors
   primary:
-    background: '#191724'
-    foreground: '#e0def4'
+    background: '#2b292e'
+    foreground: '#fff1f3'
 
+  # Normal colors
   normal:
-    black:   '#706e86'
-    red:     '#eb6f92'
-    green:   '#9ccfd8'
-    yellow:  '#f6c177'
-    blue:    '#31748f'
-    magenta: '#c4a7e7'
-    cyan:    '#ebbcba'
-    white:   '#e0def4'
+    black:   '#2b292e'
+    red:     '#FF6188'
+    green:   '#A9DC76'
+    yellow:  '#FFD866'
+    blue:    '#AB9DF2'
+    magenta: '#DC9DF2'
+    cyan:    '#78DCE8'
+    white:   '#fdf9f3'
 
+  # Bright colors
   bright:
-    black:   '#706e86'
-    red:     '#eb6f92'
-    green:   '#9ccfd8'
-    yellow:  '#f6c177'
-    blue:    '#31748f'
-    magenta: '#c4a7e7'
-    cyan:    '#ebbcba'
-    white:   '#e0def4'
+    black:   '#3d3b40'
+    red:     '#fd6883'
+    green:   '#adda78'
+    yellow:  '#f9cc6c'
+    blue:    '#f38d70'
+    magenta: '#a8a9eb'
+    cyan:    '#85dacc'
+    white:   '#fff1f3'
+
 
 # Bell
 #

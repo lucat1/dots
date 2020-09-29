@@ -19,7 +19,6 @@ set shell=/bin/bash
 set mouse-=a
 set lazyredraw
 set ttyfast
-set showtabline=2
 
 " set tabs(as spaces) sizes
 set tabstop=2 softtabstop=2
@@ -30,8 +29,6 @@ set expandtab
 " display line numbers
 set number
 set relativenumber
-" set line gutter size
-set numberwidth=5
 
 " lower update times for a better experience
 set updatetime=50
@@ -47,11 +44,12 @@ let mapleader = " "
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 call plug#begin()
+" Plug 'co1ncidence/monokai-pro.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'co1ncidence/monokai-pro.vim'
 
 " essentials (status line, commenter, zen mode)
 Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
 Plug 'junegunn/goyo.vim'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-commentary'
@@ -66,13 +64,20 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'tpope/vim-fugitive'
 
 " languages
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter'
 call plug#end()
 
 " -----------------------------------------------------------------------------
 " appearance
 " -----------------------------------------------------------------------------
-source ~/.config/nvim/theme.vim
+hi clear
+if exists("syntax_on") 
+ syntax reset 
+endif
+set termguicolors
+set background=dark
+colorscheme monokai-pro
 
 " -----------------------------------------------------------------------------
 " lightline
@@ -80,8 +85,8 @@ source ~/.config/nvim/theme.vim
 
 " echo g:lightline#colorscheme#rosepine#palette
 " configure lightline
+" \ 'colorscheme': 'monokai-pro',
 let g:lightline = {
-  \ 'colorscheme': 'rosepine',
   \ 'active': {
   \   'left': [ [ 'mode', 'cocstatus' ], 
   \             [ 'readonly', 'filename', 'modified' ] ],
@@ -91,23 +96,11 @@ let g:lightline = {
   \     [ 'filetype' ],
   \   ] 
   \ },
-  \ 'tabline': {
-  \   'left': [ ['buffers'] ],
-  \   'right': []
-  \ },
-  \ 'component_expand': {
-  \   'buffers': 'lightline#bufferline#buffers'
-  \ },
-  \ 'component_type': {
-  \   'buffers': 'tabsel'
-  \ },
   \ 'component_function': {
   \   'filetype': 'FileType',
   \   'cocstatus': 'coc#status',
   \ }
 \ }
-let g:lightline#bufferline#show_number  = 1
-let g:lightline#bufferline#unnamed      = '[No Name]'
 
 function! FileType()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : '') : ''
@@ -156,22 +149,6 @@ function FormatBuffer()
 endfunction
 autocmd BufWritePre *.h,*.hpp,*.c,*.cpp :call FormatBuffer()
 
-" go (vim polyglot) config
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_variable_declarations = 1
-let g:go_auto_sameids = 1
-"
 " format go code on save
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
