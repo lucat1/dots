@@ -12,6 +12,10 @@
     },
     "ccls": {
       "command": "ccls",
+      "args": [
+        "--init",
+        "{\"clang\":{\"extraArgs\":[\"-isystem\", \"/Library/Developer/CommandLineTools/usr/include/c++/v1\"]}}"
+      ],
       "filetypes": ["c", "cpp", "objc", "objcpp"],
       "rootPatterns": [
         ".ccls",
