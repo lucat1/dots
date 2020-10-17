@@ -44,9 +44,8 @@ let mapleader = " "
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 call plug#begin()
-" Plug 'co1ncidence/monokai-pro.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'co1ncidence/monokai-pro.vim'
+Plug 'lucat1/monokai-pro.vim'
 
 " essentials (status line, commenter, zen mode)
 Plug 'itchyny/lightline.vim'
@@ -79,10 +78,9 @@ colorscheme monokai-pro
 " lightline
 " -----------------------------------------------------------------------------
 
-" echo g:lightline#colorscheme#rosepine#palette
 " configure lightline
-" \ 'colorscheme': 'monokai-pro',
 let g:lightline = {
+  \ 'colorscheme': 'monokaipro',
   \ 'active': {
   \   'left': [ [ 'mode', 'cocstatus' ], 
   \             [ 'readonly', 'filename', 'modified' ] ],
