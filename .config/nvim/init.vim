@@ -50,11 +50,11 @@ Plug 'lucat1/monokai-pro.vim'
 " essentials (status line, commenter, zen mode)
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim'
-Plug 'mbbill/undotree'
 Plug 'tpope/vim-commentary'
 
 " lsp & navigation
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
@@ -82,7 +82,7 @@ colorscheme monokai-pro
 let g:lightline = {
   \ 'colorscheme': 'monokaipro',
   \ 'active': {
-  \   'left': [ [ 'mode', 'cocstatus' ], 
+  \   'left': [ [ 'mode' ], 
   \             [ 'readonly', 'filename', 'modified' ] ],
   \   'right': [
   \     [ 'lineinfo' ],
@@ -92,7 +92,6 @@ let g:lightline = {
   \ },
   \ 'component_function': {
   \   'filetype': 'FileType',
-  \   'cocstatus': 'coc#status',
   \ }
 \ }
 
@@ -104,23 +103,16 @@ endfunction
 " coc & fzf
 " -----------------------------------------------------------------------------
 
-" definition/warning on hover
-" from: https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
-function! ShowDocIfNoDiagnostic(timer_id)
-  if (coc#util#has_float() == 0)
-    silent call CocActionAsync('doHover')
-  endif
-endfunction
+" neovim native LSPs
+lua require'nvim_lsp'.gopls.setup{on_attach=require'completion'.on_attach}
+lua require'nvim_lsp'.clangd.setup{on_attach=require'completion'.on_attach}
+lua require'nvim_lsp'.texlab.setup{on_attach=require'completion'.on_attach}
 
-function! s:show_hover_doc()
-  call timer_start(750, 'ShowDocIfNoDiagnostic')
-endfunction
-
-autocmd CursorHoldI * :call <SID>show_hover_doc()
-autocmd CursorHold * :call <SID>show_hover_doc()
-
-" prettier format command
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" autocomplete settings
+set completeopt=menuone,noinsert,noselect
+let g:completion_matching_strategy = ['exact', 'substring', 'fuzzy']
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " quick fzf config
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
@@ -143,9 +135,6 @@ function FormatBuffer()
 endfunction
 autocmd BufWritePre *.h,*.hpp,*.c,*.cpp :call FormatBuffer()
 
-" format go code on save
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-
 " -----------------------------------------------------------------------------
 " binds
 " -----------------------------------------------------------------------------
@@ -165,16 +154,14 @@ noremap <leader>L :vertical resize -5<CR>
 nnoremap <leader>p :GFiles --cached --others --exclude-standard<CR>
 nnoremap <leader>f :Rg<space>
 nnoremap <leader>g :Goyo<CR>
-nnoremap <leader>u :UndotreeShow <bar> :UndotreeFocus<CR>
 
 " <c-space> to trigger completion.
-inoremap <silent><expr> <C-space> coc#refresh()
+imap <silent><c-space> <Plug>(completion_trigger)
 " coc bindings
-nmap <silent>gd <Plug>(coc-definition)
-nmap <silent>gy <Plug>(coc-type-definition)
-nmap <silent>gi <Plug>(coc-implementation)
-nmap <silent>gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
+nnoremap <silent>gd <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent>gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent>rn <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent>K  <cmd>lua vim.lsp.buf.hover()<CR>
 
 " map <ESC> in terminal
 tnoremap <ESC> <C-\><C-n>
