@@ -104,15 +104,34 @@ endfunction
 " -----------------------------------------------------------------------------
 
 " neovim native LSPs
-lua require'nvim_lsp'.gopls.setup{on_attach=require'completion'.on_attach}
-lua require'nvim_lsp'.clangd.setup{on_attach=require'completion'.on_attach}
-lua require'nvim_lsp'.texlab.setup{on_attach=require'completion'.on_attach}
+lua << EOF
+  local nvim_lsp = require('nvim_lsp')
+  
+  local on_attach = function()
+    require'completion'.on_attach()
+  end
+
+  local servers = {'gopls', 'clangd', 'texlab'}
+  for _, lsp in ipairs(servers) do
+    nvim_lsp[lsp].setup {
+      on_attach = on_attach,
+    }
+  end
+EOF
+
+au BufWritePre *.h,*.hpp,*.c,*.cpp,*.go lua vim.lsp.buf.formatting_sync(nil, 1000)
 
 " autocomplete settings
 set completeopt=menuone,noinsert,noselect
 let g:completion_matching_strategy = ['exact', 'substring', 'fuzzy']
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" diagnostic settings
+call sign_define("LspDiagnosticsErrorSign", {"text" : ""})
+call sign_define("LspDiagnosticsWarningSign", {"text" : ""})
+call sign_define("LspDiagnosticsInformationSign", {"text" : "כֿ",})
+call sign_define("LspDiagnosticsHintSign", {"text" : "כֿ",})
 
 " quick fzf config
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
@@ -124,16 +143,6 @@ let $FZF_DEFAULT_OPTS='--reverse'
 
 " alias .svelte to html
 au! BufNewFile,BufRead *.svelte set ft=html
-
-" format c files on save
-function FormatBuffer()
-  if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
-    let cursor_pos = getpos('.')
-    :%!clang-format
-    call setpos('.', cursor_pos)
-  endif
-endfunction
-autocmd BufWritePre *.h,*.hpp,*.c,*.cpp :call FormatBuffer()
 
 " -----------------------------------------------------------------------------
 " binds
