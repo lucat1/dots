@@ -109,7 +109,7 @@ hc keybind $Mod-c cycle
 hc keybind $Mod-i jumpto urgent
 
 # theme
-hc pad 0 -2 -2 20 -2
+# hc pad 0 -2 -2 -2 -2
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 hc set frame_border_width 2
@@ -147,10 +147,4 @@ hc unlock
 # or simply:
 # hc detect_monitors
 
-# find the panel
-panel=~/.config/herbstluftwm/panel.sh
-[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
-for monitor in $(hc list_monitors | cut -d: -f1) ; do
-    # start it on each monitor
-    "$panel" "$monitor" &
-done
+polybar bar &
