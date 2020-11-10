@@ -45,7 +45,8 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g
 
 call plug#begin()
 Plug 'ryanoasis/vim-devicons'
-Plug 'lucat1/monokai-pro.vim'
+" Plug 'lucat1/monokai-pro.vim'
+Plug 'gruvbox-community/gruvbox'
 
 " essentials (status line, commenter, zen mode)
 Plug 'itchyny/lightline.vim'
@@ -72,15 +73,18 @@ if exists("syntax_on")
 endif
 set termguicolors
 set background=dark
-colorscheme monokai-pro
+" colorscheme monokai-pro
+let g:gruvbox_invert_selection='0'
+colorscheme gruvbox
 
 " -----------------------------------------------------------------------------
 " lightline
 " -----------------------------------------------------------------------------
 
 " configure lightline
+" \ 'colorscheme': 'monokaipro',
 let g:lightline = {
-  \ 'colorscheme': 'monokaipro',
+  \ 'colorscheme': 'gruvbox',
   \ 'active': {
   \   'left': [ [ 'mode' ], 
   \             [ 'readonly', 'filename', 'modified' ] ],
