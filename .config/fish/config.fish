@@ -13,6 +13,7 @@ if test "(uname)" = "Linux"
   set -gx BROWSER chromium
   set -gx GPG_TTY '$(tty)'
 end
+source $HOME/.config/colors.sh
 
 ### lemonbar configs
 set -gx BARS_FONT "LigaOperatorMono Nerd Font:size=12"
