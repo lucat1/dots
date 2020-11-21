@@ -4,13 +4,8 @@
 
 # terminal emulator
 super + Return
-  kitty --single-instance
-#  alacritty
+	alacritty
 
-# terminal emulator drawer
-super + shift + Return
-  adraw 
-  
 # program launcher
 super + @space
 	dmenu_run
@@ -18,23 +13,6 @@ super + @space
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
-
-#
-# macbook hotkeys
-#
-
-# dec/inc bridgness
-XF86MonBrightness{Up,Down}
-  $HOME/.bin/brght -{inc,dec} 5
-
-# dec/inc volume 
-XF86Audio{Raise,Lower}Volume
-  $HOME/.bin/snd -{i,d} 5
-
-# mute audio
-XF86AudioMute
-  $HOME/.bin/snd -t
-  
 
 #
 # bspwm hotkeys
@@ -45,40 +23,8 @@ super + alt + {q,r}
 	bspc {quit,wm -r}
 
 # close and kill
-super + {_,shift + } q
+super + {_,shift + }w
 	bspc node -{c,k}
-
-# toggle windows between floating / tilted mode
-super + f 
-  if [ -z "$(bspc query -N -n focused.floating)" ]; then \
-    bspc node -t floating; \
-  else \
-    bspc node -t tiled; \
-  fi
-
-# center windows
-super + c
-  $HOME/.bin/cntr
-
-# make window fullscreen
-super + shift + f
-  bspc node -t fullscreen
-
-# alt tab between windows
-super + {_, shift + } Tab
-  bspc node -f {next,prev}.local
-
-# bring up the screenshot tool
-super + alt + 1
-  $HOME/.bin/kap -p
-  
-# bring up record tool 
-super + alt + 2 
-  $HOME/.bin/kap -v
-
-# bring up the color picker
-super + alt + 3 
-  farge --notify
 
 # alternate between the tiled and monocle layout
 super + m
@@ -88,17 +34,17 @@ super + m
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# swap the current node and the biggest node
+# swap the current node and the biggest window
 super + g
-	bspc node -s biggest
+	bspc node -s biggest.window
 
 #
 # state/flags
 #
 
 # set the window state
-#super + {t,shift + t,s,f}
-#	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -116,9 +62,9 @@ super + {_,shift + }{h,j,k,l}
 super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
-# focus the next/previous node in the current desktop
+# focus the next/previous window in the current desktop
 super + {_,shift + }c
-	bspc node -f {next,prev}.local
+	bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
@@ -135,8 +81,8 @@ super + {o,i}
 	bspc wm -h on
 
 # focus or send to the given desktop
-super + {_,shift + }{1-6,0}
-	bspc {desktop -f,node -d} '^{1-6,10}'
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
 
 #
 # preselect
@@ -164,7 +110,7 @@ super + ctrl + shift + space
 
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
-	bspc node -z {left -80 0,bottom 0 80,top 0 -80,right 80 0}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving one of its side inward
 super + alt + shift + {h,j,k,l}

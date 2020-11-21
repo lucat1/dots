@@ -109,7 +109,7 @@ endfunction
 
 " neovim native LSPs
 lua << EOF
-  local nvim_lsp = require('nvim_lsp')
+  local lspconfig = require('lspconfig')
   
   local on_attach = function()
     require'completion'.on_attach()
@@ -117,7 +117,7 @@ lua << EOF
 
   local servers = {'gopls', 'clangd', 'texlab'}
   for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
+    lspconfig[lsp].setup {
       on_attach = on_attach,
     }
   end

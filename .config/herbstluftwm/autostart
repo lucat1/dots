@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-source $HOME/.config/colors.sh
+#!/bin/bash
 
 # this is a simple config for herbstluftwm
 
@@ -21,7 +19,10 @@ Mod=Mod4   # Use the super key as the main modifier
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Return spawn alacritty
-hc keybind $Mod-space spawn dmenu_run
+hc keybind $Mod-space spawn $HOME/.bin/dmenu_run \
+  -nb $BACKGROUND -nf $FOREGROUND \
+  -sb $BG_1 -sf $FOREGROUND \
+  -fn "$FONT"
 
 # basic movement in tiling and floating mode
 # focusing clients
@@ -124,7 +125,7 @@ hc set frame_border_active_color $BG_1
 hc set frame_border_normal_color $BG_1
 hc set frame_bg_active_color $BG_1
 hc set frame_bg_normal_color $BG_1
-hc attr theme.border_width 20
+hc attr theme.border_width 15
 
 # rules
 hc unrule -F
@@ -147,4 +148,4 @@ hc unlock
 # or simply:
 # hc detect_monitors
 
-polybar bar &
+polybar bar 2>&1 > /dev/null &

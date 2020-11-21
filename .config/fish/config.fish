@@ -13,7 +13,6 @@ if test "(uname)" = "Linux"
   set -gx BROWSER chromium
   set -gx GPG_TTY '$(tty)'
 end
-source $HOME/.config/colors.sh
 
 ### lemonbar configs
 set -gx BARS_FONT "LigaOperatorMono Nerd Font:size=12"
@@ -47,4 +46,29 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # always run package managers(apk,pacman) as root
 alias apk="doas apk"
-alias pacman="sudo pacman"
+alias xbps-install="sudo xbps-install"
+
+# color palette
+set -gx BACKGROUND "#282828"
+set -gx FOREGROUND "#ebdbb2"
+set -gx BG_1 "#32302f"
+
+set -gx BLACK "#282828"
+set -gx RED "#cc241d"
+set -gx GREEN "#98971a"
+set -gx YELLOW "#xd79921"
+set -gx BLUE "#458588"
+set -gx MAGENTA "#b16286"
+set -gx CYAN  "#689d6a"
+set -gx WHITE "#a89984"
+
+set -gx LIGHT_BLACK "#928374"
+set -gx LIGHT_RED "#fb4934"
+set -gx LIGHT_GREEN "#b8bb26"
+set -gx LIGHT_YELLOW "#fabd2f"
+set -gx LIGHT_BLUE "#83a598"
+set -gx LIGHT_MAGENTA "#d3869b"
+set -gx LIGHT_CYAN "#8ec07c"
+set -gx LIGHT_WHITE "#ebdbb2"
+
+set -gx FONT "LigaOperatorMono Nerd Font:style=Book,Regular:antialias=true:pixelsize=16"
