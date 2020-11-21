@@ -44,7 +44,7 @@ border-color=${env:BG_1}
 
 module-margin = 1
 
-font-0 = ${env:FONT}
+font-0 = "LigaOperatorMono Nerd Font:style=Book,Regular:antialias=true:pixelsize=16;3"
 
 modules-left = hlws
 modules-right = alsa battery date
@@ -147,7 +147,7 @@ type = internal/date
 interval = 10
 
 date =
-date-alt = "%d/%m"
+date-alt = at %d/%m
 
 time = %H:%M
 time-alt = %H:%M:%S
