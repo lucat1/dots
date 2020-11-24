@@ -1,0 +1,11 @@
+#!/bin/fish
+# dmenu_path | dmenu "$@" | ${SHELL:-"/bin/sh"} &
+set exe (/usr/sbin/dmenu_path | grep -v  -f $HOME/.config/dmenu_ignores | dmenu $argv)
+
+echo $exe
+
+if [ $exe = "chromium" ]; then
+  exec chromium --enable-features=WebUIDarkMode --force-dark-mode %U
+else
+  exec $exe
+end

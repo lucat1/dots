@@ -1,9 +1,0 @@
-#!/bin/sh
-
-round() {
-  printf "%.${2:-0}f" "$1"
-} 
-
-xbacklight $@
-val=$(xbacklight -get)
-echo $(round $val) > /tmp/xob

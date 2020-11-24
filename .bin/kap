@@ -1,5 +1,5 @@
 #!/usr/bin/fish
-# vim: set syntax=fish:
+# vim: set syntax=sh:
 # screenshot/screencaputre utility
 
 set folder "$HOME/Pictures/screens"
@@ -55,14 +55,13 @@ if test -n "$_flag_v"
   screencapture $dimentions
 
   # wait until the notification has been clicked to stop recording
-  dunstify -u critical -t 0 --action='a,b' '🎥 click to stop'
-  killall ffmpeg # end the recording
+  herbe 'click to stop recording' && killall ffmpeg # end the recording
 end
  
 if ! test -f $file 
-  notify-send -u critical "the screen wans't written"
+  herbe "the screen wans't written"
   exit 1
 end
 
 set size (du -sh $file | awk '{print $1;}'" ")
-notify-send "saved $size" 
+herbe "saved $size" 

@@ -85,7 +85,7 @@ format-padding = 2
 [module/memory]
 type = internal/memory
 interval = 5
-format = <label> RAM
+format = RAM <label>
 
 [settings]
 screenchange-reload = true

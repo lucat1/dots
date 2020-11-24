@@ -23,6 +23,8 @@ hc keybind $Mod-space spawn $HOME/.bin/dmenu_run \
   -nb $BACKGROUND -nf $FOREGROUND \
   -sb $BG_1 -sf $FOREGROUND \
   -fn "$FONT"
+hc keybind $Mod-Control-4 spawn $HOME/.bin/kap -p
+hc keybind $Mod-Control-5 spawn $HOME/.bin/kap -v
 
 # media keys
 hc keybind XF86AudioRaiseVolume spawn amixer set Master 2+
@@ -72,8 +74,8 @@ hc keybind $Mod-Control-Up      resize up +$resizestep
 hc keybind $Mod-Control-Right   resize right +$resizestep
 
 # tags
-tag_names=( {1..9} )
-tag_keys=( {1..9} 0 )
+tag_names=( {1..5} )
+tag_keys=( {1..5} 0 )
 
 hc rename default "${tag_names[0]}" || true
 for i in "${!tag_names[@]}" ; do
@@ -137,14 +139,12 @@ hc attr theme.border_width 15
 
 # rules
 hc unrule -F
-#hc rule class=XTerm tag=3 # move all xterms to tag 3
 hc rule focus=on # normally focus new clients
-#hc rule focus=off # normally do not focus new clients
 # give focus to most common terminals
-#hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
-hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on manage=off focus=on
+# hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
-hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off focus=off
 
 hc set tree_style '╾│ ├└╼─┐'
 
@@ -154,6 +154,8 @@ hc unlock
 # do multi monitor setup here, e.g.:
 # hc set_monitors 1280x1024+0+0 1280x1024+1280+0
 # or simply:
-# hc detect_monitors
+hc detect_monitors
 
-polybar bar 2>&1 > /dev/null &
+if ! pgrep -x "sxhkd" > /dev/null; then
+  polybar bar 2>&1 > /dev/null &
+fi

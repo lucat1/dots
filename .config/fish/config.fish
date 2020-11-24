@@ -2,7 +2,7 @@ set fish_greeting
 fish_vi_key_bindings
 
 if test (uname) = "Linux"; and test -z "$DISPLAY"
-  sx 
+  sx
 end
 
 ### globals 
@@ -35,6 +35,8 @@ set -gx PATH "$VOLTA_HOME/bin" $PATH
 ### aliases
 alias gpg=gpg2 # make gpg work
 alias scrcln='rm -rf $HOME/Pictures/screens'
+alias sxiv='devour sxiv'
+alias zathura='devour zathura'
 
 # configure favourite editor
 alias vim=$EDITOR

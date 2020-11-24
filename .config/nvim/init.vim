@@ -115,7 +115,7 @@ lua << EOF
     require'completion'.on_attach()
   end
 
-  local servers = {'gopls', 'clangd', 'texlab'}
+  local servers = {'gopls', 'clangd'}
   for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
       on_attach = on_attach,
