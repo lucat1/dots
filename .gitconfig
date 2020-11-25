@@ -4,7 +4,7 @@
 	signingkey = 0FDAEF91EB9B7A0C
 
 [core]
-	editor = vim
+	editor = nvim
 
 [gpg]
 	program = gpg2
