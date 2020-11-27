@@ -173,7 +173,7 @@ imap <silent><c-space> <Plug>(completion_trigger)
 " coc bindings
 nnoremap <silent>gd <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent>gr <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent>rn <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent>K  <cmd>lua vim.lsp.buf.hover()<CR>
 
 " map <ESC> in terminal
