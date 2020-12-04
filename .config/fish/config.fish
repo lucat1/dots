@@ -13,6 +13,7 @@ if test "(uname)" = "Linux"
   set -gx BROWSER chromium
   set -gx GPG_TTY '$(tty)'
 end
+set -gx _JAVA_AWT_WM_NONREPARENTING 1
 
 ### lemonbar configs
 set -gx BARS_FONT "LigaOperatorMono Nerd Font:size=12"

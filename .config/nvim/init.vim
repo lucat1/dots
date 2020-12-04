@@ -61,7 +61,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 
 " languages
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 " -----------------------------------------------------------------------------
@@ -140,13 +140,6 @@ call sign_define("LspDiagnosticsHintSign", {"text" : "כֿ",})
 " quick fzf config
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse'
-
-" -----------------------------------------------------------------------------
-" language specific
-" -----------------------------------------------------------------------------
-
-" alias .svelte to html
-au! BufNewFile,BufRead *.svelte set ft=html
 
 " -----------------------------------------------------------------------------
 " binds
