@@ -1,9 +1,0 @@
-#!/bin/bash
-exe=`dmenu_path | grep -v  -f $HOME/.config/dmenu_ignores | dmenu`
-
-if [ $exe = "chromium" ]; then
-  exec chromium --enable-features=WebUIDarkMode --force-dark-mode %U
-  exit
-fi
-
-exec $exe
