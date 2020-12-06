@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# set random photo as background with aestetics white print in the back
+file=$(shuf -n1 -e $HOME/.config/wallpapers/*)
+
+hsetroot -solid white -center $file
