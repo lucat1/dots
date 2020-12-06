@@ -3,4 +3,6 @@
 # set random photo as background with aestetics white print in the back
 file=$(shuf -n1 -e $HOME/.config/wallpapers/*)
 
-hsetroot -solid white -center $file
+# hsetroot -solid "#282828" -center $file # background
+hsetroot -solid white -center $file     # white
+# hsetroot -solid "#ebdbb2" -center $file   # foreground
