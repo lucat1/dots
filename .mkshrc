@@ -5,7 +5,15 @@ fi
 set -o vi
 set -o emacs # unfortunately, just to get history working
 
-PS1='$PWD $ '
+wd() {
+  if [ "${PWD#$HOME}" != "$PWD" ]; then
+    print -n "~${PWD#$HOME}"
+  else
+    print -n "$PWD"
+  fi
+}
+
+export PS1="[37;1m▲[0m (void) \$(wd) "
 
 ### exports
 export HISTFILE=$HOME/.mksh_history
@@ -18,6 +26,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH="$HOME/.bin:$GOPATH/bin:$PATH"
 
 ### aliases
+alias ll="ls -al" # make gpg work
 alias gpg=gpg2 # make gpg work
 alias scrcln='rm -rf $HOME/Pictures/screens'
 alias sxiv='devour sxiv'
@@ -30,3 +39,5 @@ alias vim="nvim"
 # git alias to manage config filed
 # see: https://www.atlassian.com/git/tutorials/dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# vi:syntax=sh
