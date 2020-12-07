@@ -13,7 +13,7 @@ wd() {
   fi
 }
 
-export PS1="[37;1m▲[0m (void) \$(wd) "
+export PS1="[37;1m▲[0m [34m\$(wd)[0m "
 
 ### exports
 export HISTFILE=$HOME/.mksh_history
