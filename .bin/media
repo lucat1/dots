@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# executes media controls(volume, brightness)
+
+killall herbe-$1
+
+if [ "$1" = "scr" ]; then
+  # i.e. xbacklight -inc 10
+  xbacklight $2 $3
+
+  brght=$(printf "%.0f" $(xbacklight);)
+  herbe -d 1 -n scr "brightness $brght%"
+fi
+
+if [ "$1" = "vol" ]; then
+  # i.e. amixer set Master toggle
+  echo "amixer $2 $3 $4"
+  amixer $2 $3 $4
+
+  vol=$(amixer get Master | grep 'Mono:' | awk -F'[][]' '{ print $2 }')
+  herbe -d 1 -n vol "volume $vol"
+fi
