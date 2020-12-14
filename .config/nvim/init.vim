@@ -164,7 +164,8 @@ nnoremap <leader>g :Goyo<CR>
 " <c-space> to trigger completion.
 imap <silent><c-space> <Plug>(completion_trigger)
 " coc bindings
-nnoremap <silent>gd <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent>gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent>gf <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent>gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent>K  <cmd>lua vim.lsp.buf.hover()<CR>
