@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# creates a EFI STUB entry for the linux kernel currently in use
-# video=SVIDEO-1:d 
-
-efibootmgr -c -d /dev/sda -p 1 -L "void-efistub" -l '\vmlinuz-5.8.18_1' \
-  -u 'quiet loglevel=3 rd.udev.log_priority=3 i915.fastboot=1 console=tty2 initrd=\initramfs-5.8.18_1.img root=UUID=60d235c5-394f-4215-b119-e0a4d56349e6'
