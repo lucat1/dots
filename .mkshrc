@@ -26,13 +26,13 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH="$HOME/.bin:$GOPATH/bin:$PATH"
 
 ### aliases
-alias ll="ls -al" # make gpg work
+alias ls=exa
+alias ll="exa -al" # make gpg work
 alias gpg=gpg2 # make gpg work
 alias scrcln='rm -rf $HOME/Pictures/screens'
 alias sxiv='devour sxiv'
 alias zathura='devour zathura'
 
-alias ls="ls --color=auto"
 alias vi="nvim"
 alias vim="nvim"
 
