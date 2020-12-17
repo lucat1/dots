@@ -44,12 +44,12 @@ let mapleader = " "
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 call plug#begin()
-Plug 'ryanoasis/vim-devicons'
-" Plug 'lucat1/monokai-pro.vim'
+" honorable mention, the original *gruvbox*
+" swapped out for a lighter alternative
 Plug 'gruvbox-community/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
 
 " essentials (status line, commenter, zen mode)
-Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-commentary'
 
@@ -73,35 +73,8 @@ if exists("syntax_on")
 endif
 set termguicolors
 set background=dark
-" colorscheme monokai-pro
-let g:gruvbox_invert_selection='0'
-colorscheme gruvbox
-
-" -----------------------------------------------------------------------------
-" lightline
-" -----------------------------------------------------------------------------
-
-" configure lightline
-" \ 'colorscheme': 'monokaipro',
-let g:lightline = {
-  \ 'colorscheme': 'gruvbox',
-  \ 'active': {
-  \   'left': [ [ 'mode' ], 
-  \             [ 'readonly', 'filename', 'modified' ] ],
-  \   'right': [
-  \     [ 'lineinfo' ],
-  \     [ 'percent' ],
-  \     [ 'filetype' ],
-  \   ] 
-  \ },
-  \ 'component_function': {
-  \   'filetype': 'FileType',
-  \ }
-\ }
-
-function! FileType()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : '') : ''
-endfunction
+" let g:gruvbox_invert_selection='0'
+colorscheme gruvbox8
 
 " -----------------------------------------------------------------------------
 " coc & fzf
