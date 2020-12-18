@@ -43,7 +43,7 @@ vim.o.hlsearch = false
 vim.o.incsearch = true
 -- disable swapfiles and enable undodir
 vim.o.swapfile = false
-vim.o.undodir = "~/.config/nvim/undodir"
+vim.o.undodir = "/home/luca/.config/nvim/undodir"
 vim.o.undofile = true
 vim.o.backup = false
 vim.o.writebackup = false
