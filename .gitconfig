@@ -9,9 +9,6 @@
 [gpg]
 	program = gpg2
 
-[credential]
-	helper = store
-
 [includeIf "gitdir:~/github/"]
     path = ~/github/.gitconfig
 
