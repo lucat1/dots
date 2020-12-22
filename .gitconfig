@@ -5,6 +5,8 @@
 
 [core]
 	editor = nvim
+[pull]
+	rebase = false
 
 [gpg]
 	program = gpg2
