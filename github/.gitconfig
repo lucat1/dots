@@ -1,4 +1,7 @@
 [user]
 	email = lucat1@users.noreply.github.com
 	name = Luca
-	signingkey = 0FDAEF91EB9B7A0C
+	signingkey = E66FBD9A64165CBC
+
+[commit]
+  gpgsign = true
