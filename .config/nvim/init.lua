@@ -62,7 +62,6 @@ vim.bo.expandtab = true
 vim.o.termguicolors = true
 vim.o.background = "dark"
 vim.cmd 'colorscheme gruvbox8'
-vim.g.gruvbox_italics = true
 
 -- mappings with leader key and all binds
 vim.g.mapleader = " "
