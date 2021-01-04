@@ -17,7 +17,7 @@ require('packer').startup(function()
   -- lsp, syntax highlighting and fuzzy finding
   use 'neovim/nvim-lspconfig'
   use 'nvim-lua/completion-nvim'
-  -- use 'nvim-treesitter/nvim-treesitter'
+  use 'nvim-treesitter/nvim-treesitter'
   use {
     'nvim-telescope/telescope.nvim',
     requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'}
@@ -53,7 +53,7 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.colorcolumn = "80"
 vim.bo.tabstop = 2
-vim.bo.softtabstop = 2
+vim.bo.softtabstop = 0
 vim.bo.shiftwidth = 2
 vim.bo.smartindent = true
 vim.bo.expandtab = true
@@ -62,6 +62,7 @@ vim.bo.expandtab = true
 vim.o.termguicolors = true
 vim.o.background = "dark"
 vim.cmd 'colorscheme gruvbox8'
+vim.g.gruvbox_italics = true
 
 -- mappings with leader key and all binds
 vim.g.mapleader = " "
