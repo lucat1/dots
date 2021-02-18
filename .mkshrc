@@ -36,7 +36,7 @@ alias zathura='devour zathura'
 alias vi="nvim"
 alias vim="nvim"
 
-# git alias to manage config filed
+# git alias to manage dotfiles
 # see: https://www.atlassian.com/git/tutorials/dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
