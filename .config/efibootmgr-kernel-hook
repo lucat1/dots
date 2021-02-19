@@ -1,0 +1,5 @@
+# Options for the kernel hook script installed by the efibootmgr package.
+MODIFY_EFI_ENTRIES=1
+DISK="/dev/sda"
+PART=1
+OPTIONS="quiet splash loglevel=3 rd.udev.log_priority=3 i915.fastboot=1 console=tty2 root=UUID=60d235c5-394f-4215-b119-e0a4d56349e6"

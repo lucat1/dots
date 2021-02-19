@@ -1,0 +1,7 @@
+int_mon="eDP1"
+ext_mon_1="DP2-1"
+xowner="luca"
+xauthority="/home/$xowner/.local/share/sx/xauthority"
+xserver=":1"
+lid="PNP0C0D:00"
+sleep="5"

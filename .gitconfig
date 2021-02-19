@@ -1,16 +1,14 @@
 [user]
 	email = fromzeroluke1@gmail.com 
 	name = Luca
-	signingkey = 0FDAEF91EB9B7A0C
 
 [core]
-	editor = vim
+	editor = nvim
+[pull]
+	rebase = false
 
 [gpg]
 	program = gpg2
-
-[credential]
-	helper = store
 
 [includeIf "gitdir:~/github/"]
     path = ~/github/.gitconfig
@@ -20,5 +18,7 @@
 
 [alias]
   cm = commit -m
-  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-  l  = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  ls = log --show-signature --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  l  = log --show-signature --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+[init]
+	defaultBranch = main
