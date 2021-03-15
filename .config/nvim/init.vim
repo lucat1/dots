@@ -85,7 +85,7 @@ lua << EOF
   local lspconfig = require('lspconfig')
   local completion = require('completion')
 
-  local servers = {'gopls', 'clangd', 'texlab'}
+  local servers = {'gopls', 'clangd', 'jdtls', 'tsserver'}
   for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
       on_attach = completion.on_attach,
@@ -110,12 +110,12 @@ noremap <leader>K :resize +5<CR>
 noremap <leader>L :vertical resize -5<CR>
 
 " other bindings
-nnoremap <leader>p <cmd>Telescope find_files<cr>
-nnoremap <leader>f <cmd>Telescope live_grep<cr>
+nnoremap <leader>p <cmd>:lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <leader>f <cmd>:lua require'telescope.builtin'.live_grep(require('telescope.themes').get_dropdown({}))<cr>
 nnoremap <leader>g :Goyo<CR>
 
 " coc bindings
 nnoremap <silent>gd <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent>gr <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent>r <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>r <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent>K  <cmd>lua vim.lsp.buf.hover()<CR>
