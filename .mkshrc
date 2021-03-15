@@ -25,6 +25,13 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 export PATH="$HOME/.bin:$GOPATH/bin:$PATH"
 
+# java lsp envvars
+export JAR=$HOME/unibo/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_1.6.0.v20200915-1508.jar
+export GRADLE_HOME=$HOME/gradle
+export JAVA_HOME=/usr/lib/jvm/openjdk11/
+export JDTLS_CONFIG=$HOME/unibo/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/config_linux
+export WORKSPACE=$HOME/.java-workspace
+
 ### aliases
 alias ls=exa
 alias ll="exa -al" # make gpg work
@@ -32,7 +39,6 @@ alias gpg=gpg2 # make gpg work
 alias scrcln='rm -rf $HOME/Pictures/screens'
 alias sxiv='devour sxiv'
 alias zathura='devour zathura'
-
 alias vi="nvim"
 alias vim="nvim"
 
