@@ -14,7 +14,7 @@
 [includeIf "gitdir:~/github/"]
     path = ~/github/.gitconfig
 
-[includeIf "gitdir:~/Pictures"]
+[includeIf "gitdir:~/Pictures/film"]
     path = ~/github/.gitconfig
 
 [includeIf "gitdir:~/.cfg/"]
@@ -22,6 +22,7 @@
 
 [alias]
   cm = commit -m
+	df = diff HEAD^^
   ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 
