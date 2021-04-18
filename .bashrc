@@ -9,7 +9,6 @@ export BROWSER=chromium
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 export GPG_TTY=$(tty)
-export CHROME_FLAGS="--enable-features=WebUIDarkMode --force-dark-mode"
 
 export PATH="$HOME/.bin:$GOPATH/bin:$PATH"
 
