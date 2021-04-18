@@ -1,7 +1,7 @@
 [user]
-	email = lucat1@users.noreply.github.com
+	email = luca.tagliavini5@studio.unibo.it
 	name = Luca
-	signingkey = E66FBD9A64165CBC
+	signingkey = 8FF7F278ADEA68EF
 
 [commit]
   gpgsign = true
