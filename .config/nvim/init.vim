@@ -103,11 +103,9 @@ let g:completion_matching_strategy = ['exact', 'substring', 'fuzzy']
 " binds
 " -----------------------------------------------------------------------------
 
-" movement and reiszing across splits
-noremap <leader>H :vertical resize +5<CR>
-noremap <leader>J :resize -5<CR>
-noremap <leader>K :resize +5<CR>
-noremap <leader>L :vertical resize -5<CR>
+" movement across buffers
+nnoremap <C-N> :bnext<CR>
+nnoremap <C-P> :bprev<CR>
 
 " other bindings
 nnoremap <leader>p <cmd>:lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
