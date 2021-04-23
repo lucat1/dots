@@ -7,6 +7,4 @@ xrdb -merge $HOME/.Xresources
 $HOME/.bin/rbg
 dwmstatus &
 
-# exec bspwm
-# exec herbstluftwm
 exec dwm
