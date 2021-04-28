@@ -1,3 +1,11 @@
 #!/bin/sh
 
+xset r rate 300 60            # key repeat speed
+xset s 300                    # screensaver after 5 minutes
+xrdb -merge $HOME/.Xresources # load xresources (for scaling)
+xsidle slock &                # use slock as the screensaver
+
+slock &                       # also use slock as a "login manager"
+sleep 1                       # prevent flickering with slock and dwm
+
 exec dwm
