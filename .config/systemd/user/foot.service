@@ -1,0 +1,14 @@
+[Unit]
+Description=Foot terminal server daemon
+Documentation=man:foot(1)
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+#ExecCondition=/bin/sh -c '[ -n "$WAYLAND_DISPLAY" ]'
+ExecStart=/usr/bin/foot --server
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

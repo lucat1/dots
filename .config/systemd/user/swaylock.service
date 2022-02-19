@@ -1,0 +1,15 @@
+[Unit]
+Description=Sway session lock
+Documentation=man:swaylock(1)
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+#ExecCondition=/bin/sh -c '[ -n "$WAYLAND_DISPLAY" ]'
+ExecStart=/usr/bin/swaylock
+Restart=on-failure
+RestartSec=1
+
+[Install]
+WantedBy=graphical-session.target

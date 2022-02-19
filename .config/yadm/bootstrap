@@ -9,5 +9,10 @@ assert_command() {
 }
 
 # Install the prezto zsh framework
-assert_command zsh
-zsh --no-rcs .config/yadm/bootstrap-zsh
+if ! test -d $HOME/.config/zsh/.zprezto; then
+  assert_command zsh
+  zsh --no-rcs $HOME/.config/yadm/bootstrap-zsh
+fi
+
+assert_command systemctl
+sh $HOME/.config/yadm/bootstrap-systemd
