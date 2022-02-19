@@ -1,0 +1,13 @@
+profile {
+  output eDP-1 disable
+  output "Samsung Electric Company S34J55x HTRKB00207" scale 1.15
+}
+
+profile {
+  output eDP-1 disable
+  output "BenQ Corporation BenQ" scale 1
+}
+
+profile {
+  output eDP-1 enable scale 1.15
+}
