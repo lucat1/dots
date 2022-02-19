@@ -1,0 +1,14 @@
+#!/bin/zsh --no-rcs
+set -e
+
+echo "Cloning the prezto framework"
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/.zprezto"
+
+echo "Installing the prezto files"
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+
+echo "Setting zsh as the default shell"
+chsh -s /bin/zsh

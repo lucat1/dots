@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+assert_command() {
+  if ! command -v $1 &> /dev/null; then
+    echo "Missing command line utility: $1"
+    exit 1
+  fi
+}
+
+# Install the prezto zsh framework
+assert_command zsh
+zsh --no-rcs .config/yadm/bootstrap-zsh
