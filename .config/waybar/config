@@ -1,0 +1,41 @@
+{
+  "position": "bottom",
+  "height": 22,
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": [],
+  "modules-right": ["network", "bluetooth", "pulseaudio", "backlight", "battery", "clock"],
+  "network": {
+    "format-wifi": "",
+    "format-ethernet": "",
+    "format-disconnected": "睊",
+    "on-click": "footclient -o font='monospace:size=12' -T iwctl iwctl"
+  },
+  "bluetooth": {
+    "format": "",
+    "on-click": "footclient -o font='monospace:size=12' -T bluetoothctl bluetoothctl"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "ﱝ",
+    "format-icons": ["", "", ""],
+    "on-click": "foot -o font='monospace:size=12' -T ncpamixer ncpamixer"
+  },
+  "backlight": {
+    "format": " {percent}%"
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 40,
+      "critical": 20
+    },
+    "format": "{icon}{capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-icons": [" ", " ", " ", " ", " "]
+  },
+  "clock": {
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%Y-%m-%d}"
+  }
+}

@@ -1,0 +1,53 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: BlexMono Nerd Font;
+  font-size: 16px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: #1d2021;
+  color: #ebdbb2;
+}
+
+#mode, #workspaces button, #network, #bluetooth, #pulseaudio, #backlight, #battery, #clock {
+  padding: 0 5px;
+  margin: 0 5px;
+}
+
+#mode, #workspaces button, #clock {
+  margin: 0;
+}
+
+#mode {
+  color: #1d2021;
+  background: #689d6a;
+}
+
+#workspaces button.focused, #battery.charging, #battery.plugged {
+  color: #1d2021;
+  background: #689d6a;
+}
+
+@keyframes blink {
+  to {
+    color: #ebdbb2;
+    background: #fb4934;
+  }
+}
+
+#battery.warning:not(.charging) {
+  color: #ebdbb2;
+  background: #d79921;
+}
+
+#battery.critical:not(.charging) {
+  color: #ebdbb2;
+  background: #cc241d;
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
