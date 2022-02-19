@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 enable_user_service() {
   echo "Enabling user service: $1"
