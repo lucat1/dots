@@ -1,7 +1,0 @@
-[user]
-	email = luca.tagliavini5@studio.unibo.it
-	name = Luca
-	signingkey = 8FF7F278ADEA68EF
-
-[commit]
-  gpgsign = true
