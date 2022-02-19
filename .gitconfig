@@ -17,7 +17,7 @@
 [includeIf "gitdir:~/Pictures"]
   path = ~/github/.gitconfig
 
-[includeIf "gitdir:~/.cfg/"]
+[includeIf "gitdir:~/.local/share/yadm/repo.git"]
   path = ~/github/.gitconfig
 
 [alias]
