@@ -1,2 +1,2 @@
 [Sleep]
-HibernateDelaySec=<% cat $HOME/.var/hibernate_delay %>
+HibernateDelaySec=<%+ ../.var/hibernate_delay %>
