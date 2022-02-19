@@ -1,5 +1,5 @@
 #!/bin/sh -e
 
 echo "Setting up systemd sleep & logind"
-ln -s $HOME/.config/logind.conf /etc/systemd/logind.conf
-ln -s $HOME/.config/sleep.conf /etc/systemd/sleep.conf
+sudo ln -s $HOME/.config/logind.conf /etc/systemd/logind.conf
+sudo ln -s $HOME/.config/sleep.conf /etc/systemd/sleep.conf
