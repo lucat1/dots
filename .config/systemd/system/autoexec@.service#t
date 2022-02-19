@@ -1,24 +1,20 @@
-# This service has been mainly imported from:
-# https://github.com/Hjdskes/cage/wiki/Starting-Cage-on-boot-with-systemd
-# Follow this guide to setup PAM authentication properly (change `luca` to your user name)
 [Unit]
 Description=Autologin to the requested user and run a command
 After=systemd-user-sessions.service plymouth-quit-wait.service
 Before=graphical-session.target
 Wants=dbus.socket systemd-logind.service
 After=dbus.socket systemd-logind.service
-# swap agetty@%i with this service
+# Swap agetty@%i with this service
 Conflicts=getty@%i.service
 After=getty@%i.service
 
 [Service]
 Type=simple
-# whatever command you want to run
+# Whatever command you want to run. Here I run my sway service
 ExecStart=/usr/bin/systemctl --user --wait start sway
 Restart=on-failure
 RestartSec=2s
-#WorkingDirectory=/home/luca
-User=luca
+User={{ yadm.user }}
 UtmpIdentifier=%I
 UtmpMode=user
 TTYPath=/dev/%I
@@ -26,7 +22,7 @@ TTYReset=yes
 TTYVHangup=yes
 TTYVTDisallocate=yes
 StandardInput=tty-fail
-PAMName=luca
+PAMName={{ yadm.user }}
 
 [Install]
 WantedBy=graphical.target
