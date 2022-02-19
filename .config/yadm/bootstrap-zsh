@@ -1,5 +1,4 @@
-#!/bin/zsh --no-rcs
-set -e
+#!/bin/zsh --no-rcs -e
 
 echo "Cloning the prezto framework"
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/.zprezto"
