@@ -16,7 +16,7 @@ systemctl --user daemon-reload
 
 # Enable all complementary user serivces to sway
 enable_user_service kanshi
-enable_user_service swaylock
+enable_user_service swayidle
 enable_user_service swaybg
 enable_user_service foot
 enable_user_service waybar
