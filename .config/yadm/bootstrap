@@ -7,6 +7,7 @@ assert_command() {
   fi
 }
 
+# Create the boot entry for the system
 assert_command kesboot
 sh $HOME/.config/yadm/bootstrap-kesboot
 
@@ -15,6 +16,9 @@ if ! test -d $HOME/.config/zsh/.zprezto; then
   assert_command zsh
   zsh --no-rcs $HOME/.config/yadm/bootstrap-zsh
 fi
+
+# Setup systemd sleep & hibernate
+sh $HOME/.config/yadm/bootstrap-sleep
 
 assert_command systemctl
 sh $HOME/.config/yadm/bootstrap-systemd
