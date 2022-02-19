@@ -11,12 +11,13 @@ systemctl link $HOME/.config/systemd/system/autoexec@.service
 echo "Enabling system service: autoexec@tty1"
 systemctl enable autoexec@tty1
 
-COLOR=$(cat ${XDG_CONFIG_HOME:-$HOME/.config}/background)
+echo "Reloading the systemd user daemon"
+systemctl --user daemon-reload
 
 # Enable all complementary user serivces to sway
 enable_user_service kanshi
 enable_user_service swaylock
-enable_user_service swaybg@${COLOR}
+enable_user_service swaybg
 enable_user_service foot
 enable_user_service waybar
 enable_user_service mako
