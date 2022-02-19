@@ -3,7 +3,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# aliases
+# Aliases
 alias ls="exa --header --git"
 alias ll="exa -a --long --header --git"
 alias vi="nvim"
