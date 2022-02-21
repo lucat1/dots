@@ -10,7 +10,7 @@ set $up k
 set $right l
 # terminal and application launcher
 # styling
-font pango:BlexMono Nerd Font 16px
+font pango:<%+ ../../.var/font_family %> <%+ ../../.var/font_size %>px
 default_border pixel 0
 # class                 border  bgcolor text    indicator   child_border
 client.focused		$green  $bg     $fg     $fg         $green
@@ -44,25 +44,13 @@ input type:keyboard {
 # closing
 bindsym $mod+w kill
 # launching(bemenu)
-bindsym $mod+space exec bemenu-run -b -H 22 --fn "BlexMono Nerd Font 16px" \
-  --tb "#689d6a" --fb "#1d2021" \
-  --nb "#1d2021" --hb "#1d2021" \
-  --sb "#1d2021" --scb "#1d2021" \
-  --tf "#1d2021" --ff "#ebdbb2" \
-  --nf "#ebdbb2" --hf "#689d6a" \
-  --sf "#689d6a" --scf "#ebdbb2"
+bindsym $mod+space exec <%+ ../../.var/tools/menu %>
 # terminal
-bindsym $mod+Return exec footclient
+bindsym $mod+Return exec <%+ ../../.var/tools/terminal %>
 # screenshot binds
-bindsym $mod+Alt+1 exec ~/.local/bin/scr
+bindsym $mod+Alt+1 exec <%+ ../../.var/tools/screenshot %>
 # launching(bemenu)
-bindsym $mod+p exec gopass ls --flat | bemenu -b -H 22 --fn "BlexMono Nerd Font 16px" \
-  --tb "#689d6a" --fb "#1d2021" \
-  --nb "#1d2021" --hb "#1d2021" \
-  --sb "#1d2021" --scb "#1d2021" \
-  --tf "#1d2021" --ff "#ebdbb2" \
-  --nf "#ebdbb2" --hf "#689d6a" \
-  --sf "#689d6a" --scf "#ebdbb2" | xargs --no-run-if-empty gopass show -c
+bindsym $mod+p exec <%+ ../../.var/tools/password %>
 
 # floating windows by default
 set $fl floating enable, border pixel 1

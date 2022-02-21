@@ -1,0 +1,10 @@
+autoclip: true
+cliptimeout: 45
+autoimport: true
+exportkeys: true
+nopager: false
+notifications: true
+parsing: true
+path: /home/luca/.password-store
+safecontent: false
+mounts: {}
