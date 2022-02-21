@@ -54,7 +54,7 @@ bindsym $mod+space exec bemenu-run -b -H 22 --fn "BlexMono Nerd Font 16px" \
 # terminal
 bindsym $mod+Return exec footclient
 # screenshot binds
-bindsym $mod+Alt+1 exec ~/.local/bin/scr
+bindsym $mod+Alt+1 exec /home/luca/.local/bin/scr
 # launching(bemenu)
 bindsym $mod+p exec gopass ls --flat | bemenu -b -H 22 --fn "BlexMono Nerd Font 16px" \
   --tb "#689d6a" --fb "#1d2021" \
