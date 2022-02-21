@@ -5,6 +5,6 @@ exportkeys: true
 nopager: false
 notifications: true
 parsing: true
-path: /home/luca/.password-store
+path: /home/{{ yadm.user }}/.password-store
 safecontent: false
 mounts: {}
