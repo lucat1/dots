@@ -1,21 +1,20 @@
 # theming preferences
-# TODO: rmeove
-include gruvbox
 
+set $font <%+ ../../.var/font_family %> <%+ ../../.var/font_size %>px
 set $mod Mod4
 # Vi keys for movement
 set $left h
 set $down j
 set $up k
 set $right l
-# terminal and application launcher
-# styling
-font pango:<%+ ../../.var/font_family %> <%+ ../../.var/font_size %>px
-default_border pixel 0
-# class                 border  bgcolor text    indicator   child_border
-client.focused		$green  $bg     $fg     $fg         $green
+# Styling
+font pango:$font
+default_border <%+ ../../.var/default_border %>
+# class        border bgcolor text indicator child_border
+client.focused "#<%+ ../../.var/colors/aqua %>" "#<%+ ../../.var/colors/bg %>" "#<%+ ../../.var/colors/fg %>" "#<%+ ../../.var/colors/fg %>" "#<%+ ../../.var/colors/aqua %>"
 
 set $gnome-schema org.gnome.desktop.interface
+# seat seat0 xcursor_theme $cursor $cursor_size
 #set $cursor oreo_white_cursors
 #set $cursor_size 32
 exec_always {
@@ -23,61 +22,57 @@ exec_always {
   # gsettings set $gnome-schema cursor-theme $cursor
   # gsettings set $gnome-schema cursor-size $cursor_size
 }
-# seat seat0 xcursor_theme $cursor $cursor_size
 
-# trackpad config
+# Trackpad & keyboard config
 input type:touchpad {
   tap enabled
   natural_scroll enabled
   scroll_factor 0.3
 
-  accel_profile adaptive # or flat
+  accel_profile adaptive
   pointer_accel 0.1
 }
-
-# keebs config
 input type:keyboard {
   repeat_rate 60
   repeat_delay 300
 }
 
-# closing
+# Floating drag modifier
+floating_modifier $mod normal
+# Kill windows
 bindsym $mod+w kill
-# launching(bemenu)
+# Launch programs
 bindsym $mod+space exec <%+ ../../.var/tools/menu %>
-# terminal
-bindsym $mod+Return exec <%+ ../../.var/tools/terminal %>
-# screenshot binds
-bindsym $mod+Alt+1 exec <%+ ../../.var/tools/screenshot %>
-# launching(bemenu)
+# Retrieve passwords
 bindsym $mod+p exec <%+ ../../.var/tools/password %>
+# Open the terminal
+bindsym $mod+Return exec <%+ ../../.var/tools/terminal %>
+# Take a screenshot
+bindsym $mod+Alt+1 exec <%+ ../../.var/tools/screenshot %>
 
-# floating windows by default
-set $fl floating enable, border pixel 1
-for_window [title="ncpamixer"] $fl
-for_window [title="iwctl"] $fl
-for_window [title="bluetoothctl"] $fl
+# Define some windows to be floating by default
+set $fl floating enable, border <%+ ../../.var/floating_border %>
+for_window [title="<%+ ../../.var/internal/ncpamixer_window_title %>"] $fl
+for_window [title="<%+ ../../.var/internal/iwctl_window_title %>"] $fl
+for_window [title="<%+ ../../.var/internal/bluetoothctl_window_title %>"] $fl
 for_window [title="Firefox — Sharing Indicator"] $fl
 
-# floating drag modifier
-floating_modifier $mod normal
-
-# focusing
+# Focusing
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
 
-# moving
+# Moving
 bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
 # 6 workspaces (3 named)
-set $w1 1 web
-set $w2 2 vi
-set $w3 3 sh
+set $w1 1 <%+ ../../.var/workspaces/1 %>
+set $w2 2 <%+ ../../.var/workspaces/2 %>
+set $w3 3 <%+ ../../.var/workspaces/3 %>
 bindsym $mod+1 workspace number $w1
 bindsym $mod+2 workspace number $w2
 bindsym $mod+3 workspace number $w3
@@ -101,18 +96,20 @@ bindsym $mod+f floating toggle
 bindsym $mod+Shift+f fullscreen
 
 # media keys binds
-bindsym XF86AudioMute         exec pactl set-sink-mute 0 toggle
-bindsym XF86AudioLowerVolume  exec pactl set-sink-volume 0 -2%
-bindsym XF86AudioRaiseVolume  exec pactl set-sink-volume 0 +2%
-bindsym XF86AudioMicMute      exec pactl set-source-mute 0 toggle
-bindsym XF86AudioPlay         exec playerctl play-pause
-bindsym XF86AudioPrev         exec playerctl previous
-bindsym XF86AudioNext         exec playerctl next
-bindsym XF86AudioStop         exec playerctl stop
+bindsym XF86AudioMute         exec <%+ ../../.var/tools/toggle_audio %>
+bindsym XF86AudioRaiseVolume  exec <%+ ../../.var/tools/increase_audio %>
+bindsym XF86AudioLowerVolume  exec <%+ ../../.var/tools/decrease_audio %>
+bindsym XF86AudioMicMute      exec <%+ ../../.var/tools/toggle_mic %>
+bindsym XF86AudioPlay         exec <%+ ../../.var/tools/toggle_player %>
+bindsym XF86AudioNext         exec <%+ ../../.var/tools/next_player %>
+bindsym XF86AudioPrev         exec <%+ ../../.var/tools/previous_player %>
+bindsym XF86AudioStop         exec <%+ ../../.var/tools/stop_player %>
 
-bindsym XF86MonBrightnessUp   exec light -A 5
-bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp   exec <%+ ../../.var/tools/increase_brightness %>
+bindsym XF86MonBrightnessDown exec <%+ ../../.var/tools/decrease_brightness %>
 
+# Sway + systemd configuration. Notify the systemd service of sway's successful
+# startup and export all needed variables for other services via dbus
 exec systemctl --user import-environment \
 					DISPLAY \
 					WAYLAND_DISPLAY \

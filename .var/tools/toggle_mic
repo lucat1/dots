@@ -1,0 +1,1 @@
+pactl set-source-mute <%+ ../mic_sink %> toggle

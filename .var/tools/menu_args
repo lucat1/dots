@@ -1,0 +1,7 @@
+-b -H 22 --fn "<%+ ../font_family %> <%+ ../font_size %>px" \
+  --tb "#<%+ ../colors/aqua %>" --fb "#<%+ ../colors/bg %>" \
+  --nb "#<%+ ../colors/bg %>" --hb "#<%+ ../colors/bg %>" \
+  --sb "#<%+ ../colors/bg %>" --scb "#<%+ ../colors/bg %>" \
+  --tf "#<%+ ../colors/bg %>" --ff "#<%+ ../colors/fg %>" \
+  --nf "#<%+ ../colors/fg %>" --hf "#<%+ ../colors/aqua %>" \
+  --sf "#<%+ ../colors/aqua %>" --scf "#<%+ ../colors/fg %>"
