@@ -7,8 +7,8 @@
 }
 
 window#waybar {
-  background: #1d2021;
-  color: #ebdbb2;
+  background: #<%+ ../../.var/colors/bg %>;
+  color: #<%+ ../../.var/colors/fg %>;
 }
 
 #mode, #workspaces button, #network, #bluetooth, #pulseaudio, #backlight, #battery, #clock {
@@ -21,29 +21,29 @@ window#waybar {
 }
 
 #mode {
-  color: #1d2021;
-  background: #689d6a;
+  color: #<%+ ../../.var/colors/bg %>;
+  background: #<%+ ../../.var/colors/aqua %>;
 }
 
 #workspaces button.focused, #battery.charging, #battery.plugged {
-  color: #1d2021;
-  background: #689d6a;
+  color: #<%+ ../../.var/colors/bg %>;
+  background: #<%+ ../../.var/colors/aqua %>;
 }
 
 @keyframes blink {
   to {
-    color: #ebdbb2;
-    background: #fb4934;
+    color: #<%+ ../../.var/colors/fg %>;
+    background: #<%+ ../../.var/colors/lred %>;
   }
 }
 
 #battery.warning:not(.charging) {
-  color: #ebdbb2;
-  background: #d79921;
+  color: #<%+ ../../.var/colors/fg %>;
+  background: #<%+ ../../.var/colors/yellow %>;
 }
 
 #battery.critical:not(.charging) {
-  color: #ebdbb2;
+  color: #<%+ ../../.var/colors/fg %>;
   background: #cc241d;
   animation-name: blink;
   animation-duration: 1s;
