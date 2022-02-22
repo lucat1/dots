@@ -18,7 +18,7 @@
     "format": "{icon} {volume}%",
     "format-muted": "ﱝ",
     "format-icons": ["", "", ""],
-    "on-click": "foot -o font='monospace:size=12' -T <%+ ../../.var/internal/ncpamixer_window_title %>ncpamixer -c $HOME/.config/ncpamixer.conf"
+    "on-click": "foot -o font='monospace:size=12' -T <%+ ../../.var/internal/ncpamixer_window_title %> ncpamixer -c <%= $HOME %>/.config/ncpamixer.conf"
   },
   "backlight": {
     "format": " {percent}%"
