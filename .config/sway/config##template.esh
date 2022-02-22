@@ -53,7 +53,7 @@ bindsym $mod+Alt+1 exec <%+ ../../.var/tools/screenshot %>
 # Define some windows to be floating by default
 set $fl floating enable, border <%+ ../../.var/floating_border %>
 for_window [title="<%+ ../../.var/internal/ncpamixer_window_title %>"] $fl
-for_window [title="<%+ ../../.var/internal/iwctl_window_title %>"] $fl
+for_window [title="<%+ ../../.var/internal/nmtui_window_title %>"] $fl
 for_window [title="<%+ ../../.var/internal/bluetoothctl_window_title %>"] $fl
 for_window [title="Firefox — Sharing Indicator"] $fl
 
