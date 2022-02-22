@@ -23,5 +23,8 @@ sh $HOME/.config/yadm/bootstrap-sleep
 assert_command systemctl
 sh $HOME/.config/yadm/bootstrap-systemd
 
+assert_command nmcli
+sh $HOME/.config/yadm/bootstrap-networkmanager
+
 assert_command intel-undervolt
 sh $HOME/.config/yadm/bootstrap-undervolt

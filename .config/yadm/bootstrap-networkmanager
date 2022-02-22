@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+echo "Linking ALMAWIFI networkmanager configuration"
+sudo ln -s $HOME/.config/NetworkManager/ALMAWIFI.nmconnection /etc/NetworkManager/system-connections/

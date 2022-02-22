@@ -1,0 +1,33 @@
+[connection]
+id=ALMAWIFI
+uuid=9a0161a2-ce43-4288-b3f6-93d058573cd2
+type=wifi
+interface-name=wlp4s0
+permissions=
+timestamp=1641980130
+
+[wifi]
+mac-address-blacklist=
+mode=infrastructure
+ssid=ALMAWIFI
+
+[wifi-security]
+key-mgmt=wpa-eap
+
+[802-1x]
+ca-cert=<% dirname $YADM_SOURCE %>/ALMAWIFI.crt
+eap=peap;
+identity=luca.tagliavini5@studio.unibo.it
+password=<% gopass --o uni/unibo.it %>
+phase2-auth=mschapv2
+
+[ipv4]
+dns-search=
+method=auto
+
+[ipv6]
+addr-gen-mode=stable-privacy
+dns-search=
+method=auto
+
+[proxy]
