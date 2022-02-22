@@ -8,17 +8,17 @@
     "format-wifi": "",
     "format-ethernet": "",
     "format-disconnected": "睊",
-    "on-click": "footclient -o font='monospace:size=12' -T iwctl iwctl"
+    "on-click": "footclient -o font='monospace:size=12' -T <%+ ../../.var/internal/iwctl_window_title %> iwctl"
   },
   "bluetooth": {
     "format": "",
-    "on-click": "footclient -o font='monospace:size=12' -T bluetoothctl bluetoothctl"
+    "on-click": "footclient -o font='monospace:size=12' -T <%+ ../../.var/internal/bluetoothctl_window_title %> bluetoothctl"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-muted": "ﱝ",
     "format-icons": ["", "", ""],
-    "on-click": "foot -o font='monospace:size=12' -T ncpamixer ncpamixer -c $HOME/.config/ncpamixer.conf"
+    "on-click": "foot -o font='monospace:size=12' -T <%+ ../../.var/internal/ncpamixer_window_title %>ncpamixer -c $HOME/.config/ncpamixer.conf"
   },
   "backlight": {
     "format": " {percent}%"
