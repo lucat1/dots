@@ -15,7 +15,7 @@ ssid=ALMAWIFI
 key-mgmt=wpa-eap
 
 [802-1x]
-ca-cert=<% dirname $YADM_SOURCE %>/ALMAWIFI.crt
+ca-cert=<%= $HOME %>/.config/NetworkManager/ALMAWIFI.crt
 eap=peap;
 identity=luca.tagliavini5@studio.unibo.it
 password=<% gopass --o uni/unibo.it %>
