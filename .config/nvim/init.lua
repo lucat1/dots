@@ -9,7 +9,8 @@ require('visimp')({
   lsp = {
     nullls = {
       'formatting.stylua',
-      'formatting.clang_format',
+      'formatting.prettier',
+      'formatting.latexindent',
     },
   },
   languages = {
