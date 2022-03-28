@@ -8,5 +8,8 @@ export PATH="$PATH:$HOME/.local/bin"
 # Go binaries
 export PATH="$PATH:$HOME/go/bin"
 
+# Open the gpg password prompt in the current terminal
+export GPG_TTY=$(tty)
+
 # Default programs
 export EDITOR=nvim
