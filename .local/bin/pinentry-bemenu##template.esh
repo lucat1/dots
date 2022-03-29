@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo 'OK Pleased to meet you'
+
+while read stdin; do
+	case $stdin in
+		*BYE*) echo 'OK closing connection'; break ;;
+		*SETDESC*) KEYNAME=${stdin#*:%0A%22}; KEYNAME=${KEYNAME%\%22\%0A*}; KEYID=${stdin#*ID }; KEYID=${KEYID%,*}; echo OK ;;
+    *GETPIN*) PASS=`echo '' | bemenu <%+ ../../.var/tools/menu_args %> -x -p "gpg($KEYNAME):"`;echo "D $PASS"; echo "OK" ;;
+		*) echo OK
+	esac
+done
