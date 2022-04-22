@@ -5,9 +5,11 @@ enable_user_service() {
   systemctl --user enable --now $1
 }
 
+# Copy pam auth module for the autoexec service
+sudo cp $HOME/.config/systemd/system/pam /etc/pam.d/$USER
 # System wide service to autoexec the sway user service
-echo "Linking local autoexec service file to system wide"
-systemctl link $HOME/.config/systemd/system/autoexec@.service
+echo "Copying local autoexec service file to system wide"
+sudo cp $HOME/.config/systemd/system/autoexec@.service /etc/systemd/system/
 echo "Enabling system service: autoexec@tty1"
 systemctl enable autoexec@tty1
 
