@@ -1,11 +1,11 @@
-vim.g['gruvbox_contrast_dark'] = 'hard'
-
--- local gruvbox = require'visimp.themes.gruvbox'
-require('visimp')({
+require 'visimp' {
   defaults = {
     foldmethod = 'marker',
   },
-  lspformat = {},
+  binds = {
+    [{ mode = 'n', bind = '<C-Tab>'}] = ':bprev',
+    [{ mode = 'n', bind = '<C-S-Tab>'}] = ':bnext'
+  },
   lsp = {
     nullls = {
       'formatting.stylua',
@@ -17,12 +17,26 @@ require('visimp')({
     'c',
     'latex',
     'lua',
+    'javascript',
+    'html',
+    'css',
+    'json',
+    'vue',
     'go',
+    'rust'
   },
-  python = {
-    lsp = 'pyright', -- Avoid installing pyright, use the system's default
+  theme = {
+    package = 'ellisonleao/gruvbox.nvim',
+    colorscheme = 'gruvbox',
+    background = 'dark',
+    lualine = 'gruvbox',
+    before = function()
+      require'gruvbox'.setup{
+        contrast = 'hard',
+        overrides = {
+          NormalFloat = { link = 'Normal' }
+        },
+      }
+    end
   },
-  lspsignature = {},
-  theme = { 'gruvbox-community/gruvbox', 'gruvbox', 'dark', 'gruvbox' },
-  -- theme = gruvbox()
-})
+}
