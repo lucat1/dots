@@ -3,8 +3,8 @@ require 'visimp' {
     foldmethod = 'marker',
   },
   binds = {
-    [{ mode = 'n', bind = '<C-Tab>'}] = ':bprev',
-    [{ mode = 'n', bind = '<C-S-Tab>'}] = ':bnext'
+    [{ mode = 'n', bind = '<C-Tab>' }] = ':bprev',
+    [{ mode = 'n', bind = '<C-S-Tab>' }] = ':bnext'
   },
   lsp = {
     nullls = {
@@ -13,6 +13,7 @@ require 'visimp' {
       'formatting.latexindent',
     },
   },
+  rust = { lsp = 'rust_analyzer' },
   languages = {
     'c',
     'latex',
@@ -31,7 +32,7 @@ require 'visimp' {
     background = 'dark',
     lualine = 'gruvbox',
     before = function()
-      require'gruvbox'.setup{
+      require 'gruvbox'.setup {
         contrast = 'hard',
         overrides = {
           NormalFloat = { link = 'Normal' }
