@@ -2,3 +2,5 @@
 
 echo "Linking ALMAWIFI networkmanager configuration"
 sudo cp $HOME/.config/NetworkManager/ALMAWIFI.nmconnection /etc/NetworkManager/system-connections/
+sudo chmod 600 /etc/NetworkManager/system-connections/ALMAWIFI.nmconnection
+sudo chmod 600 $HOME/.config/NetworkManager/ALMAWIFI.crt
