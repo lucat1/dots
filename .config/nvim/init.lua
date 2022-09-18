@@ -9,7 +9,7 @@ require 'visimp' {
   lsp = {
     nullls = {
       'formatting.stylua',
-      'formatting.prettier',
+      'formatting.prettierd',
       'formatting.latexindent',
     },
   },
