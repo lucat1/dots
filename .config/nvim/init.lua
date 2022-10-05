@@ -9,10 +9,11 @@ require('visimp')({
   lsp = {
     nullls = {
       'formatting.stylua',
-      'formatting.prettier',
+      'formatting.prettierd',
       'formatting.latexindent',
     },
   },
+  rust = { lsp = 'rust_analyzer' },
   languages = {
     'c',
     'latex',
@@ -33,7 +34,11 @@ require('visimp')({
     background = 'dark',
     lualine = 'gruvbox',
     before = function()
+<<<<<<< HEAD
       require('gruvbox').setup({
+=======
+      require 'gruvbox'.setup {
+>>>>>>> 782a7d2102193fcd770846809211c8f02e03bdf9
         contrast = 'hard',
         overrides = {
           NormalFloat = { link = 'Normal' },
