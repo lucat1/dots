@@ -1,10 +1,10 @@
-require 'visimp' {
+require('visimp')({
   defaults = {
     foldmethod = 'marker',
   },
   binds = {
-    [{ mode = 'n', bind = '<C-Tab>'}] = ':bprev',
-    [{ mode = 'n', bind = '<C-S-Tab>'}] = ':bnext'
+    [{ mode = 'n', bind = '<C-Tab>' }] = ':bprev',
+    [{ mode = 'n', bind = '<C-S-Tab>' }] = ':bnext',
   },
   lsp = {
     nullls = {
@@ -23,20 +23,22 @@ require 'visimp' {
     'json',
     'vue',
     'go',
-    'rust'
+    'rust',
   },
+  rust = { lsp = 'rust_analyzer' },
+  lspformat = {},
   theme = {
     package = 'ellisonleao/gruvbox.nvim',
     colorscheme = 'gruvbox',
     background = 'dark',
     lualine = 'gruvbox',
     before = function()
-      require'gruvbox'.setup{
+      require('gruvbox').setup({
         contrast = 'hard',
         overrides = {
-          NormalFloat = { link = 'Normal' }
+          NormalFloat = { link = 'Normal' },
         },
-      }
-    end
+      })
+    end,
   },
-}
+})
