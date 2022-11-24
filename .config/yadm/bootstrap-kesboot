@@ -1,6 +1,7 @@
 #!/bin/sh -e
 
 echo "Linking kesboot.conf"
+sudo rm /etc/kesboot.conf
 sudo ln -s $HOME/.config/kesboot.conf /etc/kesboot.conf
 
 echo "Recreating all boot entries"

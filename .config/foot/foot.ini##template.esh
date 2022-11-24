@@ -1,0 +1,36 @@
+font=monospace:size=<%+ ../../.var/font_size %>
+term=foot
+dpi-aware=no
+pad=4x4 center
+
+[scrollback]
+lines=10000
+
+[url]
+launch=xdg-open ${url}
+protocols=http,https
+
+[mouse]
+hide-when-typing=yes
+alternate-scroll-mode=yes
+
+[colors]
+alpha=1.0
+background=<%+ ../../.var/colors/bg %>
+foreground=<%+ ../../.var/colors/fg %>
+regular0=<%+ ../../.var/colors/bg0 %>
+regular1=<%+ ../../.var/colors/red %>
+regular2=<%+ ../../.var/colors/green %>
+regular3=<%+ ../../.var/colors/yellow %>
+regular4=<%+ ../../.var/colors/blue %>
+regular5=<%+ ../../.var/colors/purple %>
+regular6=<%+ ../../.var/colors/aqua %>
+regular7=<%+ ../../.var/colors/gray %>
+bright0=<%+ ../../.var/colors/lgray %>
+bright1=<%+ ../../.var/colors/lred %>
+bright2=<%+ ../../.var/colors/lgreen %>
+bright3=<%+ ../../.var/colors/lyellow %>
+bright4=<%+ ../../.var/colors/lblue %>
+bright5=<%+ ../../.var/colors/lpurple %>
+bright6=<%+ ../../.var/colors/laqua %>
+bright7=<%+ ../../.var/colors/fg %>

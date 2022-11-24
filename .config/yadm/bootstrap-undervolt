@@ -1,6 +1,0 @@
-#!/bin/sh -e
-
-mv /etc/intel-undervolt.conf /etc/intel-undervolt.conf.bak
-sudo ln -s $HOME/.config/intel-undervolt.conf /etc/intel-undervolt.conf
-
-sudo systemctl enable intel-undervolt
