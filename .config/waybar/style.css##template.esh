@@ -6,14 +6,11 @@
   min-height: 0;
 }
 
-window#waybar {
+window#waybar, #mode, #workspaces button, #pulseaudio, #network, #backlight, #battery, #clock {
   background: #<%+ ../../.var/colors/bg %>;
   color: #<%+ ../../.var/colors/fg %>;
-}
-
-#mode, #workspaces button, #network, #bluetooth, #pulseaudio, #backlight, #battery, #clock {
-  padding: 0 5px;
-  margin: 0 5px;
+  padding: 0 8px;
+  margin: 0 8px;
 }
 
 #mode, #workspaces button, #clock {
@@ -21,7 +18,7 @@ window#waybar {
 }
 
 #mode {
-  color: #<%+ ../../.var/colors/bg %>;
+  color: #<%+ ../../.var/colors/fg %>;
   background: #<%+ ../../.var/colors/aqua %>;
 }
 

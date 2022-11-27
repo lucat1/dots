@@ -3,16 +3,12 @@
   "height": 22,
   "modules-left": ["sway/workspaces", "sway/mode"],
   "modules-center": [],
-  "modules-right": ["network", "bluetooth", "pulseaudio", "backlight", "battery", "clock"],
+  "modules-right": ["network", "pulseaudio", "backlight", "battery", "clock"],
   "network": {
     "format-wifi": "",
     "format-ethernet": "",
     "format-disconnected": "睊",
     "on-click": "footclient -o font='monospace:size=12' -T <%+ ../../.var/internal/nmtui_window_title %> nmtui"
-  },
-  "bluetooth": {
-    "format": "",
-    "on-click": "footclient -o font='monospace:size=12' -T <%+ ../../.var/internal/bluetoothctl_window_title %> bluetoothctl"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
@@ -26,10 +22,10 @@
   "battery": {
     "states": {
       "good": 95,
-      "warning": 40,
+      "warning": 30,
       "critical": 20
     },
-    "format": "{icon}{capacity}%",
+    "format": "{icon} {capacity}%",
     "format-charging": " {capacity}%",
     "format-plugged": " {capacity}%",
     "format-icons": [" ", " ", " ", " ", " "]
