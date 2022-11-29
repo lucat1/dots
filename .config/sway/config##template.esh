@@ -114,11 +114,7 @@ exec systemctl --user import-environment \
 					DISPLAY \
 					WAYLAND_DISPLAY \
           SWAYSOCK \
-					I3SOCK \
-					MOZ_ENABLE_WAYLAND=1 \
-					QT_QPA_PLATFORM=wayland \
-					SDL_VIDEODRIVER=wayland \
-					_JAVA_AWT_WM_NONREPARENTING=1
+					I3SOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec_always systemd-notify --ready

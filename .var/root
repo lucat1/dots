@@ -1,1 +1,1 @@
-cryptdevice=PARTUUID=f0a90d10-f1e6-8b4b-89ff-e316ec7a808a:root root=/dev/mapper/root rw
+cryptdevice=PARTUUID=f0a90d10-f1e6-8b4b-89ff-e316ec7a808a:root root=/dev/mapper/root ro
