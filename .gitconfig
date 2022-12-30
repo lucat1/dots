@@ -14,6 +14,9 @@
 [includeIf "gitdir:~/github/"]
   path = ~/github/.gitconfig
 
+[includeIf "gitdir:~/gitlab/"]
+  path = ~/gitlab/.gitconfig
+
 [includeIf "gitdir:~/Pictures"]
   path = ~/github/.gitconfig
 
@@ -39,3 +42,7 @@
   tool = nvimdiff
 [mergetool "nvimdiff"]
   path = nvim
+[safe]
+	directory = *
+[push]
+	autoSetupRemote = true
