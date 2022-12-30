@@ -2,7 +2,7 @@
 id=ALMAWIFI
 uuid=9a0161a2-ce43-4288-b3f6-93d058573cd2
 type=wifi
-interface-name=wlp4s0
+interface-name=<%= $(ls /sys/class/ieee80211/*/device/net) %>
 permissions=
 timestamp=1641980130
 
@@ -18,7 +18,7 @@ key-mgmt=wpa-eap
 ca-cert=<%= $HOME %>/.config/NetworkManager/ALMAWIFI.crt
 eap=peap;
 identity=luca.tagliavini5@studio.unibo.it
-password=<% gopass --o uni/unibo.it %>
+password=<% gopass -o uni/unibo.it %>
 phase2-auth=mschapv2
 
 [ipv4]
