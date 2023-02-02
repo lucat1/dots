@@ -1,0 +1,13 @@
+[core]
+	notifications = true
+	cliptimeout = 45
+	showsafecontent = false
+	autoimport = true
+	parsing = true
+	nopager = false
+	exportkeys = true
+	autoclip = true
+[mounts]
+	path = <%= $HOME %>/.password-store
+[age]
+	usekeychain = false

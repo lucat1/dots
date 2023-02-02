@@ -5,6 +5,6 @@ exportkeys: true
 nopager: false
 notifications: true
 parsing: true
-path: <%= $HOME %>/.password-store
+path: /home/luca/.password-store
 safecontent: false
 mounts: {}
