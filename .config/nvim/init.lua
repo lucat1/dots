@@ -1,4 +1,4 @@
-require 'visimp' {
+require('visimp')({
   defaults = {
     foldmethod = 'marker',
   },
@@ -21,20 +21,22 @@ require 'visimp' {
     'vue',
     'go',
     'rust',
+    'svelte',
   },
-  lspformat = {},
+  diagnostics = {},
+  -- lspformat = {},
   theme = {
     package = 'ellisonleao/gruvbox.nvim',
     colorscheme = 'gruvbox',
     background = 'dark',
     lualine = 'gruvbox',
     before = function()
-      require 'gruvbox'.setup {
+      require('gruvbox').setup({
         contrast = 'hard',
         overrides = {
           NormalFloat = { link = 'Normal' },
         },
-      }
+      })
     end,
   },
-}
+})
