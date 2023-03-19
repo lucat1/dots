@@ -1,8 +1,27 @@
 profile {
-  output eDP-1 disable
-  output DP-2 scale 1.5
-}
-
-profile {
   output eDP-1 enable scale 2
 }
+
+# home docking (bologna)
+profile {
+  output eDP-1 disable
+  output "BNQ BenQ GW2470 H8F00853019" enable scale 1
+}
+
+# home docking (riccione)
+profile {
+  output eDP-1 disable
+  output "Samsung Electric Company S34J55x HTRKB00207" enable scale 1.5
+}
+
+# tv ?
+# profile {
+#   output eDP-1 disable
+#   output DP-1 enable scale 1
+# }
+
+# screen mirroring with wl-mirror
+# profile {
+#   output eDP-1 enable scale 2
+#   output HDMI-A-1 enable
+# }
