@@ -3,7 +3,7 @@ INSTALL_HOOK=1
 # A hook for the package manager when removing kernels
 REMOVE_HOOK=1
 # default kernel cmdline
-CMDLINE_DEFAULT="<%+ ../.var/root %> <%+ ../.var/resume %> quiet loglevel=3 rd.systemd.show_status=auto rd.udev.log_level=3 splash psmouse.synaptics_intertouch=1 msr.allow_writes=on"
+CMDLINE_DEFAULT="<%+ ../.var/root %> <%+ ../.var/resume %> quiet loglevel=3 rd.systemd.show_status=auto rd.udev.log_level=3 splash initcall_blacklist=acpi_cpufreq_init"
 # Substitute the path to the root directory of the system in cmdline
 SUB_ROOT=0
 # initrd/microcode to be loaded before initrd
