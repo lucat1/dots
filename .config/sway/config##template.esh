@@ -12,6 +12,7 @@ font pango:$font
 default_border <%+ ../../.var/default_border %>
 # class        border bgcolor text indicator child_border
 client.focused "#<%+ ../../.var/colors/aqua %>" "#<%+ ../../.var/colors/bg %>" "#<%+ ../../.var/colors/fg %>" "#<%+ ../../.var/colors/fg %>" "#<%+ ../../.var/colors/aqua %>"
+client.unfocused "#<%+ ../../.var/colors/lgray %>" "#<%+ ../../.var/colors/bg %>" "#<%+ ../../.var/colors/fg %>" "#<%+ ../../.var/colors/fg %>" "#<%+ ../../.var/colors/lgray %>"
 
 set $gnome-schema org.gnome.desktop.interface
 # seat seat0 xcursor_theme $cursor $cursor_size
@@ -96,6 +97,9 @@ bindsym $mod+s splitv
 # fullscreen and toggle floating
 bindsym $mod+f floating toggle
 bindsym $mod+Shift+f fullscreen
+
+# block
+bindsym $mod+Escape exec <%+ ../../.var/swaylock %>
 
 # media keys binds
 bindsym XF86AudioMute         exec <%+ ../../.var/tools/toggle_audio %>
