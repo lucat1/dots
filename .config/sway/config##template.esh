@@ -101,6 +101,10 @@ bindsym $mod+Shift+f fullscreen
 # block
 bindsym $mod+Escape exec <%+ ../../.var/swaylock %>
 
+# move workspaces across outputs
+bindsym $mod+Alt+greater move workspace to output right
+bindsym $mod+Alt+less move workspace to output left
+
 # media keys binds
 bindsym XF86AudioMute         exec <%+ ../../.var/tools/toggle_audio %>
 bindsym XF86AudioRaiseVolume  exec <%+ ../../.var/tools/increase_audio %>
