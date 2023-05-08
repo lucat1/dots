@@ -6,8 +6,8 @@
   "modules-right": ["network", "pulseaudio", "backlight", "battery", "clock"],
   "network": {
     "format-wifi": "",
-    "format-ethernet": "",
-    "format-disconnected": "睊",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "",
     "on-click": "footclient -o font='monospace:size=12' -T <%+ ../../.var/internal/nmtui_window_title %> nmtui"
   },
   "pulseaudio": {
