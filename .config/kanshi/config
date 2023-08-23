@@ -11,7 +11,8 @@ profile {
 # home docking (riccione)
 profile {
   output eDP-1 disable
-  output "Samsung Electric Company S34J55x HTRKB00207" enable scale 1.5
+  output "BNQ BenQ GW2470 H8F00852019" enable scale 1 position 0,0
+  output "BNQ BenQ GW2470 H8F00853019" enable scale 1 position 1920,0
 }
 
 # tv ?
