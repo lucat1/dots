@@ -1,7 +1,7 @@
 font=monospace:size=<%+ ../../.var/font_size %>
 term=foot
 dpi-aware=no
-pad=4x4 center
+pad=6x6 center
 
 [scrollback]
 lines=10000
@@ -15,7 +15,7 @@ hide-when-typing=yes
 alternate-scroll-mode=yes
 
 [colors]
-alpha=1.0
+alpha=0.95
 background=<%+ ../../.var/colors/bg %>
 foreground=<%+ ../../.var/colors/fg %>
 regular0=<%+ ../../.var/colors/bg0 %>
