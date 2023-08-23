@@ -10,6 +10,7 @@ require('visimp')({
     },
   },
   rust = { lsp = 'rust_analyzer' },
+  ltex = {},
   languages = {
     'c',
     'latex',
