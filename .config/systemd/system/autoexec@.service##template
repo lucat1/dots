@@ -10,8 +10,8 @@ After=getty@%i.service
 
 [Service]
 Type=simple
-# Whatever command you want to run. Here I run my sway service
-ExecStart=/usr/bin/systemctl --user --wait start sway
+# Whatever command you want to run. Here I run my hyprland service
+ExecStart=/usr/bin/systemctl --user --wait start hyprland
 Restart=on-failure
 RestartSec=2s
 User={{ yadm.user }}

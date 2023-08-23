@@ -1,9 +1,9 @@
 {
   "position": "bottom",
   "height": 22,
-  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-left": ["hyprland/workspaces"],
   "modules-center": [],
-  "modules-right": ["network", "pulseaudio", "backlight", "battery", "clock"],
+  "modules-right": ["hyprland/language", "network", "pulseaudio", "backlight", "battery", "clock"],
   "network": {
     "format-wifi": "",
     "format-ethernet": "󰈀",

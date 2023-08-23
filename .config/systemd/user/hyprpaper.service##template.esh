@@ -9,7 +9,7 @@ After=graphical-session.target
 Type=simple
 #ExecCondition=/bin/sh -c '[ -n "$WAYLAND_DISPLAY" ]'
 #ExecStart=/usr/bin/swaybg -i %h/Pictures/wallpaper.%i -m fill
-ExecStart=$HOME/.local/bin/wallpaper
+ExecStart=%h/.local/bin/wallpaper
 Restart=on-failure
 
 [Install]
