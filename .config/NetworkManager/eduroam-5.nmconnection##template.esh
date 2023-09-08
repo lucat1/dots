@@ -1,13 +1,10 @@
 [connection]
 id=eduroam-5
-uuid=a71f1063-48e7-46b1-b3cd-9dfa99784901
+uuid=67c45a76-4581-48b9-bc63-eb95643c0dda
 type=wifi
 interface-name=<%= $(ls /sys/class/ieee80211/*/device/net) %>
-permissions=
-timestamp=1641980130
 
 [wifi]
-mac-address-blacklist=
 mode=infrastructure
 ssid=eduroam-5
 
@@ -15,18 +12,16 @@ ssid=eduroam-5
 key-mgmt=wpa-eap
 
 [802-1x]
-eap=peap;
+eap=ttls;
 identity=<% gopass -o uni/ethz.ch login %>@student-net.ethz.ch
 password=<% gopass -o uni/ethz.ch radius %>
 phase2-auth=mschapv2
 
 [ipv4]
-dns-search=
 method=auto
 
 [ipv6]
-addr-gen-mode=stable-privacy
-dns-search=
+addr-gen-mode=default
 method=auto
 
 [proxy]
