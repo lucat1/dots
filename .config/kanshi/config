@@ -15,6 +15,12 @@ profile {
   output "BNQ BenQ GW2470 H8F00853019" enable scale 1 position 1920,0
 }
 
+# home docking (zurich)
+profile {
+  output eDP-1 disable
+  output "Samsung Electric Company SAMSUNG Unknown" enable scale 1 position 0,0
+}
+
 # tv ?
 # profile {
 #   output eDP-1 disable

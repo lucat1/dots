@@ -1,6 +1,10 @@
 #!/bin/sh -e
 
-echo "Linking ALMAWIFI networkmanager configuration"
+echo "Copying ALMAWIFI networkmanager configuration"
 sudo cp $HOME/.config/NetworkManager/ALMAWIFI.nmconnection /etc/NetworkManager/system-connections/
 sudo chmod 600 /etc/NetworkManager/system-connections/ALMAWIFI.nmconnection
 sudo chmod 600 $HOME/.config/NetworkManager/ALMAWIFI.crt
+
+echo "Copying eduroam-5 networkmanager configuration"
+sudo cp $HOME/.config/NetworkManager/eduroam-5.nmconnection /etc/NetworkManager/system-connections/
+sudo chmod 600 /etc/NetworkManager/system-connections/eduroam-5.nmconnection
