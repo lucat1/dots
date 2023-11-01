@@ -37,7 +37,7 @@ input type:keyboard {
   repeat_rate 60
   repeat_delay 300
   xkb_layout us,us(intl)
-  xkb_options grp:shifts_toggle
+  xkb_options grp:shifts_toggle,caps:escape
 }
 
 # Floating drag modifier
