@@ -17,8 +17,22 @@ profile {
 
 # home docking (zurich)
 profile {
-  output eDP-1 disable
+  output eDP-1 enable scale 2 position 420,1080
   output "Samsung Electric Company SAMSUNG Unknown" enable scale 1 position 0,0
+  # output eDP-1 disable
+  # output "Samsung Electric Company SAMSUNG Unknown" enable scale 1 position 0,0
+}
+
+# medicine docking
+profile {
+  output eDP-1 enable scale 2
+  output "HP Inc. HP E23 G4 CN41291Q6Q" enable scale 1.25
+}
+
+# CAB docking
+profile {
+  output eDP-1 enable scale 2 position 0,1080
+  output "Lenovo Group Limited LEN-M90a-3-BA 0x00000001" enable scale 1 position 0,0
 }
 
 # tv ?
