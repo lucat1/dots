@@ -8,7 +8,8 @@
     "format-wifi": "",
     "format-ethernet": "󰈀",
     "format-disconnected": "",
-    "on-click": "footclient -o font='monospace:size=12' -T <%+ ../../.var/internal/nmtui_window_title %> nmtui"
+    "on-click": "footclient -o font='monospace:size=12' -T <%+ ../../.var/internal/nmtui_window_title %> nmtui",
+    "tooltip-format": "{ifname}: {ipaddr}/{cidr} via {gwaddr}"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",

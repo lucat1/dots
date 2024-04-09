@@ -1,6 +1,6 @@
 [connection]
 id=eduroam
-uuid=67c45a76-4581-48b9-bc63-eb95643c0dda
+uuid=6c675a10-5c89-11ee-956f-8f70eb67fc25
 type=wifi
 interface-name=<%= $(ls /sys/class/ieee80211/*/device/net) %>
 

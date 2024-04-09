@@ -2,3 +2,5 @@ MOZ_ENABLE_WAYLAND=1
 QT_QPA_PLATFORM=wayland
 SDL_VIDEODRIVER=wayland
 _JAVA_AWT_WM_NONREPARENTING=1
+XDG_CURRENT_DESKTOP=sway
+PATH=/home/luca/.opam/ocaml.4.14.0/bin:/home/luca/.local/share/nvim/mason/bin:/home/luca/.opam/ocaml.4.14.0/bin:/usr/local/bin:/usr/bin:/home/luca/.local/bin:/home/luca/go/bin:/home/luca/.cargo/bin:/home/luca/.yarn/bin:/usr/bin/vendor_perl:/home/luca/.local/jolie:/home/luca/.config/emacs/bin:/home/luca/.local/bin:/home/luca/go/bin:/home/luca/.cargo/bin:/home/luca/.yarn/bin:/usr/bin/vendor_perl:/home/luca/.local/jolie:/home/luca/.config/emacs/bin
