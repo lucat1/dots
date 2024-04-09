@@ -11,8 +11,10 @@ export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 # Yarn binaries
 export PATH="$PATH:$HOME/.yarn/bin"
-# Perl binaries (mainly biber for latex)
-export PATH="$PATH:/usr/bin/vendor_perl"
+# Haskell binaries
+export PATH="$PATH:$HOME/.cabal/bin:$HOME/.ghcup/bin"
+# Google cloud binaries
+export PATH="$PATH:/opt/google-cloud-cli/bin"
 
 # Open the gpg password prompt in the current terminal
 export GPG_TTY=$(tty)
@@ -27,7 +29,5 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export EDITOR=nvim
 export BROWSER=firefox
 
-# Jolie binaries
-export PATH="$PATH:$HOME/.local/jolie"
-# Jolie home
-export JOLIE_HOME="$HOME/.local/jolie/jolie-dist"
+# Attach to the ssh agent
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
