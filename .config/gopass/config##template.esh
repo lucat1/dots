@@ -9,5 +9,7 @@
 	autoclip = true
 [mounts]
 	path = <%= $HOME %>/.password-store
+[mounts "teapot"]
+	path = <%= $HOME %>/.local/share/teapot
 [age]
 	usekeychain = false
